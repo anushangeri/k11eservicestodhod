@@ -98,10 +98,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="employeeparticulars.jsp">Employee Particulars</a></li>
-                    <li><a href="payslip.jsp">Generate Payslip</a></li>
-                    <li><a href="todhod.jsp">TOD/HOD Details Night</a></li>
-                    <li><a href="todhod_day.jsp">TOD/HOD Details Day</a></li>
+                    <li><a href="todhodsearch.jsp">View TOD/HOD Details</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
