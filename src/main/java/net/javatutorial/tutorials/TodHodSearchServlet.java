@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
@@ -48,6 +49,15 @@ public class TodHodSearchServlet extends HttpServlet {
 		responseObj.add(to);
 		request.setAttribute("responseObj", responseObj);
 		RequestDispatcher rd = null;
+		// get current session, and don't create one if it doesn't exist
+	    HttpSession theSession = request.getSession( false );
+	    // print out the session id
+	    if( theSession != null ) {
+	      synchronized( theSession ) {
+	        // invalidating a session destroys it
+	        theSession.invalidate();
+	      }
+	    }
 		if (shift.equals("Day")){
 			rd = request.getRequestDispatcher("todhodday.jsp");
 		}
