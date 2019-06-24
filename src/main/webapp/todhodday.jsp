@@ -96,7 +96,11 @@
                     String dutysite = cec.getValue("todhoddutysites");
                     //System.out.println("THE PROBLEM IS HERE: " + dutysite);
                     String standbyremark = cec.getValue("reportingofficername");
+                    %>
                     
+                    site: <%=site %>
+                    dutysite: <%=dutysite %>
+                    <% 
                     if(!StringUtils.isEmpty(site) || !StringUtils.isEmpty(idNo)){
 	                    	if(!StringUtils.isEmpty(site)  && StringUtils.isEmpty(idNo)){
 	                    		//if search by site only
@@ -105,7 +109,12 @@
 	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
 	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
 	                                    && !dutysite.toUpperCase().contains("UL") && dutysite.equals(site)){
-	
+	                            	%>
+	                                came in here
+	                                site: <%=site %>
+	                                dutysite: <%=dutysite %>
+	                                <%=dutysite.equals(site) %>
+	                                <%
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 	                                        securityofficername, date, time, areyoutodhod,
