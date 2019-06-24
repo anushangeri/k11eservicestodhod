@@ -96,21 +96,17 @@
                     String dutysite = cec.getValue("todhoddutysites");
                     //System.out.println("THE PROBLEM IS HERE: " + dutysite);
                     String standbyremark = cec.getValue("reportingofficername");
-                    %>
-                    
-                    site: <%=site %>
-                    dutysite: <%=dutysite %>
-                    <%=dutysite.equals(site) %>
-                    <% 
+                       
                     if(!StringUtils.isEmpty(site) || !StringUtils.isEmpty(idNo)){
 	                    	if(!StringUtils.isEmpty(site)  && StringUtils.isEmpty(idNo)){
 	                    		//if search by site only
 	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
-	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
-	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
-	                                    && !dutysite.toUpperCase().contains("UL") && dutysite.equals(site)){
-	                            	
+// 	                    		if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
+// 	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
+// 	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
+// 	                                    && !dutysite.toUpperCase().contains("UL") && dutysite.equals(site)){
+	                            if(dutysite != null && !dutysite.isEmpty() && dutysite.equals(site)){
+	
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 	                                        securityofficername, date, time, areyoutodhod,
@@ -133,10 +129,7 @@
 	                    	if(StringUtils.isEmpty(site)   && !StringUtils.isEmpty(idNo)){
 	                    		//if search by nric/fin only
 	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
-	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
-	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
-	                                    && !dutysite.toUpperCase().contains("UL") && enternricfin.equals(idNo)){
+	                            if(idNo != null && !idNo.isEmpty() && enternricfin.equals(idNo)){
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 	                                        securityofficername, date, time, areyoutodhod,
@@ -159,10 +152,7 @@
 	                    	if(!StringUtils.isEmpty(site)  && !StringUtils.isEmpty(idNo)){
 	                    		//if search by both
 	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
-	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
-	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
-	                                    && !dutysite.toUpperCase().contains("UL") && enternricfin.equals(idNo) && dutysite.equals(site)){
+	                            if(dutysite != null && !dutysite.isEmpty() && enternricfin.equals(idNo) && dutysite.equals(site)){
 	
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
@@ -188,10 +178,7 @@
 	                    else{
 	                		//if search by date (minimum requirement)
 	                		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                        if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
-	                                && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
-	                                && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
-	                                && !dutysite.toUpperCase().contains("UL")){
+	                        if(fromDt != null && !fromDt.toString().isEmpty()){
 	
 	                            if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                            TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,

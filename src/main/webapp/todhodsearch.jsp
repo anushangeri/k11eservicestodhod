@@ -113,7 +113,8 @@
 			    <option>Night</option>
 			  </select>
 		    </div>
-		    <button type="submit" class="btn btn-primary">Search NRIC/FIN</button>
+		    <br>
+		    <button type="submit" class="btn btn-primary">Search</button>
 		    </div>
 		</form>
     </body>
