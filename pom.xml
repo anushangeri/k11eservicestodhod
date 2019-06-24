@@ -99,9 +99,9 @@
                         <artifactItems>
                             <artifactItem>
                                 <groupId>com.github.jsimone</groupId>
-                                <artifactId>webapp-runner</artifactId>
+                                <artifactId>webapp-k11todhod</artifactId>
                                 <version>7.0.22</version>
-                                <destFileName>webapp-runner.jar</destFileName>
+                                <destFileName>webapp-todhod.jar</destFileName>
                             </artifactItem>
                         </artifactItems>
                     </configuration>
@@ -120,9 +120,9 @@
                         <artifactItems>
                             <artifactItem>
                          <groupId>com.github.jsimone</groupId>
-                        <artifactId>webapp-runner</artifactId>
+                        <artifactId>webapp-k11todhod</artifactId>
                                 <version>8.0.30.2</version>
-                     <destFileName>webapp-runner.jar</destFileName>
+                     <destFileName>webapp-k11todhod.jar</destFileName>
                             </artifactItem>
                         </artifactItems>
                     </configuration>
