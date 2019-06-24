@@ -369,7 +369,7 @@
     %>
 
 
-        <div style="display: block; width: 100%" id="todhodtablediv">
+        <div style="display: block;" id="todhodtablediv">
 	            <display:table name="sessionScope.todHodPairs" pagesize="20"
 	                           export="true" sort="list" class="table">
 	                <display:column property="enternricfin" title="NRIC/FIN"
