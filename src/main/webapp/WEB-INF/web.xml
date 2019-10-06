@@ -6,7 +6,9 @@
 	version="3.1">
 	
 	<display-name>Simple Servlet Application</display-name>
-
+	<welcome-file-list>
+     <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 	<servlet>
 		<servlet-name>simpleServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.SimpleServlet</servlet-class>

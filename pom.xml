@@ -28,8 +28,8 @@
 	</dependency>
     <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -83,6 +83,11 @@
 		    <artifactId>displaytag-portlet</artifactId>
 		    <version>1.2</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-jsp</artifactId>
+		    <version>9.2.10.v20150310</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>webappRunnerSample</finalName>
@@ -108,7 +113,15 @@
                 </execution>
             </executions>
         </plugin>
-	 <plugin>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.1</version>
+            <configuration>
+                <fork>true</fork>
+                <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
+            </configuration>
+        </plugin>
+	 	<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>2.3</version>
