@@ -46,16 +46,18 @@
 	        try {
 	        	if(from.length() != 0 && !StringUtils.isEmpty(from)){
 	        		fromDt = dateFormat.parse(from);
+	        		//System.out.println("THE PROBLEM IS fromDt: " + fromDt);
 	        	}
 	        	if(to.length() != 0 && !StringUtils.isEmpty(to)){
 	        		toDt = dateFormat.parse(to);
+	        		//System.out.println("THE PROBLEM IS toDt: " + toDt);
 	        	}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-        SpreadsheetService service = new SpreadsheetService("Form Responses 1");
+        SpreadsheetService service = new SpreadsheetService("Sheet2");
         SpreadsheetService service2 = new SpreadsheetService("Sheet1");
         try {
         	List<TodHodPair> todHodPairs = new ArrayList<TodHodPair>();
@@ -63,7 +65,7 @@
                     = //1TwURCxMStzOp_jFMisNFF01PswassfcM-J4Ma90o23A (test)
                     //1i_3_wI3ClPXE_nX4biN3oNrqxMgyswPuzklAx8mwivY  (real)
                     //1nuQlSMmThaj3YxBktjn771wvzZflDwmS746STcsUcJI (real v2)
-                    "https://spreadsheets.google.com/feeds/list/1R52wxkOdPdnQZZnk2T6FCETARXX1pzfmaGZZ8gqm1rU/1/public/values";
+                    "https://spreadsheets.google.com/feeds/list/1SCtQDA0BESQ51VLCm4IKq_XKbDBMkPwhcRCXgb7TNVA/1/public/values";
 
             // Use this String as url
             URL url = new URL(sheetUrl);
@@ -185,8 +187,11 @@
 	                                    securityofficername, date, time, areyoutodhod,
 	                                    dutysite, standbyremark);
 	                            todDetails.setTimestamp(timestamp);
+	                            System.out.println("get date: " + todDetails.getDate());
+	                            System.out.println("THE PROBLEM IS fromDt: " + fromDt);
 	                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
-	                            		allTodDetails.add(todDetails);
+	                                	System.out.println("THE PROBLEM IS HERE todDetails: " + todDetails);
+	                                	allTodDetails.add(todDetails);
 	                            	}
 	                            }
 	

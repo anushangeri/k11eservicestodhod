@@ -55,7 +55,7 @@
 				e.printStackTrace();
 			}
 		}
-        SpreadsheetService service = new SpreadsheetService("Form Responses 1");
+        SpreadsheetService service = new SpreadsheetService("Sheet2");
         SpreadsheetService service2 = new SpreadsheetService("Sheet1");
         try {
         	List<TodHodPair> todHodPairs = new ArrayList<TodHodPair>();
@@ -64,7 +64,7 @@
                     = //1TwURCxMStzOp_jFMisNFF01PswassfcM-J4Ma90o23A (test)
                     //1i_3_wI3ClPXE_nX4biN3oNrqxMgyswPuzklAx8mwivY  (real)
                     //1nuQlSMmThaj3YxBktjn771wvzZflDwmS746STcsUcJI (real v2)
-                    "https://spreadsheets.google.com/feeds/list/1R52wxkOdPdnQZZnk2T6FCETARXX1pzfmaGZZ8gqm1rU/1/public/values";
+                    "https://spreadsheets.google.com/feeds/list/1SCtQDA0BESQ51VLCm4IKq_XKbDBMkPwhcRCXgb7TNVA/1/public/values";
 
             // Use this String as url
             URL url = new URL(sheetUrl);
@@ -76,7 +76,7 @@
             ArrayList<TodHodDetails> allTodDetails = new ArrayList<TodHodDetails>();
             ArrayList<TodHodDetails> allHodDetails = new ArrayList<TodHodDetails>();
             for (ListEntry le : lf.getEntries()) {
-                
+                //System.out.println("is it printing: " + le.toString());
                 CustomElementCollection cec = le.getCustomElements();
                 
                 if (cec != null){
