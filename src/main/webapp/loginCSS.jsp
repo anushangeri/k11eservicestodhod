@@ -89,21 +89,6 @@
 body {
 	background-color: #F3F3F3;
 }
-
-@media ( max-width : 767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
-		color: #ff6600;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
-		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
-		color: #ecdbff;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
-		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
-		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
-		color: #ecdbff;
-	}
-}
 </style>
 <nav class="navbar navbar-inverse" role="navigation">
 	<div class="container-fluid">
