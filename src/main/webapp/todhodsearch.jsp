@@ -68,8 +68,6 @@
 		nricfin = (String) session.getAttribute("nricfin");
 	}
 	%>
-	<%=session.getAttribute("nricfin")%>
-	<%=session.getAttribute("usertype")%>
 	<%
 	ArrayList<String> dutySites = new ArrayList<String>();
 	SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
@@ -94,6 +92,7 @@
 			<%
      }
 	%>
+	<center>
 		<form action="todHodSearch" method="post">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
@@ -147,5 +146,6 @@
 		    <button type="submit" class="btn btn-primary">Search NRIC/FIN</button>
 		    </div>
 		</form>
+		</center>
     </body>
 </html>
