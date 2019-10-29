@@ -142,11 +142,13 @@ body {
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li><a href="todhodsearch.jsp">TOD/HOD Details</a></li>
+						<div class="float-right">
 						<li>
 							<form action="logout" method="post">
-									<button type="submit" class="btn btn-light pull-right">Logout</button>
+									<button type="submit" class="btn btn-light">Logout</button>
 							</form>
 						</li>
+						</div>
 					</ul>
 				</div>
 				<%} %>
