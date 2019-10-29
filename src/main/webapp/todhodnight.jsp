@@ -46,16 +46,18 @@
 	        try {
 	        	if(from.length() != 0 && !StringUtils.isEmpty(from)){
 	        		fromDt = dateFormat.parse(from);
+	        		System.out.println("fromDt aft format: " + fromDt);
 	        	}
 	        	if(to.length() != 0 && !StringUtils.isEmpty(to)){
 	        		toDt = dateFormat.parse(to);
+	        		System.out.println("toDt aft format: " + toDt);
 	        	}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-        SpreadsheetService service = new SpreadsheetService("Sheet2");
+        SpreadsheetService service = new SpreadsheetService("Form Responses 1");
         SpreadsheetService service2 = new SpreadsheetService("Sheet1");
         try {
         	List<TodHodPair> todHodPairs = new ArrayList<TodHodPair>();
@@ -64,7 +66,7 @@
                     = //1TwURCxMStzOp_jFMisNFF01PswassfcM-J4Ma90o23A (test)
                     //1i_3_wI3ClPXE_nX4biN3oNrqxMgyswPuzklAx8mwivY  (real)
                     //1nuQlSMmThaj3YxBktjn771wvzZflDwmS746STcsUcJI (real v2)
-                    "https://spreadsheets.google.com/feeds/list/1SCtQDA0BESQ51VLCm4IKq_XKbDBMkPwhcRCXgb7TNVA/1/public/values";
+                    "https://spreadsheets.google.com/feeds/list/1SCtQDA0BESQ51VLCm4IKq_XKbDBMkPwhcRCXgb7TNVA/2/public/values";
 
             // Use this String as url
             URL url = new URL(sheetUrl);
@@ -76,7 +78,7 @@
             ArrayList<TodHodDetails> allTodDetails = new ArrayList<TodHodDetails>();
             ArrayList<TodHodDetails> allHodDetails = new ArrayList<TodHodDetails>();
             for (ListEntry le : lf.getEntries()) {
-                //System.out.println("is it printing: " + le.toString());
+                
                 CustomElementCollection cec = le.getCustomElements();
                 
                 if (cec != null){
@@ -128,7 +130,7 @@
 	                    	if(StringUtils.isEmpty(site)   && !StringUtils.isEmpty(idNo)){
 	                    		//if search by nric/fin only
 	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(idNo != null && !idNo.isEmpty() && enternricfin.equals(idNo)){
+	                            if(idNo != null && !idNo.isEmpty() && idNo.contains(enternricfin)){
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 	                                        securityofficername, date, time, areyoutodhod,
@@ -151,7 +153,7 @@
 	                    	if(!StringUtils.isEmpty(site)  && !StringUtils.isEmpty(idNo)){
 	                    		//if search by both
 	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(dutysite != null && !dutysite.isEmpty() && enternricfin.equals(idNo) && dutysite.equals(site)){
+	                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin) && dutysite.equals(site)){
 	
 	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
@@ -201,7 +203,7 @@
                     }
         
              }// for (ListEntry le : lf.getEntries())
-         		
+         	//System.out.println(allTodDetails.toString());	
           //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss aa");
@@ -369,7 +371,7 @@
     %>
 
 
-        <div style="display: block;" id="todhodtablediv">
+        <div style="display: block; width: 100%" id="todhodtablediv">
 	            <display:table name="sessionScope.todHodPairs" pagesize="20"
 	                           export="true" sort="list" class="table">
 	                <display:column property="enternricfin" title="NRIC/FIN"
