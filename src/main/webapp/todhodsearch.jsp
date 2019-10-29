@@ -58,10 +58,21 @@
 
 	<body>
 	<%
+	//using the usertype to determine what time of TOD/HOD to display
+	String usertype ="";
+	if ( !(session.getAttribute("usertype") == null)) {
+			usertype = (String) session.getAttribute("usertype");
+	}
+	String nricfin = "";
+	if ( !(session.getAttribute("nricfin") == null)) {
+		nricfin = (String) session.getAttribute("nricfin");
+	}
+	%>
+	<%
 	ArrayList<String> dutySites = new ArrayList<String>();
 	SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 	 try {
-     	//Dropdown for marital status START
+     	//Dropdown for duty site START
          String dutySitesUrl
                  = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/9/public/values";
          // Use this String as url
@@ -95,8 +106,26 @@
 		      </select>
 		    </div>
 		    <div class="form-group col-md-6">
-		      <label for="idNo">NRIC/FIN: </label>
-		      <input type="text" class="form-control" name="idNo" placeholder="Enter NRIC/FIN">
+		    <%if (!StringUtils.isEmpty(usertype)){
+		    	if(usertype.equals("K11SECURITY") && !StringUtils.isEmpty(nricfin)){
+		    	%>
+		    		 <input type="hidden" id="idNo" name="idNo" value=<%=nricfin%>>
+		    	<%
+		    	}
+		    	else{//if not K11SECURITY, means its admin
+		    	%>
+		    		<label for="idNo">NRIC/FIN: </label>
+		      		<input type="text" class="form-control" name="idNo" placeholder="Enter NRIC/FIN">
+		    	<%	
+		    	}
+		    } 
+		    else{//in case session empty
+		    	%>
+		    		<label for="idNo">NRIC/FIN: </label>
+		      		<input type="text" class="form-control" name="idNo" placeholder="Enter NRIC/FIN">
+		    	<%	
+		    	}
+		    %>
 		    </div>
 		    <div class="form-group col-md-6">
 		      <label for="from">From: </label>
@@ -113,8 +142,7 @@
 			    <option>Night</option>
 			  </select>
 		    </div>
-		    <br>
-		    <button type="submit" class="btn btn-primary">Search</button>
+		    <button type="submit" class="btn btn-primary">Search NRIC/FIN</button>
 		    </div>
 		</form>
     </body>
