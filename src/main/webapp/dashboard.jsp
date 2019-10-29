@@ -15,6 +15,7 @@
 	%>
 	<label class="heading"><%=responseObj.toString()%></label>
 	<%} %>
+	<center>
 	<%if ( !(session.getAttribute("usertype") == null)) {
 			String usertype = (String) session.getAttribute("usertype");
 			
@@ -37,7 +38,6 @@
 				<%} %>
 				<!-- access control for K11 Admin -->
 				<%if (usertype.equals("K11ADMIN")) {%>
-				<center>
 				<!--         <div class="card"> -->
 				<!--             <a href="employeeparticulars.jsp"> -->
 				<!--                 <div class="eachCard crop"> -->
@@ -153,8 +153,9 @@
 					</a>
 				</div>
 		
-			</center>
+			
 			<%} %>
 <%} %>
+</center>
 </body>
 </html>

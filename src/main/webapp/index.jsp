@@ -39,6 +39,7 @@
 	<%
 		}
 	%>
+	<center>
 	<form action="loginVerify" method="post">
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -52,5 +53,6 @@
 			<button type="submit" class="btn btn-primary">Login</button>
 		</div>
 	</form>
+	</center>
 </body>
 </html>
