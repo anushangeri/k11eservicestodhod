@@ -129,7 +129,7 @@ body {
 					<ul class="nav navbar-nav">
 						<li><a href="todhodsearch.jsp">TOD/HOD Details</a></li>
 						<li><form action="logout" method="post">
-								<button type="submit" class="btn btn-light" id="logout">Logout</button>
+								<button type="submit" class="btn btn-light pull-right" id="logout">Logout</button>
 						</form>
 						</li>
 					</ul>
@@ -141,12 +141,10 @@ body {
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="employeeparticulars.jsp">Employee Particulars</a></li>
-						<li><a href="payslip.jsp">Generate Payslip</a></li>
 						<li><a href="todhodsearch.jsp">TOD/HOD Details</a></li>
 						<li>
 							<form action="logout" method="post">
-									<button type="submit" class="btn btn-light">Logout</button>
+									<button type="submit" class="btn btn-light pull-right">Logout</button>
 							</form>
 						</li>
 					</ul>
