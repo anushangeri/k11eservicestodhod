@@ -143,7 +143,7 @@
 			    <option>Night</option>
 			  </select>
 		    </div>
-		    <button type="submit" class="btn btn-primary">Search NRIC/FIN</button>
+		    <button type="submit" class="btn btn-primary">VIEW TOD/HOD</button>
 		    </div>
 		</form>
 		</center>
