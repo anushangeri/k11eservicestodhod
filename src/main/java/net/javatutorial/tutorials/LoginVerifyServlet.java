@@ -64,7 +64,7 @@ public class LoginVerifyServlet extends HttpServlet {
 				
 		boolean loginsuccessful = false;
 		
-		SpreadsheetService service = new SpreadsheetService("Form Responses 1");
+		SpreadsheetService service = new SpreadsheetService("Form Responses 3");
 		if(!StringUtils.isEmpty(idNo) && !StringUtils.isEmpty(dtOfBirthStr)) {
 			if(idNo.toUpperCase().equals("K11ADMIN")) {
 				loginsuccessful = true;
