@@ -214,61 +214,6 @@
         
              }// for (ListEntry le : lf.getEntries())
          	//System.out.println(allTodDetails.toString());	
-           //Added by Shangeri on 20191204 Start
-             //to display any shortfall based on TOD, shift, and number of SO required at Site for the system current date MM/DD/YYYY
-             try {
-   	     	//Dropdown for duty site START
-   	         String dutySitesUrl
-   	                 = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/9/public/values";
-   	         // Use this String as url
-   	         URL dutySitesurl = new URL(dutySitesUrl);
-   	         // Get Feed of Spreadsheet url
-   	         ListFeed dutySiteslf = service2.getFeed(dutySitesurl, ListFeed.class);
-//    	         for (ListEntry le : dutySiteslf.getEntries()) {
-//    	                CustomElementCollection cec = le.getCustomElements();
-//    	                if (cec != null){
-//    	                	System.out.println( cec.getTags());
-//    	                }
-//    	            }
-   	         
-   	         
-   	         for (ListEntry le : dutySiteslf.getEntries()) {
-   	        	 CustomElementCollection cec = le.getCustomElements();
-   	             String eachSite = cec.getValue("dutysites");
-   	             String siteCountStr = cec.getValue("nightcount");
-   	             int siteCount = 0;
-   	             int todSiteCount = 0;
-   	             String status = "";
-   		             if(eachSite != null && siteCountStr !=null && !StringUtils.isEmpty(eachSite) && !StringUtils.isEmpty(siteCountStr)){
-   		            	//loop throught each Site, where TOD = site and shift = day
-   		            	siteCount = Integer.valueOf(siteCountStr);
-   		            	//loop throught TOD and count.
-   			           		for(TodHodDetails todDetails: allTodDetails){
-   			           			if(todDetails.getDateAsStr() != null && todDetails.getDutysite() != null &&
-   			           					!StringUtils.isEmpty(todDetails.getDutysite()) && !StringUtils.isEmpty(todDetails.getDateAsStr()) && 
-   			           					todDetails.getDutysite().equals(eachSite) && todDetails.getDate().compareTo(currentDt) == 0){
-   			           				todSiteCount++;
-   			           			}
-   			           		}
-   			            	//count already, put the message
-   			           		if(todSiteCount > siteCount){
-   			           			status = eachSite + ": Access: " + (todSiteCount-siteCount) + " men";
-   			           		}
-   			           		if(todSiteCount < siteCount){
-   			           			status = eachSite + ": Short: " + (siteCount-todSiteCount) + " men";
-   			           		}
-   			           		if(todSiteCount == siteCount){
-   			           			status = eachSite+ ": Full strenght: " + (siteCount-todSiteCount) + " men";
-   			           		}
-   			           		dutyRoasterMsg.add(status);
-   		             }
-   	         }
-   	         
-   	       //Dropdown for marital status END
-   		 } catch (Exception e) {
-   			 System.out.println("its me: " + e);
-   		 }
-           //Added by Shangeri on 20191204 end
            
           //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
@@ -425,6 +370,62 @@
                     
                   
                 } //for (TodHodDetails eachTodDetail : allTodDetails)
+                	
+              	//Added by Shangeri on 20191204 Start
+                //to display any shortfall based on TOD, shift, and number of SO required at Site for the system current date MM/DD/YYYY
+                try {
+      	     	//Dropdown for duty site START
+      	         String dutySitesUrl
+      	                 = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/9/public/values";
+      	         // Use this String as url
+      	         URL dutySitesurl = new URL(dutySitesUrl);
+      	         // Get Feed of Spreadsheet url
+      	         ListFeed dutySiteslf = service2.getFeed(dutySitesurl, ListFeed.class);
+//       	         for (ListEntry le : dutySiteslf.getEntries()) {
+//       	                CustomElementCollection cec = le.getCustomElements();
+//       	                if (cec != null){
+//       	                	System.out.println( cec.getTags());
+//       	                }
+//       	            }
+      	         
+      	         
+      	         for (ListEntry le : dutySiteslf.getEntries()) {
+      	        	 CustomElementCollection cec = le.getCustomElements();
+      	             String eachSite = cec.getValue("dutysites");
+      	             String siteCountStr = cec.getValue("nightcount");
+      	             int siteCount = 0;
+      	             int todSiteCount = 0;
+      	             String status = "";
+      		             if(eachSite != null && siteCountStr !=null && !StringUtils.isEmpty(eachSite) && !StringUtils.isEmpty(siteCountStr)){
+      		            	//loop throught each Site, where TOD = site and shift = day
+      		            	siteCount = Integer.valueOf(siteCountStr);
+      		            	//loop throught TOD and count.
+      			           		for(TodHodPair todHodDetails: todHodPairs){
+      			           			if(todHodDetails.getTodDateAsStr() != null && todHodDetails.getDutysite() != null &&
+      			           					!StringUtils.isEmpty(todHodDetails.getDutysite()) && !StringUtils.isEmpty(todHodDetails.getTodDateAsStr()) && 
+      			           				todHodDetails.getDutysite().equals(eachSite) && todHodDetails.getTodDate().compareTo(currentDt) == 0){
+      			           				todSiteCount++;
+      			           			}
+      			           		}
+      			            	//count already, put the message
+      			           		if(todSiteCount > siteCount){
+      			           			status = eachSite + ": Access: " + (todSiteCount-siteCount) + " men";
+      			           		}
+      			           		if(todSiteCount < siteCount){
+      			           			status = eachSite + ": Short: " + (siteCount-todSiteCount) + " men";
+      			           		}
+      			           		if(todSiteCount == siteCount){
+      			           			status = eachSite+ ": Full strenght: " + (siteCount-todSiteCount) + " men";
+      			           		}
+      			           		dutyRoasterMsg.add(status);
+      		             }
+      	         }
+      	         
+      	       //Dropdown for marital status END
+      		 } catch (Exception e) {
+      			 System.out.println("its me: " + e);
+      		 }
+              //Added by Shangeri on 20191204 end
                 session.setAttribute("todHodPairs", todHodPairs);
              }	// if (!allTodDetails.isEmpty())
             
