@@ -482,7 +482,7 @@
                 <table id="escalation" class="table table-striped table-bordered everytable" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th><center><b>Status</b></center></th>
+                            <th><center><b>Status for <%=currentDt %> ONLY</b></center></th>
                         </tr>
                     </thead>
                     <tbody>
