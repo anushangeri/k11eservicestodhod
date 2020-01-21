@@ -54,6 +54,10 @@
 			from = responseObj.get(2);
 			to = responseObj.get(3);
 	        try {
+	        	//make idNo uppercase
+            	if(idNo != null && !idNo.isEmpty() ){
+            		idNo = idNo.toUpperCase();
+            	}
 	        	if(from.length() != 0 && !StringUtils.isEmpty(from)){
 	        		fromDt = dateFormat.parse(from);
 	        		System.out.println("fromDt aft format: " + fromDt);
@@ -93,6 +97,10 @@
                 
                 if (cec != null){
                 	String enternricfin = cec.getValue("securityofficernricfinnumber").trim();
+                	//make idNo uppercase
+                	if(enternricfin != null && !enternricfin.isEmpty() ){
+                		enternricfin = enternricfin.toUpperCase();
+                	}
                     //System.out.println("THE PROBLEM IS HERE: " + enternricfin);
                     String shift = cec.getValue("shift");
                     //System.out.println("THE PROBLEM IS HERE: " + shift);
