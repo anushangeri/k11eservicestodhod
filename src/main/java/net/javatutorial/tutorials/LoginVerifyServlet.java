@@ -54,6 +54,10 @@ public class LoginVerifyServlet extends HttpServlet {
 		String dtOfBirthStr = request.getParameter("dob").trim();
 		//covert the string to date to compare:
 		try {
+			//make idNo uppercase
+        	if(idNo != null && !idNo.isEmpty() ){
+        		idNo = idNo.toUpperCase();
+        	}
         	if(dtOfBirthStr.length() != 0 && !StringUtils.isEmpty(dtOfBirthStr)){
         		dtOfBirthLogin = dateFormat.parse(dtOfBirthStr);
         	}
@@ -88,6 +92,10 @@ public class LoginVerifyServlet extends HttpServlet {
 		                
 		                if (cec != null){
 		                    String nricfin = cec.getValue("nricfin").trim();
+		                    //make idNo uppercase
+		                	if(nricfin != null && !nricfin.isEmpty() ){
+		                		nricfin = nricfin.toUpperCase();
+		                	}
 		                    //System.out.println("THE PROBLEM IS HERE: " + nricfin);
 		                    String dateofbirth = cec.getValue("dateofbirth");
 		                    //System.out.println("THE PROBLEM IS HERE: " + dateofbirth);
