@@ -70,6 +70,13 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.LogoutServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+
+		<display-name>VehRegLoginVerifyServlet</display-name>
+		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -106,5 +113,9 @@
 	<servlet-mapping>
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
+		<url-pattern>/vehRegLoginVerify</url-pattern>
 	</servlet-mapping>
 </web-app>

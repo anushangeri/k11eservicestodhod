@@ -41,6 +41,7 @@
 	%>
 	<center>
 	<form action="loginVerify" method="post">
+	<h2><center>K11 Attendance Record</center></h2>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="idNo"> FULL NRIC/FIN: </label> <input type="text"
@@ -51,6 +52,23 @@
 					id="dob" name="dob" placeholder="MM/DD/YYYY" type="text" required />
 			</div>
 			<button type="submit" class="btn btn-primary">Login</button>
+		</div>
+	</form>
+	</center>
+	<br>
+	<center>
+	<form action="vehRegLoginVerify" method="post">
+		<h2><center>K11 Site Vehicle Registeration Record</center></h2>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="siteUser"> Site User: </label> <input type="text"
+					class="form-control" name="siteUser" placeholder="Enter Site">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="password"> Password: </label> <input type="password"
+					class="form-control" name="password" placeholder="Enter Password">
+			</div>
+			<button type="submit" class="btn btn-primary">Login to view vehicle record</button>
 		</div>
 	</form>
 	</center>

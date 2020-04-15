@@ -53,6 +53,23 @@
 				<br>
 			<%} %>
 <%} %>
+<!-- the following is for vehicle registration -->
+<%if ( !(session.getAttribute("siteUser") == null)) {
+		String siteUser = (String) session.getAttribute("siteUser");
+		
+%>
+	<div class="card">
+		<a href="viewVehRegRec.jsp">
+			<div class="eachCard crop">
+				<img class="center-block" src="VMS_icon.png"
+					alt="VMS_icon.png">
+				<h4 class="fontheader">
+					<b>Site Vehicle Registration Record</b>
+				</h4>
+			</div>
+		</a>
+	</div>	
+<%} %>
 </center>
 </body>
 </html>

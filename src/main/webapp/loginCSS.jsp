@@ -86,61 +86,42 @@
 	color: #ecdbff;
 }
 
+.list{
+	background-color: #FFA8A4 !important;
+}
+
+
 body {
 	background-color: #F3F3F3;
 }
 </style>
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar list" role="navigation">
 	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.jsp">K11 HOME</a>
-		</div>
-		<%if ( !(session.getAttribute("usertype") == null)) {
+	<%if ( !(session.getAttribute("usertype") == null)) {
 			String usertype = (String) session.getAttribute("usertype");
-		%>
-				<!-- access control for K11 Security -->
-				<%if (usertype.equals("K11SECURITY")) {%>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="todhodsearch.jsp">TOD/HOD Details</a></li>
-					</ul>
-					<ul class="nav navbar-nav" style="float: right">
-		            	<li><form action="logout" method="post">
-									<button type="submit" class="btn btn-light">Logout</button>
-							</form>
-							
-						</li>
-		          	</ul>
-				</div>
-				<%} %>
-				<!-- access control for K11 Admin -->
-				<%if (usertype.equals("K11ADMIN")) {%>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="todhodsearch.jsp">TOD/HOD Details</a></li>
-					</ul>
-					<ul class="nav navbar-nav" style="float: right">
-		            	<li><form action="logout" method="post">
-									<button type="submit" class="btn btn-light">Logout</button>
-							</form>
-							
-						</li>
-		          	</ul>
-				</div>
-				<%} %>
-		<%} %>
-			
+			if (usertype.equals("K11SECURITY")) {
+	%>
+				<nav class="nav">
+				  <a class="nav-link active" href="todhodsearch.jsp">TOD/HOD Details</a>
+				  <a class="nav-link" href="/logout">Logout</a>
+				</nav>
+			<%} %>
+			<%if (usertype.equals("K11ADMIN")) {%>
+				<nav class="nav">
+				  <a class="nav-link" href="todhodsearch.jsp">TOD/HOD Details</a>
+				  <a class="nav-link" href="/logout">Logout</a>
+				</nav>
+			<%} %>
+	<%} %>
+	
+	<%if ( !(session.getAttribute("siteUser") == null)) {
+		String usertype = (String) session.getAttribute("siteUser");
+	%>
+		<nav class="nav">
+		  <a class="nav-link" href="viewVehRegRec.jsp">Vehicle Registration Records</a>
+		  <a class="nav-link" href="/logout">Logout</a>
+		</nav>
+	<%} %>
 	</div>
 	<!-- /.container-fluid -->
 </nav>
