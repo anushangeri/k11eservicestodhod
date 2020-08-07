@@ -95,7 +95,8 @@
                 CustomElementCollection cec = le.getCustomElements();
                 
                 if (cec != null){
-                    String enternricfin = cec.getValue("securityofficernricfinnumber").trim();
+                	//System.out.println("THE PROBLEM IS HERE: " + cec + " " + cec.getValue("securityofficernricfinnumber"));
+                	String enternricfin = cec.getValue("securityofficernricfinnumber");
                    //make idNo uppercase
                 	if(enternricfin != null && !enternricfin.isEmpty() ){
                 		enternricfin = enternricfin.toUpperCase();
@@ -116,113 +117,118 @@
                     String dutysite = cec.getValue("todhoddutysites");
                     //System.out.println("THE PROBLEM IS HERE: " + dutysite);
                     String standbyremark = cec.getValue("reportingofficername");
-                       
-                    if(!StringUtils.isEmpty(site) || !StringUtils.isEmpty(idNo)){
-	                    	if(!StringUtils.isEmpty(site)  && StringUtils.isEmpty(idNo)){
-	                    		//if search by site only
-	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-// 	                    		if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
-// 	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
-// 	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
-// 	                                    && !dutysite.toUpperCase().contains("UL") && dutysite.equals(site)){
-	                            if(dutysite != null && !dutysite.isEmpty() && dutysite.equals(site)){
-	
-	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
-	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                        securityofficername, date, time, areyoutodhod,
-	                                        dutysite, standbyremark);
-	                                todDetails.setTimestamp(timestamp);
-	                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
-	                                		allTodDetails.add(todDetails);
-	                                	}
-	                                }
-	
-	                                if (areyoutodhod.toUpperCase().contains("HOD")) {
-	                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                            securityofficername, date, time, areyoutodhod,
-	                                            dutysite, standbyremark);
-	                                    hodDetails.setTimestamp(timestamp);
-	                                    allHodDetails.add(hodDetails);
-	                                }
-	                            }
-	                    	}
-	                    	if(StringUtils.isEmpty(site)   && !StringUtils.isEmpty(idNo)){
-	                    		//if search by nric/fin only
-	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(idNo != null && !idNo.isEmpty() && idNo.contains(enternricfin)){
-	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
-	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                        securityofficername, date, time, areyoutodhod,
-	                                        dutysite, standbyremark);
-	                                todDetails.setTimestamp(timestamp);
-// 	                                System.out.println("comparing: " + todDetails.getDate().compareTo(fromDt));
+                    
+                    if(!StringUtils.isEmpty(enternricfin) && !StringUtils.isEmpty(shift) && !StringUtils.isEmpty(timestamp)
+                    		&& !StringUtils.isEmpty(securityofficername) && !StringUtils.isEmpty(date) && !StringUtils.isEmpty(time)
+                    		&& !StringUtils.isEmpty(areyoutodhod) && !StringUtils.isEmpty(dutysite)){
+
+                    
+	                    if(!StringUtils.isEmpty(site) || !StringUtils.isEmpty(idNo)){
+		                    	if(!StringUtils.isEmpty(site)  && StringUtils.isEmpty(idNo)){
+		                    		//if search by site only
+		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
+	// 	                    		if(dutysite != null && !dutysite.isEmpty() && !dutysite.toUpperCase().contains("OC") && !dutysite.toUpperCase().contains("AL")
+	// 	                                    && !dutysite.toUpperCase().contains("MC") && !dutysite.toUpperCase().contains("HC")
+	// 	                                    && !dutysite.toUpperCase().contains("RD") && !dutysite.toUpperCase().contains("PH")
+	// 	                                    && !dutysite.toUpperCase().contains("UL") && dutysite.equals(site)){
+		                            if(dutysite != null && !dutysite.isEmpty() && dutysite.equals(site)){
+		
+		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
+		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                        securityofficername, date, time, areyoutodhod,
+		                                        dutysite, standbyremark);
+		                                todDetails.setTimestamp(timestamp);
 		                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
-	                                		allTodDetails.add(todDetails);
-	                                	}
-	                                }
-	
-	                                if (areyoutodhod.toUpperCase().contains("HOD")) {
-	                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                            securityofficername, date, time, areyoutodhod,
-	                                            dutysite, standbyremark);
-	                                    hodDetails.setTimestamp(timestamp);
-	                                    allHodDetails.add(hodDetails);
-	                                }
-	                            }
+		                                		allTodDetails.add(todDetails);
+		                                	}
+		                                }
+		
+		                                if (areyoutodhod.toUpperCase().contains("HOD")) {
+		                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                            securityofficername, date, time, areyoutodhod,
+		                                            dutysite, standbyremark);
+		                                    hodDetails.setTimestamp(timestamp);
+		                                    allHodDetails.add(hodDetails);
+		                                }
+		                            }
+		                    	}
+		                    	if(StringUtils.isEmpty(site)   && !StringUtils.isEmpty(idNo)){
+		                    		//if search by nric/fin only
+		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
+		                            if(idNo != null && !idNo.isEmpty() && idNo.contains(enternricfin)){
+		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
+		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                        securityofficername, date, time, areyoutodhod,
+		                                        dutysite, standbyremark);
+		                                todDetails.setTimestamp(timestamp);
+	// 	                                System.out.println("comparing: " + todDetails.getDate().compareTo(fromDt));
+			                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
+		                                		allTodDetails.add(todDetails);
+		                                	}
+		                                }
+		
+		                                if (areyoutodhod.toUpperCase().contains("HOD")) {
+		                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                            securityofficername, date, time, areyoutodhod,
+		                                            dutysite, standbyremark);
+		                                    hodDetails.setTimestamp(timestamp);
+		                                    allHodDetails.add(hodDetails);
+		                                }
+		                            }
+		                    	}
+		                    	if(!StringUtils.isEmpty(site)  && !StringUtils.isEmpty(idNo)){
+		                    		//if search by both
+		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
+		                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin) && dutysite.equals(site)){
+	// 	                                System.out.println("came in here " + cec);	
+		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
+		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                        securityofficername, date, time, areyoutodhod,
+		                                        dutysite, standbyremark);
+		                                todDetails.setTimestamp(timestamp);
+			                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
+		                                		allTodDetails.add(todDetails);
+		                                	}
+		                                }
+		
+		                                if (areyoutodhod.toUpperCase().contains("HOD")) {
+		                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                            securityofficername, date, time, areyoutodhod,
+		                                            dutysite, standbyremark);
+		                                    hodDetails.setTimestamp(timestamp);
+		                                    allHodDetails.add(hodDetails);
+		                                }
+		                            }
+		                    	}
+		                    	
 	                    	}
-	                    	if(!StringUtils.isEmpty(site)  && !StringUtils.isEmpty(idNo)){
-	                    		//if search by both
-	                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin) && dutysite.equals(site)){
-	
-	                                if (areyoutodhod.toUpperCase().contains("TOD")) {
-	                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                        securityofficername, date, time, areyoutodhod,
-	                                        dutysite, standbyremark);
-	                                todDetails.setTimestamp(timestamp);
+		                    else{
+		                		//if search by date (minimum requirement)
+		                		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
+		                        if(fromDt != null && !fromDt.toString().isEmpty()){
+		
+		                            if (areyoutodhod.toUpperCase().contains("TOD")) {
+		                            TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                    securityofficername, date, time, areyoutodhod,
+		                                    dutysite, standbyremark);
+		                            todDetails.setTimestamp(timestamp);
 		                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
-	                                		allTodDetails.add(todDetails);
-	                                	}
-	                                }
-	
-	                                if (areyoutodhod.toUpperCase().contains("HOD")) {
-	                                    TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                            securityofficername, date, time, areyoutodhod,
-	                                            dutysite, standbyremark);
-	                                    hodDetails.setTimestamp(timestamp);
-	                                    allHodDetails.add(hodDetails);
-	                                }
-	                            }
-	                    	}
-	                    	
-                    	}
-	                    else{
-	                		//if search by date (minimum requirement)
-	                		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-	                        if(fromDt != null && !fromDt.toString().isEmpty()){
-	
-	                            if (areyoutodhod.toUpperCase().contains("TOD")) {
-	                            TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                    securityofficername, date, time, areyoutodhod,
-	                                    dutysite, standbyremark);
-	                            todDetails.setTimestamp(timestamp);
-	                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
-	                            		allTodDetails.add(todDetails);
-	                            	}
-	                            }
-	
-	                            if (areyoutodhod.toUpperCase().contains("HOD")) {
-	                                TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
-	                                        securityofficername, date, time, areyoutodhod,
-	                                        dutysite, standbyremark);
-	                                hodDetails.setTimestamp(timestamp);
-	                                allHodDetails.add(hodDetails);
-	                            }
-	                        }
-	                	}
-                    }	
-             }// for (ListEntry le : lf.getEntries())
-           
+		                            		allTodDetails.add(todDetails);
+		                            	}
+		                            }
+		
+		                            if (areyoutodhod.toUpperCase().contains("HOD")) {
+		                                TodHodDetails hodDetails = new TodHodDetails(enternricfin, shift, timestamp,
+		                                        securityofficername, date, time, areyoutodhod,
+		                                        dutysite, standbyremark);
+		                                hodDetails.setTimestamp(timestamp);
+		                                allHodDetails.add(hodDetails);
+		                            }
+		                        }
+		                	}
+	                    }	
+	             }// for (ListEntry le : lf.getEntries())
+               }
           //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss aa");
