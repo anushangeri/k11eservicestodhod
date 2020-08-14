@@ -100,6 +100,7 @@
                 	//make idNo uppercase
                 	if(enternricfin != null && !enternricfin.isEmpty() ){
                 		enternricfin = enternricfin.toUpperCase();
+                		enternricfin = enternricfin.trim();
                 	}
                     //System.out.println("THE PROBLEM IS HERE: " + enternricfin);
                     String shift = cec.getValue("shift");
