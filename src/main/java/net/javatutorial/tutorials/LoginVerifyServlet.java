@@ -40,15 +40,18 @@ import java.util.Date;
  */
 public class LoginVerifyServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
-
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	private static final String nricNantha = "S7856188B";
+	private static final String dobStrNantha = "11/02/1978";
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		ArrayList<String> responseObj = new ArrayList<String>();
 		RequestDispatcher rd = null;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		
 		Date dtOfBirthLogin = null;
 		Date dtOfBirthExcel = null;
+		Date dtOfBirthNantha = null;
 		
 		String idNo = request.getParameter("idNo").trim();
 		String dtOfBirthStr = request.getParameter("dob").trim();
@@ -60,6 +63,9 @@ public class LoginVerifyServlet extends HttpServlet {
         	}
         	if(dtOfBirthStr.length() != 0 && !StringUtils.isEmpty(dtOfBirthStr)){
         		dtOfBirthLogin = dateFormat.parse(dtOfBirthStr);
+        		
+        		//convert dobStrNantha to Date format
+        		dtOfBirthNantha = dateFormat.parse(dobStrNantha);
         	}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -109,9 +115,16 @@ public class LoginVerifyServlet extends HttpServlet {
 		                			e.printStackTrace();
 		                		}
 		                    	if(nricfin.equals(idNo) && dtOfBirthExcel.equals(dtOfBirthLogin) ) {
-		                    		loginsuccessful = true;
-		            				session.setAttribute("usertype", "K11SECURITY");
-		            				session.setAttribute("nricfin", nricfin);
+		                    		//if login is Nantha - give same access as K11ADMIN
+		                    		if(idNo.toUpperCase().equals(nricNantha) && dtOfBirthLogin.equals(dtOfBirthNantha)) {
+		                    			loginsuccessful = true;
+		                    			session.setAttribute("usertype", "K11ADMIN");
+		                    		}
+		                    		else {
+			                    		loginsuccessful = true;
+			            				session.setAttribute("usertype", "K11SECURITY");
+			            				session.setAttribute("nricfin", nricfin);
+		                    		}
 		                    	}
 		                    }
 				
