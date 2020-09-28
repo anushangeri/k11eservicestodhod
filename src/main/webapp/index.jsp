@@ -57,6 +57,7 @@
 	</center>
 	<br>
 	<center>
+	<!-- 
 	<form action="vehRegLoginVerify" method="post">
 		<h2><center>K11 Site Vehicle Registeration Record</center></h2>
 		<div class="form-row">
@@ -71,6 +72,7 @@
 			<button type="submit" class="btn btn-primary">Login to view vehicle record</button>
 		</div>
 	</form>
+	-->
 	</center>
 </body>
 </html>
