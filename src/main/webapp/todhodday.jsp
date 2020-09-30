@@ -71,15 +71,12 @@
 				e.printStackTrace();
 			}
 		}
-        SpreadsheetService service = new SpreadsheetService("Form Responses 1");
+        SpreadsheetService service = new SpreadsheetService("Sheet2");
         SpreadsheetService service2 = new SpreadsheetService("Sheet1");
         try {
         	List<TodHodPair> todHodPairs = new ArrayList<TodHodPair>();
             String sheetUrl
-                    = //1TwURCxMStzOp_jFMisNFF01PswassfcM-J4Ma90o23A (test)
-                    //1i_3_wI3ClPXE_nX4biN3oNrqxMgyswPuzklAx8mwivY  (real)
-                    //1nuQlSMmThaj3YxBktjn771wvzZflDwmS746STcsUcJI (real v2)
-                    "https://spreadsheets.google.com/feeds/list/1g1LKTNm7txvbcB9qD4NQuiZXtbjhmQRAcFtJLjc_6j4/2/public/values";
+                    = "https://spreadsheets.google.com/feeds/list/1q0U9aXMCnlB4cuA6hHD3eTvikr2kJNKLRm8fYFbneZs/1/public/values";
 
             // Use this String as url
             URL url = new URL(sheetUrl);
@@ -95,7 +92,7 @@
                 CustomElementCollection cec = le.getCustomElements();
                 
                 if (cec != null){
-                	//System.out.println("THE PROBLEM IS HERE: " + cec + " " + cec.getValue("securityofficernricfinnumber"));
+//                 	System.out.println("THE PROBLEM IS HERE: " + cec + " " + cec.getValue("securityofficernricfinnumber"));
                 	String enternricfin = cec.getValue("securityofficernricfinnumber");
                    //make idNo uppercase
                 	if(enternricfin != null && !enternricfin.isEmpty() ){
@@ -106,7 +103,7 @@
                     String shift = cec.getValue("shift");
                     //System.out.println("THE PROBLEM IS HERE: " + shift);
                     String timestamp = cec.getValue("timestamp");
-                    //System.out.println("THE PROBLEM IS HERE: " + timestamp);
+//                     System.out.println("THE PROBLEM IS HERE: timestamp" + timestamp);
                     String securityofficername = cec.getValue("securityofficername");
                     //System.out.println("THE PROBLEM IS HERE: " + securityofficername);
                     String date = cec.getValue("date");
@@ -181,7 +178,7 @@
 		                    		//if search by both
 		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
 		                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin) && dutysite.equals(site)){
-	// 	                                System.out.println("came in here " + cec);	
+// 		                                System.out.println("came in here " + cec);	
 		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 		                                        securityofficername, date, time, areyoutodhod,
@@ -213,6 +210,7 @@
 		                                    securityofficername, date, time, areyoutodhod,
 		                                    dutysite, standbyremark);
 		                            todDetails.setTimestamp(timestamp);
+// 		                                System.out.println("came in here " + todDetails.toString());	
 		                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
 		                            		allTodDetails.add(todDetails);
 		                            	}
@@ -461,6 +459,7 @@
                 	}
                 	
                 }
+//                 System.out.println("todHodPairs: " + todHodPairs.toString());
                 session.setAttribute("todHodPairs", todHodPairs);
              }	// if (!allTodDetails.isEmpty())
             
