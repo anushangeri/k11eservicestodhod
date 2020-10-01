@@ -104,8 +104,10 @@ public class LoginVerifyServlet extends HttpServlet {
 		                	}
 		                    //System.out.println("THE PROBLEM IS HERE: " + nricfin);
 		                    String dateofbirth = cec.getValue("dateofbirth");
+		                    String accessright = cec.getValue("accessright");
 		                    //System.out.println("THE PROBLEM IS HERE: " + dateofbirth);
-		                    if(!StringUtils.isEmpty(nricfin) && !StringUtils.isEmpty(dateofbirth)) {
+		                    if(!StringUtils.isEmpty(nricfin) && !StringUtils.isEmpty(dateofbirth) &&
+		                    		!StringUtils.isEmpty(accessright) && !StringUtils.isEmpty(accessright)) {
 		                    	//covert the string to date to compare:
 		                		try {
 		                			dtOfBirthExcel = dateFormat.parse(dateofbirth);
@@ -114,17 +116,18 @@ public class LoginVerifyServlet extends HttpServlet {
 		                			// TODO Auto-generated catch block
 		                			e.printStackTrace();
 		                		}
-		                    	if(nricfin.equals(idNo) && dtOfBirthExcel.equals(dtOfBirthLogin) ) {
-		                    		//if login is Nantha - give same access as K11ADMIN
-		                    		if(idNo.toUpperCase().equals(nricNantha) && dtOfBirthLogin.equals(dtOfBirthNantha)) {
-		                    			loginsuccessful = true;
-		                    			session.setAttribute("usertype", "K11ADMIN");
+		                    	if(nricfin.equals(idNo) && dtOfBirthExcel.equals(dtOfBirthLogin)) {
+		                    		loginsuccessful = true;
+		                    		//if admin, don't set NRIC because admin can see everything
+		                    		if(accessright.toUpperCase().equals("K11ADMIN")) {
+		                    			session.setAttribute("usertype", accessright);
 		                    		}
 		                    		else {
-			                    		loginsuccessful = true;
-			            				session.setAttribute("usertype", "K11SECURITY");
+		                    			session.setAttribute("usertype", accessright);
 			            				session.setAttribute("nricfin", nricfin);
 		                    		}
+		            				
+	                    		
 		                    	}
 		                    }
 				
