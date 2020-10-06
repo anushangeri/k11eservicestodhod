@@ -248,6 +248,9 @@
 								todWithoutDups.remove();
 								todWithoutDups.add(todDetail);
 							}
+							else{
+								todWithoutDups.add(todDetail);
+							}
 						}
 					}
 				}
