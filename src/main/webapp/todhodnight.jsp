@@ -226,41 +226,57 @@
 	         	//System.out.println(allTodDetails.toString());	
             }
            	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates and take the latest timestamp start
-           	List<TodHodDetails> list= new ArrayList<TodHodDetails>();
+           	ArrayList<TodHodDetails> list = new ArrayList<TodHodDetails>();
            	ListIterator<TodHodDetails> todWithoutDups = list.listIterator();
            	
 			for(TodHodDetails todDetail: allTodDetails){
-				if(!list.isEmpty()){
+				boolean addOfficer = true;
+				TodHodDetails officerToAdd = null;
+				if(todWithoutDups.hasNext()){
+					//System.out.println("todWithoutDups.hasNext() if" + todWithoutDups.hasNext() + " " + list.size());
 					while(todWithoutDups.hasNext()){
 						TodHodDetails eachTod = todWithoutDups.next();
 						if(eachTod != null && !StringUtils.isEmpty(eachTod.getEnternricfin()) ){
+							//System.out.println("check 5 : " + (todDetail.getTimestamp().compareTo(eachTod.getTimestamp())));
 							if((todDetail.getEnternricfin().toUpperCase()
 									.contains(eachTod.getEnternricfin().toUpperCase()))
 									&& (todDetail.getShift().toUpperCase()
 											.contains(eachTod.getShift().toUpperCase()))
+									&& (todDetail.getDutysite().toUpperCase()
+											.contains(eachTod.getDutysite().toUpperCase()))
 									&& (todDetail.getDate().compareTo(eachTod.getDate()) == 0)
 									&& (todDetail.getTimestamp().compareTo(eachTod.getTimestamp()) > 0)){
 								
 								//todDetail later than eachTod
-								//remove eachTod
-								//add todDetail
-								//System.out.println("came in here: " + eachTod.toString() + " " + todDetail.toString());
 								todWithoutDups.remove();
-								todWithoutDups.add(todDetail);
 							}
-							else{
-								todWithoutDups.add(todDetail);
+							if((todDetail.getEnternricfin().toUpperCase()
+									.contains(eachTod.getEnternricfin().toUpperCase()))
+									&& (todDetail.getShift().toUpperCase()
+											.contains(eachTod.getShift().toUpperCase()))
+									&& (todDetail.getDutysite().toUpperCase()
+											.contains(eachTod.getDutysite().toUpperCase()))
+									&& (todDetail.getDate().compareTo(eachTod.getDate()) == 0)
+									&& (todDetail.getTimestamp().compareTo(eachTod.getTimestamp()) < 0)){
+								
+								//todDetail earlier than eachTod - no need to add officer
+								addOfficer = false;
 							}
+							officerToAdd = todDetail;
 						}
 					}
 				}
 				else{
+					//System.out.println("todWithoutDups.hasNext() else" + todWithoutDups.hasNext() + " " + list.size());
 					todWithoutDups.add(todDetail);
-					//System.out.println("todWithoutDups after: " + list.toString());
 				}
+				if(officerToAdd != null && addOfficer){
+					todWithoutDups.add(officerToAdd);
+				}
+				todWithoutDups = list.listIterator();
 			}
 			//System.out.println("todWithoutDups: " + list.toString());
-            //allTodDetails =  (ArrayList<TodHodDetails>) list;  
+            allTodDetails =  (ArrayList<TodHodDetails>) list;  
            	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates end
           	//find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
