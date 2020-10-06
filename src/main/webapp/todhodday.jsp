@@ -228,6 +228,40 @@
 	                    }	
 	             }// for (ListEntry le : lf.getEntries())
                }
+           	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates and take the latest timestamp start
+           	List<TodHodDetails> list= new ArrayList<TodHodDetails>();
+           	ListIterator<TodHodDetails> todWithoutDups = list.listIterator();
+           	
+			for(TodHodDetails todDetail: allTodDetails){
+				if(!list.isEmpty()){
+					while(todWithoutDups.hasNext()){
+						TodHodDetails eachTod = todWithoutDups.next();
+						if(eachTod != null && !StringUtils.isEmpty(eachTod.getEnternricfin()) ){
+							if((todDetail.getEnternricfin().toUpperCase()
+									.contains(eachTod.getEnternricfin().toUpperCase()))
+									&& (todDetail.getShift().toUpperCase()
+											.contains(eachTod.getShift().toUpperCase()))
+									&& (todDetail.getDate().compareTo(eachTod.getDate()) == 0)
+									&& (todDetail.getTimestamp().compareTo(eachTod.getTimestamp()) > 0)){
+								
+								//todDetail later than eachTod
+								//remove eachTod
+								//add todDetail
+								//System.out.println("came in here: " + eachTod.toString() + " " + todDetail.toString());
+								todWithoutDups.remove();
+								todWithoutDups.add(todDetail);
+							}
+						}
+					}
+				}
+				else{
+					todWithoutDups.add(todDetail);
+					//System.out.println("todWithoutDups after: " + list.toString());
+				}
+			}
+			//System.out.println("todWithoutDups: " + list.toString());
+            allTodDetails =  (ArrayList<TodHodDetails>) list;  
+           	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates end
           //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss aa");
