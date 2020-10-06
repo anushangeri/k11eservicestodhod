@@ -263,7 +263,7 @@
 				}
 			}
 			//System.out.println("todWithoutDups: " + list.toString());
-            allTodDetails =  (ArrayList<TodHodDetails>) list;  
+            //allTodDetails =  (ArrayList<TodHodDetails>) list;  
            	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates end
           //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
