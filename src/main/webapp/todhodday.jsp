@@ -1,4 +1,5 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
+<%@page import="org.apache.commons.collections.IteratorUtils"%>
 <%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
 <%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -7,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="loginCSS.jsp"%>
 <%@page import="java.util.*"%>
+<%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
@@ -34,14 +36,15 @@
 		ArrayList<String> dutyRoasterMsg = new ArrayList<String>();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date currentDt = new Date();
-		Calendar calendar = Calendar.getInstance();
+		//Calendar calendar = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8:00"));
 		calendar.setTime(currentDt);
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
 		currentDt = calendar.getTime();
-		
+
 		Date fromDt = null;
 		Date toDt = null;
 		String site = "";
@@ -72,11 +75,14 @@
 			}
 		}
         SpreadsheetService service = new SpreadsheetService("Sheet2");
-        SpreadsheetService service2 = new SpreadsheetService("Sheet1");
+        SpreadsheetService service2 = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
         try {
         	List<TodHodPair> todHodPairs = new ArrayList<TodHodPair>();
             String sheetUrl
-                    = "https://spreadsheets.google.com/feeds/list/1q0U9aXMCnlB4cuA6hHD3eTvikr2kJNKLRm8fYFbneZs/1/public/values";
+                    = //1TwURCxMStzOp_jFMisNFF01PswassfcM-J4Ma90o23A (test)
+                    //1i_3_wI3ClPXE_nX4biN3oNrqxMgyswPuzklAx8mwivY  (real)
+                    //1nuQlSMmThaj3YxBktjn771wvzZflDwmS746STcsUcJI (real v2)
+                    "https://spreadsheets.google.com/feeds/list/1q0U9aXMCnlB4cuA6hHD3eTvikr2kJNKLRm8fYFbneZs/1/public/values";
 
             // Use this String as url
             URL url = new URL(sheetUrl);
@@ -92,9 +98,8 @@
                 CustomElementCollection cec = le.getCustomElements();
                 
                 if (cec != null){
-//                 	System.out.println("THE PROBLEM IS HERE: " + cec + " " + cec.getValue("securityofficernricfinnumber"));
-                	String enternricfin = cec.getValue("securityofficernricfinnumber");
-                   //make idNo uppercase
+                    String enternricfin = cec.getValue("securityofficernricfinnumber").trim();
+                    //make idNo uppercase
                 	if(enternricfin != null && !enternricfin.isEmpty() ){
                 		enternricfin = enternricfin.toUpperCase();
                 		enternricfin = enternricfin.trim();
@@ -103,7 +108,7 @@
                     String shift = cec.getValue("shift");
                     //System.out.println("THE PROBLEM IS HERE: " + shift);
                     String timestamp = cec.getValue("timestamp");
-//                     System.out.println("THE PROBLEM IS HERE: timestamp" + timestamp);
+                    //System.out.println("THE PROBLEM IS HERE: " + timestamp);
                     String securityofficername = cec.getValue("securityofficername");
                     //System.out.println("THE PROBLEM IS HERE: " + securityofficername);
                     String date = cec.getValue("date");
@@ -115,12 +120,11 @@
                     String dutysite = cec.getValue("todhoddutysites");
                     //System.out.println("THE PROBLEM IS HERE: " + dutysite);
                     String standbyremark = cec.getValue("reportingofficername");
-                    
                     if(!StringUtils.isEmpty(enternricfin) && !StringUtils.isEmpty(shift) && !StringUtils.isEmpty(timestamp)
                     		&& !StringUtils.isEmpty(securityofficername) && !StringUtils.isEmpty(date) && !StringUtils.isEmpty(time)
                     		&& !StringUtils.isEmpty(areyoutodhod) && !StringUtils.isEmpty(dutysite)){
 
-                    
+                       
 	                    if(!StringUtils.isEmpty(site) || !StringUtils.isEmpty(idNo)){
 		                    	if(!StringUtils.isEmpty(site)  && StringUtils.isEmpty(idNo)){
 		                    		//if search by site only
@@ -151,9 +155,10 @@
 		                            }
 		                    	}
 		                    	if(StringUtils.isEmpty(site)   && !StringUtils.isEmpty(idNo)){
+		                    		//System.out.println("todday: enter in 152: " + site + " " + idNo);
 		                    		//if search by nric/fin only
 		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-		                            if(idNo != null && !idNo.isEmpty() && idNo.contains(enternricfin)){
+		                            if(idNo != null && !idNo.isEmpty() && idNo.contains(enternricfin.toUpperCase())){
 		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 		                                        securityofficername, date, time, areyoutodhod,
@@ -177,8 +182,8 @@
 		                    	if(!StringUtils.isEmpty(site)  && !StringUtils.isEmpty(idNo)){
 		                    		//if search by both
 		                    		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
-		                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin) && dutysite.equals(site)){
-// 		                                System.out.println("came in here " + cec);	
+		                            if(dutysite != null && !dutysite.isEmpty() && idNo.contains(enternricfin.toUpperCase()) && dutysite.equals(site)){
+		
 		                                if (areyoutodhod.toUpperCase().contains("TOD")) {
 		                                TodHodDetails todDetails = new TodHodDetails(enternricfin, shift, timestamp,
 		                                        securityofficername, date, time, areyoutodhod,
@@ -203,6 +208,7 @@
 		                    else{
 		                		//if search by date (minimum requirement)
 		                		//OC - On Course, MC - Medical Leave, AL - Annual Leave, HC - Hospital Leave
+		                		//System.out.println("todday: enter in 205: " + site + " " + idNo);
 		                        if(fromDt != null && !fromDt.toString().isEmpty()){
 		
 		                            if (areyoutodhod.toUpperCase().contains("TOD")) {
@@ -210,7 +216,6 @@
 		                                    securityofficername, date, time, areyoutodhod,
 		                                    dutysite, standbyremark);
 		                            todDetails.setTimestamp(timestamp);
-// 		                                System.out.println("came in here " + todDetails.toString());	
 		                                if((todDetails.getDate().compareTo(fromDt) >= 0 && todDetails.getDate().compareTo(toDt) <= 0)){
 		                            		allTodDetails.add(todDetails);
 		                            	}
@@ -227,7 +232,8 @@
 		                	}
 	                    }	
 	             }// for (ListEntry le : lf.getEntries())
-               }
+            }
+          	
            	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates and take the latest timestamp start
            	ArrayList<TodHodDetails> list = new ArrayList<TodHodDetails>();
            	ListIterator<TodHodDetails> todWithoutDups = list.listIterator();
@@ -281,7 +287,8 @@
 			//System.out.println("todWithoutDups: " + list.toString());
             allTodDetails =  (ArrayList<TodHodDetails>) list;  
            	//Added by Shangeri Sivalingam on 05 September 2020 to remove TOD duplicates end
-          //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
+ 
+            //find the HOD pair using nric, site, shift and entry day must be on the day off or the next day
             if (!allTodDetails.isEmpty()) {
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss aa");
                 SimpleDateFormat datetimeFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
@@ -451,11 +458,12 @@
                     
                   
                 } //for (TodHodDetails eachTodDetail : allTodDetails)
-              //Added by Shangeri on 20191204 Start
+               
+                //Added by Shangeri on 20191204 Start
                 //to display any shortfall based on TOD, shift, and number of SO required at Site for the system current date MM/DD/YYYY
                 if(!(session.getAttribute("usertype") == null)){
                 	String usertype = (String) session.getAttribute("usertype");
-                	if (usertype.equals("K11ADMIN") && fromDt.compareTo(currentDt) == 0) {
+                	if (usertype.equals("K11ADMIN")) {
                 		try {
                   	     	//Dropdown for duty site START
                   	         String dutySitesUrl
@@ -486,7 +494,7 @@
                   			           		for(TodHodPair todHodDetails: todHodPairs){
                   			           			if(todHodDetails.getTodDate() != null && todHodDetails.getDutysite() != null &&
                   			           					!StringUtils.isEmpty(todHodDetails.getDutysite()) && !StringUtils.isEmpty(todHodDetails.getTodDateAsStr()) && 
-                  			           				todHodDetails.getDutysite().equals(eachSite) && todHodDetails.getTodDate().compareTo(currentDt) == 0){
+                  			           				todHodDetails.getDutysite().equals(eachSite) && todHodDetails.getTodDate().compareTo(fromDt) == 0){
                   			           				todSiteCount++;
                   			           			}
                   			           		}
@@ -512,7 +520,6 @@
                 	}
                 	
                 }
-//                 System.out.println("todHodPairs: " + todHodPairs.toString());
                 session.setAttribute("todHodPairs", todHodPairs);
              }	// if (!allTodDetails.isEmpty())
             
@@ -526,7 +533,7 @@
 
 
         <div style="display: block; width: 80%" id="todhodtablediv">
-	            <display:table name="sessionScope.todHodPairs" pagesize="20"
+	            <display:table name="sessionScope.todHodPairs" pagesize="25"
 	                           export="true" sort="list" class="table">
 	                <display:column property="enternricfin" title="NRIC/FIN"
 	                                sortable="true" headerClass="sortable" />
