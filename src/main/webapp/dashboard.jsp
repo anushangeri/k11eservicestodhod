@@ -20,8 +20,6 @@
 			String usertype = (String) session.getAttribute("usertype");
 			
 		%>
-				<!-- access control for K11 Security -->
-				<%if (usertype.equals("K11SECURITY")) {%>
 				<br>
 				<div class="card">
 					<a href="todhodsearch.jsp">
@@ -34,25 +32,15 @@
 					</a>
 				</div>
 		
+				<br>
+				<!-- access control for K11 Admin -->
+				<%if (usertype.equals("ADMIN")) {%>
+				<br>
+					<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
+								aria-pressed="true">Add Account</a>
 				<br>
 				<%} %>
-				<!-- access control for K11 Admin -->
-				<%if (usertype.equals("K11ADMIN")) {%>
-				<br>
-				<div class="card">
-					<a href="todhodsearch.jsp">
-						<div class="eachCard crop">
-							<img class="center-block" src="todhod.png" alt="todhodday.jpg">
-							<h4 class="fontheader">
-								<b>VIEW TOD/HOD DETAILS</b>
-							</h4>
-						</div>
-					</a>
-				</div>
-		
-				<br>
-			<%} %>
-<%} %>
+	<%} %>
 <!-- the following is for vehicle registration -->
 <%if ( !(session.getAttribute("siteUser") == null)) {
 		String siteUser = (String) session.getAttribute("siteUser");

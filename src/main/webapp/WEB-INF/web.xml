@@ -72,11 +72,96 @@
 	</servlet>
 	<servlet>
 		<description />
-
 		<display-name>VehRegLoginVerifyServlet</display-name>
 		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
 	</servlet>
+	
+	<!-- Client Account START  -->
+	<servlet>
+		<description />
+		<display-name>CClientAccountTblServlet</display-name>
+		<servlet-name>CClientAccountTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CClientAccountTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UClientAccountTblServlet</display-name>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UClientAccountTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddClientAccountRecordServlet</display-name>
+		<servlet-name>AddClientAccountRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddClientAccountRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ProcessPasswordServlet</display-name>
+		<servlet-name>ProcessPasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ProcessPasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ResetPasswordServlet</display-name>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ResetPasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewClientRecordServlet</display-name>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewClientRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>OverridePasswordServlet</display-name>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.OverridePasswordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteClientAccountServlet</display-name>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
+	</servlet>
+	<!-- Client Account END  -->
+	
+	<!-- Client Account START  -->
+	<servlet-mapping>
+		<servlet-name>CClientAccountTblServlet</servlet-name>
+		<url-pattern>/clientAccountTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UClientAccountTblServlet</servlet-name>
+		<url-pattern>/updateClientAccountTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddClientAccountRecordServlet</servlet-name>
+		<url-pattern>/addClientAccount</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProcessPasswordServlet</servlet-name>
+		<url-pattern>/verifyLogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ResetPasswordServlet</servlet-name>
+		<url-pattern>/resetPassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewClientRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllClientRecords</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OverridePasswordServlet</servlet-name>
+		<url-pattern>/overridePassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteClientAccountServlet</servlet-name>
+		<url-pattern>/deleteClientRecord</url-pattern>
+	</servlet-mapping>
+	<!-- Client Account END  -->
 	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>

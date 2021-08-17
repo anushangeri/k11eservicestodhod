@@ -14,65 +14,72 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				var date_input = $('input[name="dob"]'); //our date input has the name "date"
-				var container = $('.bootstrap-iso form').length > 0 ? $(
-						'.bootstrap-iso form').parent() : "body";
-				var options = {
-					format : 'mm/dd/yyyy',
-					container : container,
-					todayHighlight : true,
-					autoclose : true,
-				};
-				date_input.datepicker(options);
-			})
+<script>
+	function validateForm() {
+		var idNo = document.forms["checkNRIC"]["idNo"].value;
+		var first = idNo.charAt(0);
+		var isDigitFirst = (first >= '0' && first <= '9');
+		var second = idNo.charAt(1);
+		var isDigitSecond = (second >= '0' && second <= '9');
+		var third = idNo.charAt(2);
+		var isDigitThird = (third >= '0' && third <= '9');
+		var forth = idNo.charAt(3);
+		var isDigitForth = (forth >= '0' && forth <= '9');
+		var n = idNo.length;
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
+			return false;
+		}
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
+			return false;
+		}
+	}
+	function showPassword() {
+		  var x = document.getElementById("psw");
+		  if (x.type === "password") {
+		    x.type = "text";
+		  } else {
+		    x.type = "password";
+		  }
+	}
 </script>
 </head>
 <body>
 	<%
-		ArrayList<String> responseObj = (ArrayList<String>) request.getAttribute("responseObj");
-		if (responseObj != null) {
+		session.removeAttribute("usertype");
+		session.removeAttribute("name");
+		session.removeAttribute("idNo");
+		
+		String responseObj = (String) request.getAttribute("responseObj");
+		if (responseObj != null && !StringUtils.isEmpty(responseObj)) {
 	%>
-			<label class="heading"><%=responseObj.toString() %></label>
-	<%
-		}
-	%>
+			<label class="heading"><%=responseObj%> </label><br>
+		<%} %>
 	<center>
-	<form action="loginVerify" method="post">
-	<h2><center>K11 Attendance Record</center></h2>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="idNo"> FULL NRIC/FIN: </label> <input type="text"
-					class="form-control" name="idNo" placeholder="Enter FULL NRIC/FIN">
+	<form name="verifyLogin" action="verifyLogin" method="post"
+			onsubmit="return validateForm()">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="idNo">ID Number: </label> <input type="text"
+						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
+						minlength="4" maxlength="9" required>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+						required><input type="checkbox" onclick="showPassword()">Show Password
+				</div>
 			</div>
-			<div class="form-group col-md-6">
-				<label for="dob">Date of Birth: </label> <input class="form-control"
-					id="dob" name="dob" placeholder="MM/DD/YYYY" type="text" required />
+			<br>
+			<div class="form-row">
+				<button type="submit" class="btn btn-primary btn-lg active">
+				Login</button>
 			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
-		</div>
-	</form>
-	</center>
-	<br>
-	<center>
-	<!-- 
-	<form action="vehRegLoginVerify" method="post">
-		<h2><center>K11 Site Vehicle Registeration Record</center></h2>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="siteUser"> Site User: </label> <input type="text"
-					class="form-control" name="siteUser" placeholder="Enter Site">
-			</div>
-			<div class="form-group col-md-6">
-				<label for="password"> Password: </label> <input type="password"
-					class="form-control" name="password" placeholder="Enter Password">
-			</div>
-			<button type="submit" class="btn btn-primary">Login to view vehicle record</button>
-		</div>
-	</form>
-	-->
+		</form>
 	</center>
 </body>
 </html>
