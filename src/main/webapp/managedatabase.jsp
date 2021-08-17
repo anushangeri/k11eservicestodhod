@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
+<%@include file="loginCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
