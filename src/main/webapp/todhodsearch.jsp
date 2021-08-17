@@ -74,11 +74,11 @@
 	%>
 	<%
 	ArrayList<String> dutySites = new ArrayList<String>();
-	SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
+	SpreadsheetService service = new SpreadsheetService("Copy of K11CLICKS: DROPDOWN EXCEL");
 	 try {
      	//Dropdown for duty site START
          String dutySitesUrl
-                 = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/9/public/values";
+                 = "https://spreadsheets.google.com/feeds/list/1lMdPgbaXMyQV48Od4OcuJiBi-SQngawXbLFHWBb3adI/9/public/values";
          // Use this String as url
          URL dutySitesurl = new URL(dutySitesUrl);
 
