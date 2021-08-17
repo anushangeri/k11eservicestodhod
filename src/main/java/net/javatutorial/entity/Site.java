@@ -5,12 +5,12 @@ import java.sql.Timestamp;
 public class Site {
 	private String siteId;
     private String siteName;
-    private String dayShiftManpower;
-    private String nightShiftManpower;
+    private int dayShiftManpower;
+    private int nightShiftManpower;
     private Timestamp createdDt;
     private Timestamp lastModifiedDt;
     
-	public Site(String siteId, String siteName, String dayShiftManpower, String nightShiftManpower, Timestamp createdDt,
+	public Site(String siteId, String siteName, int dayShiftManpower, int nightShiftManpower, Timestamp createdDt,
 			Timestamp lastModifiedDt) {
 		super();
 		this.siteId = siteId;
@@ -52,28 +52,28 @@ public class Site {
 	/**
 	 * @return the dayShiftManpower
 	 */
-	public String getDayShiftManpower() {
+	public int getDayShiftManpower() {
 		return dayShiftManpower;
 	}
 
 	/**
 	 * @param dayShiftManpower the dayShiftManpower to set
 	 */
-	public void setDayShiftManpower(String dayShiftManpower) {
+	public void setDayShiftManpower(int dayShiftManpower) {
 		this.dayShiftManpower = dayShiftManpower;
 	}
 
 	/**
 	 * @return the nightShiftManpower
 	 */
-	public String getNightShiftManpower() {
+	public int getNightShiftManpower() {
 		return nightShiftManpower;
 	}
 
 	/**
 	 * @param nightShiftManpower the nightShiftManpower to set
 	 */
-	public void setNightShiftManpower(String nightShiftManpower) {
+	public void setNightShiftManpower(int nightShiftManpower) {
 		this.nightShiftManpower = nightShiftManpower;
 	}
 

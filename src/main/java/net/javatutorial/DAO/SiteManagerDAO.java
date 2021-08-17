@@ -23,9 +23,9 @@ public class SiteManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO SITE "
-	        		+ "(SITE_ID, SITE_NAME, COMPANY_NAME, CREATED_DT, LAST_MODIFIED_DT)" + 
-	        		"  VALUES ('" +v.getSiteId()+ "','" +v.getSiteName()+ "','" +v.getCompanyName()+ "','" 
-	        		+v.getCreatedDt()+ "','" +v.getLastModifiedDt()+ "');");
+	        		+ "(SITE_ID, SITE_NAME, DAY_MANPOWER, NIGHT_MANPOWER, CREATED_DT, LAST_MODIFIED_DT)" + 
+	        		"  VALUES ('" +v.getSiteId()+ "','" +v.getSiteName()+ "','" +v.getDayShiftManpower()+ "','" 
+	        		 +v.getNightShiftManpower()+ "','" +v.getCreatedDt()+ "','" +v.getLastModifiedDt()+ "');");
 	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM SITE;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
@@ -58,7 +58,8 @@ public class SiteManagerDAO {
 	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
 	        		+ "UPDATE SITE "
 	        		+  "SET SITE_NAME = '" + v.getSiteName() + "', "
-	        		+  "COMPANY_NAME = '" + v.getCompanyName() + "', "
+	        		+  "DAY_MANPOWER = '" + v.getDayShiftManpower() + "', "
+	        		+  "NIGHT_MANPOWER = '" + v.getNightShiftManpower() + "', "
 	        		+  "LAST_MODIFIED_DT = NOW() "
 	        		+ "   WHERE SITE_ID = '" + v.getSiteId() + "';");
 	        rs = stmt.executeQuery("SELECT SITE_NAME FROM SITE WHERE SITE_ID ='" + v.getSiteId() +"';");
@@ -121,7 +122,7 @@ public class SiteManagerDAO {
         ArrayList<Site> vList = new ArrayList<Site>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT SITE_ID, SITE_NAME, COMPANY_NAME, CREATED_DT, LAST_MODIFIED_DT \r\n"
+            String sql = "SELECT SITE_ID, SITE_NAME, DAY_MANPOWER, NIGHT_MANPOWER, CREATED_DT, LAST_MODIFIED_DT \r\n"
             		+ "FROM SITE ORDER BY LAST_MODIFIED_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -129,9 +130,10 @@ public class SiteManagerDAO {
             while (rs.next()) {
             	v = new Site(rs.getString(1), 
             			rs.getString(2),
-            			rs.getString(3),
-            			rs.getTimestamp(4),
-            			rs.getTimestamp(5));
+            			rs.getInt(3),
+            			rs.getInt(4),
+            			rs.getTimestamp(5),
+            			rs.getTimestamp(6));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -150,7 +152,7 @@ public class SiteManagerDAO {
         ArrayList<Site> vList = new ArrayList<Site>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT SITE_ID, SITE_NAME, COMPANY_NAME, CREATED_DT, LAST_MODIFIED_DT \r\n" + 
+            String sql = "SELECT SITE_ID, SITE_NAME, DAY_MANPOWER, NIGHT_MANPOWER, CREATED_DT, LAST_MODIFIED_DT \r\n" + 
             		"FROM SITE \r\n"
             		+ " WHERE SITE_ID ='" + siteId + "' ORDER BY LAST_MODIFIED_DT DESC;";
             pstmt = connection.prepareStatement(sql);
@@ -159,9 +161,10 @@ public class SiteManagerDAO {
             while (rs.next()) {
             	v = new Site(rs.getString(1), 
             			rs.getString(2),
-            			rs.getString(3),
-            			rs.getTimestamp(4),
-            			rs.getTimestamp(5));
+            			rs.getInt(3),
+            			rs.getInt(4),
+            			rs.getTimestamp(5),
+            			rs.getTimestamp(6));
                 vList.add(v);
             }
         } catch (Exception e) {

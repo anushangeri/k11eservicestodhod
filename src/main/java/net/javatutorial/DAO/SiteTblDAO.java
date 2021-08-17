@@ -18,7 +18,8 @@ public class SiteTblDAO {
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS SITE (\r\n" + 
 	        		"   SITE_ID VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   SITE_NAME VARCHAR (100)  NOT NULL,\r\n" + 
-	        		"   COMPANY_NAME VARCHAR (100)  NULL,\r\n"  +
+	        		"   DAY_MANPOWER INT  NULL,\r\n"  +
+	        		"   NIGHT_MANPOWER INT  NULL,\r\n"  +
 	        		"   CREATED_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n"  +
 	        		"   LAST_MODIFIED_DT TIMESTAMP   NULL \r\n"  +
 	        		");");
