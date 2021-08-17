@@ -102,11 +102,12 @@
 			<center>
 				<form action="addClientAccount" method="post" onsubmit="return validateForm()">
 					<div class="form-row">
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-3">
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()" required>
-						</div class="form-group col-md-4">
+						</div>
+						<div class="form-group col-md-3">
 							<label for="idType">ID Type: </label> 
 							<select class="form-control" id="idType" name="idType">
 								<option>NRIC</option>
