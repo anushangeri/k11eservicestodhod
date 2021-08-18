@@ -58,7 +58,7 @@
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
 							
-						<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
 					<br> <br>
@@ -75,17 +75,21 @@
 								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="companyName">Company Name: </label> <input type="text"
-								class="form-control" name="companyName"
-								oninput="this.value = this.value.toUpperCase()" 
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+							<label for="dayManpower">Day Shift Manpower: </label> <input type="text"
+								class="form-control" name="dayManpower"
+								oninput="this.value = this.value.toUpperCase()" required>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="nightManpower">Night Shift Manpower: </label> <input type="text"
+								class="form-control" name="nightManpower"
+								oninput="this.value = this.value.toUpperCase()" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Update
 							Record</button>
 							
-						<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
 					<br> <br>
