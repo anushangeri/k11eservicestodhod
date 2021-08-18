@@ -3,6 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="net.javatutorial.DAO.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="loginCSS.jsp"%>
 <%@page import="java.util.*"%>
@@ -55,7 +56,7 @@
 	<%
 	//using the usertype to determine what time of TOD/HOD to display
 	String usertype ="";
-	ArrayList<Site> siteDropdown = new ArrayList<Site>();
+	ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 	if ( !(session.getAttribute("usertype") == null)) {
 			usertype = (String) session.getAttribute("usertype");
 	}
@@ -63,9 +64,6 @@
 	if ( !(session.getAttribute("nricfin") == null)) {
 		nricfin = (String) session.getAttribute("nricfin");
 	}
-	if (!(session.getAttribute("siteDropdown") == null)) {
- 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
- 	}
 	//clear session when user press back
 	if(session.getAttribute("todHodPairs") != null){
 		session.removeAttribute("todHodPairs");
