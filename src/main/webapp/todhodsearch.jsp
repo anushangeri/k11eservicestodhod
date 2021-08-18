@@ -1,4 +1,3 @@
-
 <%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
 <%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -18,10 +17,6 @@
 <%@page import="com.google.gdata.util.ServiceException"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -60,6 +55,7 @@
 	<%
 	//using the usertype to determine what time of TOD/HOD to display
 	String usertype ="";
+	ArrayList<Site> siteDropdown = new ArrayList<Site>();
 	if ( !(session.getAttribute("usertype") == null)) {
 			usertype = (String) session.getAttribute("usertype");
 	}
@@ -67,34 +63,13 @@
 	if ( !(session.getAttribute("nricfin") == null)) {
 		nricfin = (String) session.getAttribute("nricfin");
 	}
+	if (!(session.getAttribute("siteDropdown") == null)) {
+ 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
+ 	}
 	//clear session when user press back
 	if(session.getAttribute("todHodPairs") != null){
 		session.removeAttribute("todHodPairs");
 	}
-	%>
-	<%
-	ArrayList<String> dutySites = new ArrayList<String>();
-	SpreadsheetService service = new SpreadsheetService("Copy of K11CLICKS: DROPDOWN EXCEL");
-	 try {
-     	//Dropdown for duty site START
-         String dutySitesUrl
-                 = "https://spreadsheets.google.com/feeds/list/1lMdPgbaXMyQV48Od4OcuJiBi-SQngawXbLFHWBb3adI/9/public/values";
-         // Use this String as url
-         URL dutySitesurl = new URL(dutySitesUrl);
-
-         // Get Feed of Spreadsheet url
-         ListFeed dutySiteslf = service.getFeed(dutySitesurl, ListFeed.class);
-        
-         for (ListEntry le : dutySiteslf.getEntries()) {
-             CustomElementCollection cec = le.getCustomElements();
-             dutySites.add(cec.getValue("dutysites").trim());
-         }
-       //Dropdown for marital status END
-	 } catch (Exception e) {
-     	%>
-			<h1><%=e %></h1>
-			<%
-     }
 	%>
 	<center>
 		<form action="todHodSearch" method="post">
@@ -103,16 +78,16 @@
 		      <label for="site">Site: </label>
 		      <select name="site" class="form-control">
 		      	<%
-				for(int i=0; i < dutySites.size(); i++)
+				for(Site s: siteDropdown)
 				{
 				%>
-				<option value="<%=dutySites.get(i)%>"> <%=dutySites.get(i)%></option>
+				<option value="<%=s.getSiteName()%>"> <%=s.getSiteName()%></option>
 				<% } %>
 		      </select>
 		    </div>
 		    <div class="form-group col-md-6">
 		    <%if (!StringUtils.isEmpty(usertype)){
-		    	if(usertype.equals("K11SECURITY") && !StringUtils.isEmpty(nricfin)){
+		    	if(usertype.equals("OFFICER") && !StringUtils.isEmpty(nricfin)){
 		    	%>
 		    		 <input type="hidden" id="idNo" name="idNo" value=<%=nricfin%>>
 		    	<%

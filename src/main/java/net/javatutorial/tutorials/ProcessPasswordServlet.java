@@ -24,7 +24,9 @@ import org.apache.commons.lang.StringUtils;
 import org.joda.time.format.DateTimeFormatter;
 
 import net.javatutorial.DAO.ClientAccountManagerDAO;
+import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.entity.ClientAccount;
+import net.javatutorial.entity.Site;
 import net.javatutorial.tutorials.PasswordUtils;
 
 import java.util.Calendar;
@@ -46,6 +48,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 				
 		//retrieving the hashed password by DB based on idNo entered by user
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
+		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		boolean verified = false;
 		String key = " ";
 		String salt = " ";
@@ -62,7 +65,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 			session.setAttribute("idNo", c.getIdNo());
 			session.setAttribute("name", c.getName());
 			session.setAttribute("usertype", c.getAccessType());
-			session.setAttribute("siteInCharge", c.getSite() == null ? null : c.getSite());
+			session.setAttribute("siteDropdown", siteDropdown);
 			RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 			rd.forward(request, response);
 		}
