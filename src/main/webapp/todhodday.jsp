@@ -21,10 +21,6 @@
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
     <head>
 </head>
@@ -56,8 +52,8 @@
 			idNo = responseObj.get(1);
 			from = responseObj.get(2);
 			to = responseObj.get(3);
-// 			System.out.println("idNo: " + idNo);
-// 			System.out.println("toDt before format: " + to);
+			System.out.println("idNo: " + idNo);
+			System.out.println("toDt before format: " + to);
 	        try {
 	        	//make idNo uppercase
             	if(idNo != null && !idNo.isEmpty() ){
