@@ -39,8 +39,9 @@
 <script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
 <script>
-	// Default date and time picker
+$(document).ready(function(){
 	$('#datetimepicker-default').datetimepicker();
+});
 </script>
 
 
