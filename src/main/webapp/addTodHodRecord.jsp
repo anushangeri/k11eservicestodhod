@@ -20,11 +20,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" media="screen"
- href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-
-
 </head>
 <body>
 	<div class="container body-content">
@@ -58,12 +53,12 @@
 								oninput="this.value = this.value.toUpperCase()" 
 								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
 						</div>
-						<div id="datetimepicker" class="input-append date">
-					      <input type="text"></input>
-					      <span class="add-on">
-					        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-					      </span>
-					    </div>
+						<div class="input-group date" data-provide="datepicker">
+						    <input type="text" class="form-control">
+						    <div class="input-group-addon">
+						        <span class="glyphicon glyphicon-th"></span>
+						    </div>
+						</div>
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Update
@@ -77,25 +72,7 @@
 			</center>
 		</div>
 	</div>
-	<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script> 
-<script type="text/javascript"
-	src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#datetimepicker').datepicker({
-	  format: 'dd/MM/yyyy hh:mm:ss',
-	  language: 'pt-BR'
-	});
-});
+
 </script>
 </body>
 </html>
