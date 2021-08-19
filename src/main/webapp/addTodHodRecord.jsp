@@ -90,10 +90,12 @@
 	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
 </script>
 <script type="text/javascript">
+$(document).ready(function() {
 	$('#datetimepicker').datepicker({
 	  format: 'dd/MM/yyyy hh:mm:ss',
 	  language: 'pt-BR'
 	});
+});
 </script>
 </body>
 </html>
