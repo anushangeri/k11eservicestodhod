@@ -20,9 +20,28 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" media="screen"
- href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+<!-- jquery JS -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap js -->
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Propeller textfield js --> 
+<script type="text/javascript" src="dist/js/propeller.min.js"></script>
+
+<!-- Datepicker moment with locales -->
+<script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
+
+<!-- Propeller Bootstrap datetimepicker -->
+<script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+	// Default date and time picker
+	$('#datetimepicker-default').datetimepicker();
+</script>
 
 
 </head>
@@ -58,12 +77,10 @@
 								oninput="this.value = this.value.toUpperCase()" 
 								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
 						</div>
-						<div id="datetimepicker" class="input-append date">
-					      <input type="text"></input>
-					      <span class="add-on">
-					        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-					      </span>
-					    </div>
+						<div class="form-group pmd-textfield pmd-textfield-floating-label">
+							<label class="control-label" for="datetimepicker-default">Select Date and Time</label>
+							<input type="text" id="datetimepicker-default" class="form-control" />
+						</div>
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Update
@@ -77,23 +94,5 @@
 			</center>
 		</div>
 	</div>
-	<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script> 
-<script type="text/javascript"
-	src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript"
-	src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
-<script type="text/javascript">
-	$('#datetimepicker').datetimepicker({
-	  format: 'dd/MM/yyyy hh:mm:ss',
-	  language: 'pt-BR'
-	});
-</script>
 </body>
 </html>
