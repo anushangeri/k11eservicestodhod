@@ -34,9 +34,9 @@
 
 <!-- Datepicker moment with locales -->
 <script type="text/javascript" language="javascript" src="datetimepicker/js/moment-with-locales.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 <!-- Propeller Bootstrap datetimepicker -->
-<script type="text/javascript" language="javascript" src="datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 <script>
 $(document).ready(function(){
