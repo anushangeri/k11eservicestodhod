@@ -71,12 +71,15 @@ $(function() {
 								oninput="this.value = this.value.toUpperCase()" 
 								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
 						</div>
-						<div class ='input-group date' id='datetimepicker1'>  
-				          <input type ='text' class="form-control" />  
-				          <span class ="input-group-addon">  
-				            <span class ="glyphicon glyphicon-calendar"></span>  
-				          </span>  
-				        </div>  
+						<div class="form-group col-md-6">
+							<label for="timeInDt">Site Name: </label> 
+							<div class ='input-group date' id='datetimepicker1'>  
+					          <input type ='text' class="form-control" name="timeInDt"/>  
+					          <span class ="input-group-addon">  
+					            <span class ="glyphicon glyphicon-calendar"></span>  
+					          </span>  
+					        </div> 
+				        </div> 
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Update
