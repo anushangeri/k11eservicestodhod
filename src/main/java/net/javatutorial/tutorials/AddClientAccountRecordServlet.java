@@ -2,16 +2,8 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,17 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-import org.joda.time.format.DateTimeFormatter;
-
 import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.entity.ClientAccount;
-import net.javatutorial.tutorials.PasswordUtils;
-
-import java.util.Calendar;
-import java.util.Locale;
-import static java.util.Calendar.*;
-import java.util.Date;
 
 /**
  * Servlet implementation class AddClientAccountServlet
@@ -43,7 +26,6 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		String accountId = "" + nextVal;
 		String name = request.getParameter("name").trim();
-		String site = request.getParameter("site");
 		String idType = request.getParameter("idType");
 		String idNo = request.getParameter("idNo");
 		String password= request.getParameter("psw");
@@ -55,7 +37,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String salt = PasswordUtils.generateSalt(512).get();
 		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
 				
-		ClientAccount v = new ClientAccount( accountId,  name, site, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
+		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		

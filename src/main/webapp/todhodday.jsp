@@ -52,8 +52,8 @@
 			idNo = responseObj.get(1);
 			from = responseObj.get(2);
 			to = responseObj.get(3);
-			System.out.println("idNo: " + idNo);
-			System.out.println("toDt before format: " + to);
+// 			System.out.println("idNo: " + idNo);
+// 			System.out.println("toDt before format: " + to);
 	        try {
 	        	//make idNo uppercase
             	if(idNo != null && !idNo.isEmpty() ){
