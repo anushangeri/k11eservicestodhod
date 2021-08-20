@@ -43,6 +43,8 @@
 								aria-pressed="true">Add Site</a>
 				<br>
 				<%} %>
+				<a href="index.jsp" class="btn btn-warning btn-lg active" role="button"
+								aria-pressed="true">Back</a>
 	<%} %>
 <!-- the following is for vehicle registration -->
 <%-- <%if ( !(session.getAttribute("siteUser") == null)) { 
