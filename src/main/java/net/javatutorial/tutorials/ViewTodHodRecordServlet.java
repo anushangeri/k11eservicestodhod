@@ -59,7 +59,6 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 			}
 			else {
 				vList = TodHodManagerDAO.retrieveByTime(shift, fromts, tots);
-				System.out.println("retrieveByTime: ");
 			}
 			
 			message = "List of TOD HOD records";

@@ -42,7 +42,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String message = ClientAccountManagerDAO.addClientAccount(v);
 		
 		
-		request.setAttribute("responseObj", message);
+		request.setAttribute("message", message);
 		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
         rd.forward(request, response);
 	}
