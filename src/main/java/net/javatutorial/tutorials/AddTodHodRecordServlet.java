@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,12 +27,12 @@ public class AddTodHodRecordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int nextVal = TodHodManagerDAO.getNextVal();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		
 		String recordId = "" + nextVal;
 		String officerName = request.getParameter("officerName");
 		String officerIdNo = (String) request.getParameter("officerIdNo");
 		String siteName = (String) request.getParameter("siteName");
+		String shift = (String) request.getParameter("shift");
 		String timeInDt = (String) request.getParameter("timeInDt");
 		
 		Date date = null;
@@ -47,14 +48,13 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		 
 		}
 				
-		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, timeStampDate, null);
+		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timeStampDate, null);
 		
 		String message = TodHodManagerDAO.addTodHod(v);
 		
 		
 		request.setAttribute("responseObj", message);
-		// Redirect to view tod hod servlet to query all the tod hod again.
-		response.sendRedirect("/retrieveAllTodHodRecords");
+		RequestDispatcher rd = request.getRequestDispatcher("todhodsearch.jsp");
 	}
 	@Override
 	public void init() throws ServletException {

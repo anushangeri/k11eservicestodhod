@@ -1,8 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginCSS.jsp"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
+<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
+<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
+<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
+<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
+<%@page import="com.google.gdata.util.ServiceException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
@@ -60,7 +65,7 @@
 <body>
 	<center>
 	<%
-		ArrayList<Site> vList = (ArrayList<Site>) request.getAttribute("vList");
+		ArrayList<ClientAccount> vList = (ArrayList<ClientAccount>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "SxxxxxxxJ";
@@ -83,38 +88,40 @@
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
-							<th class="th-sm">Site Name</th>
-							<th class="th-sm">Day Shift Manpower</th>
-							<th class="th-sm">Night Shift Manpower</th>
+							<th class="th-sm">Name</th>
+							<th class="th-sm">ID Type</th>
+							<th class="th-sm">ID Number</th>
+							<th class="th-sm">Access Type</th>
 							<th class="th-sm">Created Date</th>
-							<th class="th-sm">Last Modified Date</th>
-							<th class="th-sm">Edit</th>
+							<th class="th-sm">Modified Date</th>
+							<th class="th-sm">Override Password</th>
 							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							if (!vList.isEmpty()) {
-								Iterator<Site> vListIter = vList.iterator();
+								Iterator<ClientAccount> vListIter = vList.iterator();
 								while (vListIter.hasNext()) {
-									Site v = vListIter.next();
+									ClientAccount v = vListIter.next();
 						%>
 								<tr>
-									<td><%=v.getSiteId()%></td>
-									<td><%=v.getSiteName()%></td>
-									<td><%=v.getDayShiftManpower()%></td>
-									<td><%=v.getNightShiftManpower()%></td>
+									<td><%=v.getAccountId()%></td>
+									<td><%=v.getName()%></td>
+									<td><%=v.getIdType()%></td>
+									<td><%=v.getIdNo()%></td>
+									<td><%=v.getAccessType()%></td>
 									<td><%=v.getCreatedDt()%></td>
-									<td><%=v.getLastModifiedDt()%></td>
+									<td><%=v.getModifiedDt()%></td>
 									<td>
-										<form method="POST" action ="/editSite">
-											<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
-											<input type="submit" name="Submit" value="Edit">
+										<form method="POST" action ="/overridePassword">
+											<input type="hidden" id="idNo" name="idNo" value="<%=v.getIdNo()%>">
+											<input type="submit" name="Submit" value="Override Password">
 										</form>
 									</td>
 									<td>
-										<form method="POST" action ="/deleteSite">
-											<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
+										<form method="POST" action ="/deleteClientRecord">
+											<input type="hidden" id="accountId" name="accountId" value="<%=v.getAccountId()%>">
 											<input type="submit" name="Submit" value="Delete">
 										</form>
 									</td>

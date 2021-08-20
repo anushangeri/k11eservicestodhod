@@ -60,19 +60,50 @@
 	if ( !(session.getAttribute("usertype") == null)) {
 			usertype = (String) session.getAttribute("usertype");
 	}
+	String nricfin = "";
+	if ( !(session.getAttribute("nricfin") == null)) {
+		nricfin = (String) session.getAttribute("nricfin");
+	}
+	//clear session when user press back
+	if(session.getAttribute("todHodPairs") != null){
+		session.removeAttribute("todHodPairs");
+	}
 	%>
 	<center>
 		<form action="todHodSearch" method="post">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		      <label for="site">Site: </label>
-		      <select name="siteName" class="form-control">
+		      <select name="site" class="form-control">
 		      	<%
-				for(Site s: siteDropdown){
+				for(Site s: siteDropdown)
+				{
 				%>
-					<option value="<%=s.getSiteName()%>"> <%=s.getSiteName()%></option>
+				<option value="<%=s.getSiteName()%>"> <%=s.getSiteName()%></option>
 				<% } %>
 		      </select>
+		    </div>
+		    <div class="form-group col-md-6">
+		    <%if (!StringUtils.isEmpty(usertype)){
+		    	if(usertype.equals("OFFICER") && !StringUtils.isEmpty(nricfin)){
+		    	%>
+		    		 <input type="hidden" id="idNo" name="idNo" value=<%=nricfin%>>
+		    	<%
+		    	}
+		    	else{//if not K11SECURITY, means its admin
+		    	%>
+		    		<label for="idNo">NRIC/FIN: </label>
+		      		<input type="text" class="form-control" name="idNo" placeholder="Enter NRIC/FIN">
+		    	<%	
+		    	}
+		    } 
+		    else{//in case session empty
+		    	%>
+		    		<label for="idNo">NRIC/FIN: </label>
+		      		<input type="text" class="form-control" name="idNo" placeholder="Enter NRIC/FIN">
+		    	<%	
+		    	}
+		    %>
 		    </div>
 		    <div class="form-group col-md-6">
 		      <label for="from">From: </label>
@@ -89,15 +120,9 @@
 			    <option>Night</option>
 			  </select>
 		    </div>
-		    <div class="form-row">
-				<button type="submit" class="btn btn-primary">VIEW TOD/HOD</button>
-					
-				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">Back</a>
-			</div>
+		    <button type="submit" class="btn btn-primary">VIEW TOD/HOD</button>
 		    </div>
 		</form>
 		</center>
-		
     </body>
 </html>

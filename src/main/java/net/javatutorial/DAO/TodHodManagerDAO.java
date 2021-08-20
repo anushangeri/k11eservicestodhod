@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.TodHodRecord;
@@ -122,7 +123,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, TIME_IN_DT, TIME_OUT_DT \r\n"
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n"
             		+ "FROM TODHOD ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -132,8 +133,9 @@ public class TodHodManagerDAO {
             			rs.getString(2),
             			rs.getString(3),
             			rs.getString(4),
-            			rs.getTimestamp(5),
-            			rs.getTimestamp(6));
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -152,7 +154,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		"FROM TODHOD \r\n"
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
@@ -163,8 +165,153 @@ public class TodHodManagerDAO {
             			rs.getString(2),
             			rs.getString(3),
             			rs.getString(4),
-            			rs.getTimestamp(5),
-            			rs.getTimestamp(6));
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<TodHodRecord> retrieveByTime( String shift, String from, String to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            		"FROM TODHOD "
+    				+ " WHERE TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT <='" + to + "' "
+    				+ " AND SHIFT ='" + shift + "' "
+					+ " ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<TodHodRecord> retrieveBySiteTime(String shift, String site, String from, String to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            		"FROM TODHOD "
+    				+ " WHERE SITE_NAME ='" + site + "' "
+    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT <='" + to + "' "
+    				+ " AND SHIFT ='" + shift + "' "
+					+ " ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<TodHodRecord> retrieveByIdNoSiteTime(String shift, String idNo, String site, String from, String to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            		"FROM TODHOD "
+    				+ " WHERE SITE_NAME ='" + site + "' "
+    				+ " AND OFFICER_IDNO ='" + idNo + "' "
+    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT <='" + to + "' "
+    				+ " AND SHIFT ='" + shift + "' "
+					+ " ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<TodHodRecord> retrieveByIdNoTime(String shift, String officerIdNo, String from, String to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            		"FROM TODHOD "
+            		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' "
+    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT <='" + to + "' "
+    				+ " AND SHIFT ='" + shift + "' "
+    				+ " ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
                 vList.add(v);
             }
         } catch (Exception e) {

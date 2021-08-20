@@ -25,8 +25,10 @@ public class ViewClientRecordServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
+		
 		String message = "No client accounts available";
 		ArrayList<ClientAccount> vList = null;
+		
 		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
 			vList = ClientAccountManagerDAO.retrieveAll();
 			message = "List of client accounts";

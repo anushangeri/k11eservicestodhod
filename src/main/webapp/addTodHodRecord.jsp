@@ -46,8 +46,12 @@ $(function() {
 			<b>How to use:</b> Please enter Tod-Hod Details.
 			<% 
 				TodHodRecord v = null;
+				ArrayList<Site> siteDropdown = new ArrayList<Site>();
 			 	if (request.getAttribute("todhodRecord") != null) {
 			 		v = (TodHodRecord) request.getAttribute("todhodRecord");
+			 	}
+			 	if (request.getAttribute("siteDropdown") != null) {
+			 		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
 			 	}
 			%>
 			<center>
@@ -66,13 +70,52 @@ $(function() {
 								value="<%=((v == null) ? "" : v.getOfficerIdNo())%>" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteName">Site Name: </label> <input type="text"
-								class="form-control" name="siteName"
-								oninput="this.value = this.value.toUpperCase()" 
-								value="<%=((v == null) ? "" : v.getSiteName())%>" required>
+							<label for="shift">Shift: </label> 
+							<% if(v == null){%>
+								<select name="shift" class="form-control" required>
+									<option value="DAY">DAY</option>
+									<option value="NIGHT">NIGHT</option>
+								</select>
+							<% } 
+							else {%>
+								<select name="shift" class="form-control" required>
+									<option value="DAY" 
+									<%=v.getShift() != null && v.getShift().equals("DAY") ? "selected" : "" %>>DAY</option>
+									<option value="NIGHT" 
+									<%=v.getShift() != null && v.getShift().equals("NIGHT") ? "selected" : "" %>>NIGHT</option>
+								</select>
+							<%} %>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="timeInDt">Site Name: </label> 
+							<label for="siteName">Site : </label> 
+							<% if(v == null){%>
+								<select name="siteName" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>">
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<select name="siteName" class="form-control" required>
+									<%
+										for (Site eachSite: siteDropdown) {
+									%>
+											<option value="<%=eachSite.getSiteName()%>" 
+											<%=v.getSiteName() != null && v.getSiteName().equals(eachSite.getSiteName()) ? "selected" : "" %>>
+												<%=eachSite.getSiteName()%></option>
+									<%
+										}
+									%>
+								</select>
+							<%} %>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="timeInDt">Time-In Date: </label> 
 							<div class ='input-group date' id='datetimepicker1'>  
 					          <input type ='text' class="form-control" name="timeInDt"/>  
 					          <span class ="input-group-addon">  
@@ -82,7 +125,7 @@ $(function() {
 				        </div> 
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Update
+						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
 							
 						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"

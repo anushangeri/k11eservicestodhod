@@ -31,33 +31,36 @@
 						</div>
 					</a>
 				</div>
-		
+				<a href="/populateTodHod" class="btn btn-warning btn-lg active" role="button"
+								aria-pressed="true">Add TOD HOD</a>
 				<br>
 				<!-- access control for K11 Admin -->
 				<%if (usertype.equals("ADMIN")) {%>
 				<br>
 					<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
 								aria-pressed="true">Add Account</a>
+					<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
+								aria-pressed="true">Add Site</a>
 				<br>
 				<%} %>
 	<%} %>
 <!-- the following is for vehicle registration -->
-<%if ( !(session.getAttribute("siteUser") == null)) {
-		String siteUser = (String) session.getAttribute("siteUser");
+<%-- <%if ( !(session.getAttribute("siteUser") == null)) { 
+// 		String siteUser = (String) session.getAttribute("siteUser");
 		
-%>
-	<div class="card">
-		<a href="viewVehRegRec.jsp">
-			<div class="eachCard crop">
-				<img class="center-block" src="VMS_icon.png"
-					alt="VMS_icon.png">
-				<h4 class="fontheader">
-					<b>Site Vehicle Registration Record</b>
-				</h4>
-			</div>
-		</a>
-	</div>	
-<%} %>
+<%-- %> --%>
+<!-- 	<div class="card"> -->
+<!-- 		<a href="viewVehRegRec.jsp"> -->
+<!-- 			<div class="eachCard crop"> -->
+<!-- 				<img class="center-block" src="VMS_icon.png" -->
+<!-- 					alt="VMS_icon.png"> -->
+<!-- 				<h4 class="fontheader"> -->
+<!-- 					<b>Site Vehicle Registration Record</b> -->
+<!-- 				</h4> -->
+<!-- 			</div> -->
+<!-- 		</a> -->
+<!-- 	</div>	 -->
+<%-- <%} %> --%>
 </center>
 </body>
 </html>

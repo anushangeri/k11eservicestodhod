@@ -172,6 +172,32 @@
 	</servlet>
 	<!-- Site END  -->
 	
+	<!-- TOD HOD START  -->
+	<servlet>
+		<description />
+		<display-name>CTodHodRecordTblServlet</display-name>
+		<servlet-name>CTodHodRecordTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CTodHodRecordTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddTodHodRecordServlet</display-name>
+		<servlet-name>AddTodHodRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddTodHodRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>RetrieveTodHodByNRICServlet</display-name>
+		<servlet-name>RetrieveTodHodByNRICServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveTodHodByNRICServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewTodHodRecordServlet</display-name>
+		<servlet-name>ViewTodHodRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewTodHodRecordServlet</servlet-class>
+	</servlet>
+	<!-- TOD HOD END  -->
 	
 	<!-- Client Account START  -->
 	<servlet-mapping>
@@ -207,6 +233,7 @@
 		<url-pattern>/deleteClientRecord</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
+	
 	<!-- Site START  -->
 	<servlet-mapping>
 		<servlet-name>CSiteTblServlet</servlet-name>
@@ -237,6 +264,25 @@
 		<url-pattern>/deleteSite</url-pattern>
 	</servlet-mapping>
 	<!-- Site END  -->
+	
+	<!-- TOD HOD START  -->
+	<servlet-mapping>
+		<servlet-name>CTodHodRecordTblServlet</servlet-name>
+		<url-pattern>/createTodHodTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTodHodRecordServlet</servlet-name>
+		<url-pattern>/addTodHodRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveTodHodByNRICServlet</servlet-name>
+		<url-pattern>/populateTodHod</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewTodHodRecordServlet</servlet-name>
+		<url-pattern>/todHodSearch</url-pattern>
+	</servlet-mapping>
+	<!-- TOD HOD END  -->
 	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>

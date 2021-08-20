@@ -23,10 +23,13 @@
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(document).ready(function() {
+			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
 			$('table').DataTable({
+				"order": [[ 0, "desc" ]],
 				dom : 'Blfrtip',
 				buttons : [ {
 					text : 'Export To Excel',
@@ -35,7 +38,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -46,7 +49,8 @@
 					customize : function(xlsx) {
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
-				} ]
+				} ],
+				"order": [[15, 'desc']]
 			});
 		});
 	});
@@ -54,13 +58,12 @@
 	{
 	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
 	}
-	
 </script>
 </head>
 <body>
 	<center>
 	<%
-		ArrayList<Site> vList = (ArrayList<Site>) request.getAttribute("vList");
+		ArrayList<TodHodRecord> vList = (ArrayList<TodHodRecord>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "SxxxxxxxJ";
@@ -79,45 +82,45 @@
 		%>
 			<div class="container body-content" id="tableview">
 				<table id="example"
-					class="table table-striped table-bordered table-sm sortable">
+					class="table table-striped table-bordered table-sm sortable" style="width: 80%;">
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
+							<th class="th-sm">Officer Name</th>
+							<th class="th-sm">Officer ID</th>
 							<th class="th-sm">Site Name</th>
-							<th class="th-sm">Day Shift Manpower</th>
-							<th class="th-sm">Night Shift Manpower</th>
-							<th class="th-sm">Created Date</th>
-							<th class="th-sm">Last Modified Date</th>
-							<th class="th-sm">Edit</th>
-							<th class="th-sm">Delete</th>
+							<th class="th-sm">Shift</th>
+							<th class="th-sm">TOD Time</th>
+							<th class="th-sm">HOD Time</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
 							if (!vList.isEmpty()) {
-								Iterator<Site> vListIter = vList.iterator();
+								Iterator<TodHodRecord> vListIter = vList.iterator();
 								while (vListIter.hasNext()) {
-									Site v = vListIter.next();
+									TodHodRecord v = vListIter.next();
 						%>
 								<tr>
-									<td><%=v.getSiteId()%></td>
-									<td><%=v.getSiteName()%></td>
-									<td><%=v.getDayShiftManpower()%></td>
-									<td><%=v.getNightShiftManpower()%></td>
-									<td><%=v.getCreatedDt()%></td>
-									<td><%=v.getLastModifiedDt()%></td>
-									<td>
-										<form method="POST" action ="/editSite">
-											<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
-											<input type="submit" name="Submit" value="Edit">
-										</form>
-									</td>
-									<td>
-										<form method="POST" action ="/deleteSite">
-											<input type="hidden" id="siteId" name="siteId" value="<%=v.getSiteId()%>">
-											<input type="submit" name="Submit" value="Delete">
-										</form>
-									</td>
+									<td><%=v.getRecordId()%></td>
+									<td><%=v.getOfficerName()%></td>
+									<td><%=v.getOfficerIdNo()%></td>
+									<td><%=((v.getSiteName() == null) ? "" : v.getSiteName())%></td>
+									<td><%=v.getShift()%></td>
+									<td><%=sdf.format(v.getTimeInDt())%></td>
+									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
+									<% if (v.getTimeOutDt() != null) { %>
+										<td><%=sdf.format(v.getTimeOutDt())%></td>
+									<%
+										}
+										else{
+									%>
+										<td><form method="POST" action ="/updateTodHodRecord">
+											<input type="hidden" id="recordId" name="recordId" value="<%=v.getRecordId()%>">
+											<input type="submit" name="Submit" value="Update"></form></td>
+									<%
+										}
+									%>
 								</tr>
 							<%
 								}
@@ -137,8 +140,10 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="dashboard.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
+				<div class="form-row">
+					<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
+						aria-pressed="true">Back</a>
+				</div>
 			</center>
 		</div>
 	<br>

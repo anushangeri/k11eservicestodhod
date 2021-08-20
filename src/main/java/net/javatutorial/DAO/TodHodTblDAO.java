@@ -21,6 +21,7 @@ public class TodHodTblDAO {
 	        		"   OFFICER_NAME VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   OFFICER_IDNO VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   SITE_NAME VARCHAR (100)  NOT NULL,\r\n" + 
+	        		"   SHIFT VARCHAR (100)  NOT NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n"  +
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n"  +
 	        		");");

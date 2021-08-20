@@ -12,29 +12,50 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import net.javatutorial.DAO.SiteManagerDAO;
+import net.javatutorial.DAO.TodHodManagerDAO;
 import net.javatutorial.entity.Site;
+import net.javatutorial.entity.TodHodRecord;
 
 /**
- * Servlet implementation class ViewSiteRecordServlet
+ * Servlet implementation class RetrieveTodHodByNRICServlet
+ * To retrieve latest vehicle record to populate in addTodHodRecord.jsp
+ * If the vehicle object is empty, then user will fill themselves - new user
  */
-public class ViewSiteRecordServlet extends HttpServlet {
+public class RetrieveTodHodByNRICServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String name = (String) request.getSession(false).getAttribute("name");
-		String message = "No site accounts available";
-		ArrayList<Site> vList = null;
-		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
-			vList = SiteManagerDAO.retrieveAll();
-			message = "List of site accounts";
-			request.setAttribute("vList", vList);
-		}
+
+		//from admin login view
+		String idNoFromClient = request.getParameter("idNo");
+				
+		ArrayList<TodHodRecord> vList = null;
+		TodHodRecord v = null;
 		
-		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
+		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
+			vList = TodHodManagerDAO.retrieveByOfficerIdNo(idNoFromClient);
+			if(vList != null && vList.size() > 0) {
+				v = vList.get(0);
+			}
+		}
+		else {
+			if(!StringUtils.isEmpty(idNo)) {
+				vList = TodHodManagerDAO.retrieveByOfficerIdNo(idNo);
+				if(vList != null && vList.size() > 0) {
+					v = vList.get(0);
+				}
+			}
+		}
+		//getting all the dropdown
+		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+		
+		request.setAttribute("todHodRecord", v);
+		request.setAttribute("siteDropdown", siteDropdown);
+		
+        RequestDispatcher rd = request.getRequestDispatcher("addTodHodRecord.jsp");
         rd.forward(request, response);
 	}
 	@Override
