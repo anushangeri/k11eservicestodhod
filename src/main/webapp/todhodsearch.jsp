@@ -85,8 +85,8 @@
 		    <div class="form-group col-md-6">
 		      <label for="shift">Select Shift Type: </label>
 		      <select class="form-control" name="shift">
-			    <option selected="selected">Day</option>
-			    <option>Night</option>
+			    <option selected="selected">DAY</option>
+			    <option>NIGHT</option>
 			  </select>
 		    </div>
 		    <div class="form-row">
