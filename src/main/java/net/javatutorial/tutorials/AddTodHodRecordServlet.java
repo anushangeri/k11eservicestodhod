@@ -42,12 +42,13 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		}
 				
 		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp);
-		System.out.println(v.toString());
+
 		String message = TodHodManagerDAO.addTodHod(v);
 		
 		
 		request.setAttribute("responseObj", message);
 		RequestDispatcher rd = request.getRequestDispatcher("todhodsearch.jsp");
+		rd.forward(request, response);
 	}
 	@Override
 	public void init() throws ServletException {

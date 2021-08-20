@@ -29,7 +29,7 @@ public class TodHodManagerDAO {
 	        		 +v.getSiteName()+ "','" +v.getShift()+ "','" +v.getTimeInDt()+ "');");
 	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID = '" +v.getRecordId()+ "';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "successfull";
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
