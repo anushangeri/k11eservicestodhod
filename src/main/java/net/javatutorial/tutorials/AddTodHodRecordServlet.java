@@ -1,12 +1,7 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,21 +29,11 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		String shift = (String) request.getParameter("shift");
 		String timeInDt = (String) request.getParameter("timeInDt");
 		
-		Date date = null;
-		Timestamp timeStampDate = null;
-		try {
-		  DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm aa");
-		  // you can change format of date
-		  date = (Date) formatter.parse(timeInDt);
-		  timeStampDate = new Timestamp(date.getTime());
+		Timestamp ts = Timestamp.valueOf(timeInDt);
 		
-		} catch (ParseException e) {
-		  System.out.println("Exception :" + e);
-		 
-		}
 				
-		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timeStampDate, null);
-		
+		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  ts, null);
+		System.out.println(v.toString());
 		String message = TodHodManagerDAO.addTodHod(v);
 		
 		
