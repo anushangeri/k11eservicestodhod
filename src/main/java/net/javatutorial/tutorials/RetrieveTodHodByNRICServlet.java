@@ -52,7 +52,7 @@ public class RetrieveTodHodByNRICServlet extends HttpServlet {
 		//getting all the dropdown
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		
-		request.setAttribute("todHodRecord", v);
+		request.setAttribute("todhodRecord", v);
 		request.setAttribute("siteDropdown", siteDropdown);
 		
         RequestDispatcher rd = request.getRequestDispatcher("addTodHodRecord.jsp");

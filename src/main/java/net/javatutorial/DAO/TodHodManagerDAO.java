@@ -188,7 +188,7 @@ public class TodHodManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		"FROM TODHOD "
-    				+ " WHERE TIME_IN_DT =>'" + from + "' "
+    				+ " WHERE TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
     				+ " AND SHIFT ='" + shift + "' "
 					+ " ORDER BY TIME_IN_DT DESC;";
@@ -224,7 +224,7 @@ public class TodHodManagerDAO {
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
-    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
     				+ " AND SHIFT ='" + shift + "' "
 					+ " ORDER BY TIME_IN_DT DESC;";
@@ -261,7 +261,7 @@ public class TodHodManagerDAO {
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
     				+ " AND OFFICER_IDNO ='" + idNo + "' "
-    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
     				+ " AND SHIFT ='" + shift + "' "
 					+ " ORDER BY TIME_IN_DT DESC;";
@@ -297,7 +297,7 @@ public class TodHodManagerDAO {
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' "
-    				+ " AND TIME_IN_DT =>'" + from + "' "
+    				+ " AND TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
     				+ " AND SHIFT ='" + shift + "' "
     				+ " ORDER BY TIME_IN_DT DESC;";
