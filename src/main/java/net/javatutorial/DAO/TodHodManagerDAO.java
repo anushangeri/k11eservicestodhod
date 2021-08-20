@@ -24,9 +24,9 @@ public class TodHodManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO TODHOD "
-	        		+ "(RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, TIME_IN_DT, TIME_OUT_DT)" + 
+	        		+ "(RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT)" + 
 	        		"  VALUES ('" +v.getRecordId()+ "','" +v.getOfficerName()+ "','" +v.getOfficerIdNo()+ "','" 
-	        		 +v.getSiteName()+ "','" +v.getTimeInDt()+ "','" +v.getTimeOutDt()+ "');");
+	        		 +v.getSiteName()+ "','" +v.getShift()+ "','" +v.getTimeInDt()+ "','" +v.getTimeOutDt()+ "');");
 	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID = '" +v.getRecordId()+ "';");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
