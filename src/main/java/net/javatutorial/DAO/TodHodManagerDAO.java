@@ -155,7 +155,7 @@ public class TodHodManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
-            		"FROM TODHOD \r\n"
+            		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
@@ -178,7 +178,7 @@ public class TodHodManagerDAO {
         return vList;
     }
 	
-	public static ArrayList<TodHodRecord> retrieveByTime( String shift, String from, String to) {
+	public static ArrayList<TodHodRecord> retrieveByTime( String shift, Timestamp from, Timestamp to) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -186,7 +186,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
             		"FROM TODHOD "
     				+ " WHERE TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
@@ -213,7 +213,7 @@ public class TodHodManagerDAO {
         return vList;
     }
 	
-	public static ArrayList<TodHodRecord> retrieveBySiteTime(String shift, String site, String from, String to) {
+	public static ArrayList<TodHodRecord> retrieveBySiteTime(String shift, String site, Timestamp from, Timestamp to) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -221,7 +221,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
     				+ " AND TIME_IN_DT >='" + from + "' "
@@ -249,7 +249,7 @@ public class TodHodManagerDAO {
         return vList;
     }
 	
-	public static ArrayList<TodHodRecord> retrieveByIdNoSiteTime(String shift, String idNo, String site, String from, String to) {
+	public static ArrayList<TodHodRecord> retrieveByIdNoSiteTime(String shift, String idNo, String site, Timestamp from, Timestamp to) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -257,7 +257,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
     				+ " AND OFFICER_IDNO ='" + idNo + "' "
@@ -286,7 +286,7 @@ public class TodHodManagerDAO {
         return vList;
     }
 	
-	public static ArrayList<TodHodRecord> retrieveByIdNoTime(String shift, String officerIdNo, String from, String to) {
+	public static ArrayList<TodHodRecord> retrieveByIdNoTime(String shift, String officerIdNo, Timestamp from, Timestamp to) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -294,7 +294,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
             		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' "
     				+ " AND TIME_IN_DT >='" + from + "' "

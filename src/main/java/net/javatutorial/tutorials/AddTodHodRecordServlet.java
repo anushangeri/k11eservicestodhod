@@ -31,7 +31,6 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		String shift = (String) request.getParameter("shift");
 		String timeInDt = (String) request.getParameter("timeInDt");
 		
-		//Timestamp ts = Timestamp.valueOf(timeInDt);
 		Timestamp timestamp = null;
 		try {
 		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");

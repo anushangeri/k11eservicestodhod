@@ -2,9 +2,11 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,14 +40,25 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		String shift = request.getParameter("shift");
 		
 		String message = "No TOD HOD accounts available";
-		
+		Timestamp fromts = null;
+		Timestamp tots = null;
+		try {
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+		    Date parsedFromDate = dateFormat.parse(from);
+		    fromts = new java.sql.Timestamp(parsedFromDate.getTime());
+		    
+		    Date parsedToDate = dateFormat.parse(to);
+		    tots = new java.sql.Timestamp(parsedToDate.getTime());
+		} catch(Exception e) { //this generic but you can control another types of exception
+		    // look the origin of excption 
+		}
 		ArrayList<TodHodRecord> vList = null;
 		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
 			if(!StringUtils.isEmpty(site)) {
-				vList = TodHodManagerDAO.retrieveBySiteTime(shift, site, from, to);
+				vList = TodHodManagerDAO.retrieveBySiteTime(shift, site, fromts, tots);
 			}
 			else {
-				vList = TodHodManagerDAO.retrieveByTime(shift, from, to);
+				vList = TodHodManagerDAO.retrieveByTime(shift, fromts, tots);
 			}
 			
 			message = "List of TOD HOD accounts";
@@ -53,10 +66,10 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		}
 		else {
 			if(!StringUtils.isEmpty(idNo) && !StringUtils.isEmpty(site)) {
-				vList = TodHodManagerDAO.retrieveByIdNoSiteTime(shift, idNo, site, from, to);
+				vList = TodHodManagerDAO.retrieveByIdNoSiteTime(shift, idNo, site, fromts, tots);
 			}
 			else {
-				vList = TodHodManagerDAO.retrieveByIdNoTime(shift, idNo, from, to);
+				vList = TodHodManagerDAO.retrieveByIdNoTime(shift, idNo, fromts, tots);
 			}
 			message = "List of TOD HOD accounts";
 			request.setAttribute("vList", vList);
