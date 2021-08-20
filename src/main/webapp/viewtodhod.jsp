@@ -91,7 +91,7 @@
 							<th class="th-sm">Site Name</th>
 							<th class="th-sm">Shift</th>
 							<th class="th-sm">TOD Time</th>
-							<th class="th-sm">HOD Time</th>
+<!-- 							<th class="th-sm">HOD Time</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -108,19 +108,19 @@
 									<td><%=((v.getSiteName() == null) ? "" : v.getSiteName())%></td>
 									<td><%=v.getShift()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
-									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
-									<% if (v.getTimeOutDt() != null) { %>
-										<td><%=sdf.format(v.getTimeOutDt())%></td>
-									<%
-										}
-										else{
-									%>
-										<td><form method="POST" action ="/updateTodHodRecord">
-											<input type="hidden" id="recordId" name="recordId" value="<%=v.getRecordId()%>">
-											<input type="submit" name="Submit" value="Update"></form></td>
-									<%
-										}
-									%>
+<!-- 									TO DO: if timeout is null - send to update servlet to update with system time -->
+<%-- 									<% if (v.getTimeOutDt() != null) { %> --%>
+<%-- 										<td><%=sdf.format(v.getTimeOutDt())%></td> --%>
+<%-- 									<% 
+// 										}
+// 										else{
+<%-- 									%> --%>
+<!-- 										<td><form method="POST" action ="/updateTodHodRecord"> -->
+<%-- 											<input type="hidden" id="recordId" name="recordId" value="<%=v.getRecordId()%>"> --%>
+<!-- 											<input type="submit" name="Submit" value="Update"></form></td> -->
+<%-- 									<% 
+// 										}
+<%-- 									%> --%>
 								</tr>
 							<%
 								}

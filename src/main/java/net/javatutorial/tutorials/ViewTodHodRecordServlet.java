@@ -39,7 +39,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		String to = (request.getParameter("to") == null) ? timestamp.toString() : request.getParameter("to");
 		String shift = request.getParameter("shift");
 		
-		String message = "No TOD HOD accounts available";
+		String message = "No TOD HOD records available";
 		Timestamp fromts = null;
 		Timestamp tots = null;
 		try {
@@ -61,7 +61,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 				vList = TodHodManagerDAO.retrieveByTime(shift, fromts, tots);
 			}
 			
-			message = "List of TOD HOD accounts";
+			message = "List of TOD HOD records";
 			request.setAttribute("vList", vList);
 		}
 		else {
