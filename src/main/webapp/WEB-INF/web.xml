@@ -280,7 +280,7 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewTodHodRecordServlet</servlet-name>
-		<url-pattern>/todHodSearch</url-pattern>
+		<url-pattern>/todHodRecordSearch</url-pattern>
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	

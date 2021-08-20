@@ -74,7 +74,7 @@
 	 		idNo = (String) request.getSession(false).getAttribute("idNo");
 	 		userType = (String) request.getSession(false).getAttribute("usertype");
 	 	}
-		if (message != null ) {
+		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>

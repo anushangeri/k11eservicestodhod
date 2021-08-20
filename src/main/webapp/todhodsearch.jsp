@@ -62,7 +62,7 @@
 	}
 	%>
 	<center>
-		<form action="todHodSearch" method="post">
+		<form action="todHodRecordSearch" method="post">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
 		      <label for="site">Site: </label>
