@@ -67,15 +67,16 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		else {
 			if(!StringUtils.isEmpty(idNo) && !StringUtils.isEmpty(site)) {
 				vList = TodHodManagerDAO.retrieveByIdNoSiteTime(shift, idNo, site, fromts, tots);
+				System.out.println("retrieveByIdNoSiteTime: " +vList.toString());
 			}
 			else {
 				vList = TodHodManagerDAO.retrieveByIdNoTime(shift, idNo, fromts, tots);
+				System.out.println("retrieveByIdNoTime: " +vList.toString());
 			}
 			message = "List of TOD HOD accounts";
 			request.setAttribute("vList", vList);
 		}
-		System.out.println("from: " + fromts);
-		System.out.println("to: " + tots);
+		
 		request.setAttribute("message", message);
         RequestDispatcher rd = request.getRequestDispatcher("viewtodhod.jsp");
         rd.forward(request, response);
