@@ -38,7 +38,7 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		Date date = null;
 		Timestamp timeStampDate = null;
 		try {
-		  DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+		  DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm aa");
 		  // you can change format of date
 		  date = formatter.parse(timeInDt);
 		  timeStampDate = new Timestamp(date.getTime());
