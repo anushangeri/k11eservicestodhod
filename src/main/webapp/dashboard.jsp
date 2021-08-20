@@ -21,16 +21,8 @@
 			
 		%>
 				<br>
-				<div class="card">
-					<a href="todhodsearch.jsp">
-						<div class="eachCard crop">
-							<img class="center-block" src="todhod.png" alt="todhodday.jpg">
-							<h4 class="fontheader">
-								<b>VIEW TOD/HOD DETAILS</b>
-							</h4>
-						</div>
-					</a>
-				</div>
+				<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
+						aria-pressed="true">View TOD HOD</a>
 				<a href="/populateTodHod" class="btn btn-warning btn-lg active" role="button"
 								aria-pressed="true">Add TOD HOD</a>
 				<br>
