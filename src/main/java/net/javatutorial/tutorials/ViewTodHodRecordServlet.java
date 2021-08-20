@@ -34,9 +34,9 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
-		String site = (request.getParameter("site") == null) ? "" : request.getParameter("site");
-		String from = (request.getParameter("from") == null) ? "01/01/2012" : request.getParameter("from");
-		String to = (request.getParameter("to") == null) ? timestamp.toString() : request.getParameter("to");
+		String site = (StringUtils.isEmpty(request.getParameter("site"))) ? "" : request.getParameter("site");
+		String from = (StringUtils.isEmpty(request.getParameter("from"))) ? "01/01/2012" : request.getParameter("from");
+		String to = (StringUtils.isEmpty(request.getParameter("to"))) ? timestamp.toString() : request.getParameter("to");
 		String shift = request.getParameter("shift");
 		
 		String message = "No TOD HOD records available";
@@ -59,7 +59,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 			}
 			else {
 				vList = TodHodManagerDAO.retrieveByTime(shift, fromts, tots);
-				System.out.println("retrieveByTime: ")
+				System.out.println("retrieveByTime: ");
 			}
 			
 			message = "List of TOD HOD records";
