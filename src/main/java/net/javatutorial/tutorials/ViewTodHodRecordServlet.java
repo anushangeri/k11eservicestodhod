@@ -67,7 +67,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		else {
 			if(!StringUtils.isEmpty(idNo) && !StringUtils.isEmpty(site)) {
 				vList = TodHodManagerDAO.retrieveByIdNoSiteTime(shift, idNo, site, fromts, tots);
-				System.out.println("retrieveByIdNoSiteTime: " +vList.toString());
+				System.out.println("retrieveByIdNoSiteTime: " +shift + " "+ idNo+ " "+site+ " "+fromts + " "+tots);
 			}
 			else {
 				vList = TodHodManagerDAO.retrieveByIdNoTime(shift, idNo, fromts, tots);
