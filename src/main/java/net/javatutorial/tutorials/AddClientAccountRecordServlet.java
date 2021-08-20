@@ -43,7 +43,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		
 		request.setAttribute("responseObj", message);
-		RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
         rd.forward(request, response);
 	}
 	@Override
