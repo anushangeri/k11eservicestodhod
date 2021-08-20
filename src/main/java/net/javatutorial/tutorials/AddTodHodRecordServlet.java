@@ -2,6 +2,8 @@ package net.javatutorial.tutorials;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,9 +32,16 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		String timeInDt = (String) request.getParameter("timeInDt");
 		
 		Timestamp ts = Timestamp.valueOf(timeInDt);
-		
+		Timestamp timestamp = null;
+		try {
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+		    Date parsedDate = dateFormat.parse(timeInDt);
+		    timestamp = new java.sql.Timestamp(parsedDate.getTime());
+		} catch(Exception e) { //this generic but you can control another types of exception
+		    // look the origin of excption 
+		}
 				
-		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  ts, null);
+		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp, null);
 		System.out.println(v.toString());
 		String message = TodHodManagerDAO.addTodHod(v);
 		
