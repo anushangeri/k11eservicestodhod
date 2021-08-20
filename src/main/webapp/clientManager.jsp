@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
+<%@include file="loginCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
@@ -74,7 +74,7 @@
 	 		idNo = (String) request.getSession(false).getAttribute("idNo");
 	 		userType = (String) request.getSession(false).getAttribute("usertype");
 	 	}
-		if (message != null && !StringUtils.isEmpty(message)) {
+		if (message != null ) {
 	%>
 		<label class="heading"><%=message%> </label><br>
 		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
