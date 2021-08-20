@@ -71,7 +71,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 			else {
 				vList = TodHodManagerDAO.retrieveByIdNoTime(shift, idNo, fromts, tots);
 			}
-			message = "List of TOD HOD accounts";
+			message = "List of TOD HOD records";
 			request.setAttribute("vList", vList);
 		}
 		

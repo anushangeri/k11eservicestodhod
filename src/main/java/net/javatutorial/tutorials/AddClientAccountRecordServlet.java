@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.entity.ClientAccount;
 
@@ -27,8 +29,8 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String accountId = "" + nextVal;
 		String name = request.getParameter("name").trim();
 		String idType = request.getParameter("idType");
-		String idNo = request.getParameter("idNo");
-		String password= request.getParameter("psw");
+		String idNo = (StringUtils.isEmpty(request.getParameter("idNo"))) ? "" : request.getParameter("idNo").trim();
+		String password= (StringUtils.isEmpty(request.getParameter("psw"))) ? "" : request.getParameter("psw").trim();
 		String accessType= request.getParameter("accessType");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());

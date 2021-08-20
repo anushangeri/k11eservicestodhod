@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.javatutorial.DAO.TodHodManagerDAO;
 import net.javatutorial.entity.TodHodRecord;
 
@@ -25,10 +27,10 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		int nextVal = TodHodManagerDAO.getNextVal();
 		
 		String recordId = "" + nextVal;
-		String officerName = request.getParameter("officerName");
-		String officerIdNo = (String) request.getParameter("officerIdNo");
-		String siteName = (String) request.getParameter("siteName");
-		String shift = (String) request.getParameter("shift");
+		String officerName = (StringUtils.isEmpty(request.getParameter("officerName"))) ? "" : request.getParameter("officerName").trim();
+		String officerIdNo = (StringUtils.isEmpty(request.getParameter("officerIdNo"))) ? "" : request.getParameter("officerIdNo").trim();
+		String siteName = (StringUtils.isEmpty(request.getParameter("siteName"))) ? "" : request.getParameter("siteName").trim();
+		String shift = (StringUtils.isEmpty(request.getParameter("shift"))) ? "" : request.getParameter("shift").trim();
 		String timeInDt = (String) request.getParameter("timeInDt");
 		
 		Timestamp timestamp = null;
