@@ -10,6 +10,18 @@ public class TodHodRecord {
     private String shift;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
+    
+    public TodHodRecord(String recordId, String officerName, String officerIdNo, String siteName, String shift,
+			Timestamp timeInDt) {
+		super();
+		this.recordId = recordId;
+		this.officerName = officerName;
+		this.officerIdNo = officerIdNo;
+		this.siteName = siteName;
+		this.shift = shift;
+		this.timeInDt = timeInDt;
+	}
+    
 	public TodHodRecord(String recordId, String officerName, String officerIdNo, String siteName, String shift,
 			Timestamp timeInDt, Timestamp timeOutDt) {
 		super();

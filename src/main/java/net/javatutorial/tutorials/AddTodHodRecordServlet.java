@@ -41,7 +41,7 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		    // look the origin of excption 
 		}
 				
-		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp, null);
+		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp);
 		System.out.println(v.toString());
 		String message = TodHodManagerDAO.addTodHod(v);
 		
