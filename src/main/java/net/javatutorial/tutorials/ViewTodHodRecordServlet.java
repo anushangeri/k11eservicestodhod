@@ -35,7 +35,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
 		String site = request.getParameter("siteName");
-		String from = (request.getParameter("from") == null) ? "01/01/2012 00:00" : request.getParameter("from");
+		String from = (request.getParameter("from") == null) ? "01/01/2012" : request.getParameter("from");
 		String to = (request.getParameter("to") == null) ? timestamp.toString() : request.getParameter("to");
 		String shift = request.getParameter("shift");
 		
@@ -43,7 +43,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		Timestamp fromts = null;
 		Timestamp tots = null;
 		try {
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		    Date parsedFromDate = dateFormat.parse(from);
 		    fromts = new java.sql.Timestamp(parsedFromDate.getTime());
 		    
@@ -74,6 +74,8 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 			message = "List of TOD HOD accounts";
 			request.setAttribute("vList", vList);
 		}
+		System.out.println("from: " + fromts);
+		System.out.println("to: " + tots);
 		request.setAttribute("message", message);
         RequestDispatcher rd = request.getRequestDispatcher("viewtodhod.jsp");
         rd.forward(request, response);
