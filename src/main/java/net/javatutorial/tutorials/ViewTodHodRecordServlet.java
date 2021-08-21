@@ -37,7 +37,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		String site = (StringUtils.isEmpty(request.getParameter("site"))) ? "" : request.getParameter("site");
 		String from = (StringUtils.isEmpty(request.getParameter("from"))) ? "01/01/2012" : request.getParameter("from");
 		String to = (StringUtils.isEmpty(request.getParameter("to"))) ? timestamp.toString() : request.getParameter("to");
-		String shift = request.getParameter("shift");
+		String shift = (StringUtils.isEmpty(request.getParameter("shift"))) ? "" : request.getParameter("shift");
 		
 		String message = "No TOD HOD records available";
 		Timestamp fromts = null;
