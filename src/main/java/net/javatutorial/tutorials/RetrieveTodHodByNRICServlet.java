@@ -26,11 +26,11 @@ public class RetrieveTodHodByNRICServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String usertype = (String) request.getSession(false).getAttribute("usertype");
-		String idNo = (String) request.getSession(false).getAttribute("idNo");
+		String usertype = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("usertype"))) ? "" : (String) request.getSession(false).getAttribute("usertype");
+		String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
 
 		//from admin login view
-		String idNoFromClient = request.getParameter("idNo");
+		String idNoFromClient =  (StringUtils.isEmpty(request.getParameter("idNo"))) ? "" : request.getParameter("idNo");
 				
 		ArrayList<TodHodRecord> vList = null;
 		TodHodRecord v = null;
