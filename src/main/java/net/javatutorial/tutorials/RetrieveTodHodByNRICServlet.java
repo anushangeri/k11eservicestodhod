@@ -35,14 +35,15 @@ public class RetrieveTodHodByNRICServlet extends HttpServlet {
 		ArrayList<TodHodRecord> vList = null;
 		TodHodRecord v = null;
 		
-		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
+		if(usertype != null && !StringUtils.isEmpty(usertype) && !StringUtils.isEmpty(idNoFromClient)
+				&& usertype.toUpperCase().equals("ADMIN")) {
 			vList = TodHodManagerDAO.retrieveByOfficerIdNo(idNoFromClient);
 			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}
 		}
 		else {
-			if(!StringUtils.isEmpty(idNo)) {
+			if(idNo != null && !StringUtils.isEmpty(idNo)) {
 				vList = TodHodManagerDAO.retrieveByOfficerIdNo(idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
