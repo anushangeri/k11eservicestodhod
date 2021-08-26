@@ -28,7 +28,7 @@ public class UpdateTodHodTimeOutRecordServlet extends HttpServlet {
 		if(recordId != null && !StringUtils.isEmpty(recordId)) {
 			//retrieve TOD/HOD object
 			v = TodHodManagerDAO.retrieveByRecordId(recordId);
-			//update Vehicle object with current system time as time out
+			//update TOD/HOD object with current system time as time out
 			message = TodHodManagerDAO.updateTodHodDetails(v);
 			
 		}
