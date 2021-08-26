@@ -60,6 +60,13 @@
 	if ( !(session.getAttribute("usertype") == null)) {
 			usertype = (String) session.getAttribute("usertype");
 	}
+	String message = (String) request.getAttribute("message");
+
+	if (message != null && !StringUtils.isEmpty(message)) {
+	%>
+		<label class="heading"><%=message%> </label><br>
+	<% 
+	}
 	%>
 	<center>
 		<form action="todHodRecordSearch" method="post">
