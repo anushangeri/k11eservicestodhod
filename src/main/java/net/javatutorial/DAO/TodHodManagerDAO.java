@@ -65,7 +65,7 @@ public class TodHodManagerDAO {
 	        		+ "   WHERE RECORD_ID = '" + v.getRecordId() + "';");
 	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID ='" + v.getRecordId() +"';");
 	        while (rs.next()) {
-	        	message = "Read from DB: " + rs.getTimestamp("tick");
+	        	message = "Successful: Read from DB: " + rs.getTimestamp("tick");
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +79,7 @@ public class TodHodManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
+		
 		return message;
 	}
 	
@@ -320,6 +320,39 @@ public class TodHodManagerDAO {
         	Main.close(connection, pstmt, rs);
         }
         return vList;
+    }
+	
+	public static TodHodRecord retrieveByRecordId(String recordId) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            		"FROM TODHOD "
+            		+ " WHERE RECORD_ID ='" + recordId + "' "
+    				+ " LIMIT 1 ; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return v;
     }
 	
 	public static String deleteByRecordId(String recordId) {

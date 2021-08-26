@@ -197,6 +197,12 @@
 		<servlet-name>ViewTodHodRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewTodHodRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateTodHodTimeOutRecordServlet</display-name>
+		<servlet-name>UpdateTodHodTimeOutRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateTodHodTimeOutRecordServlet</servlet-class>
+	</servlet>
 	<!-- TOD HOD END  -->
 	
 	<!-- Client Account START  -->
@@ -281,6 +287,10 @@
 	<servlet-mapping>
 		<servlet-name>ViewTodHodRecordServlet</servlet-name>
 		<url-pattern>/todHodRecordSearch</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateTodHodTimeOutRecordServlet</servlet-name>
+		<url-pattern>/updateTodHodRecord</url-pattern>
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	
