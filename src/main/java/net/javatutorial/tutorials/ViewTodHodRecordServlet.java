@@ -53,7 +53,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		    // look the origin of excption 
 		}
 		ArrayList<TodHodRecord> vList = null;
-		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
+		if(usertype != null && (usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("MANAGEMENT"))) {
 			if(!StringUtils.isEmpty(site)) {
 				vList = TodHodManagerDAO.retrieveBySiteTime(shift, site, fromts, tots);
 			}
