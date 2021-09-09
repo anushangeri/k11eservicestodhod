@@ -237,40 +237,4 @@
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CEmployeeTblServlet</servlet-name>
-		<url-pattern>/createEmpTbl</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DEmployeeTblServlet</servlet-name>
-		<url-pattern>/deleteEmpTbl</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>AddEmployeeServlet</servlet-name>
-		<url-pattern>/addEmployee</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>UEmployeeTblServlet</servlet-name>
-		<url-pattern>/updateEmpTbl</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>TodHodSearchServlet</servlet-name>
-		<url-pattern>/todHodSearch</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>sembcorptest</servlet-name>
-		<url-pattern>/sembcorptest</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LoginVerifyServlet</servlet-name>
-		<url-pattern>/loginVerify</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LogoutServlet</servlet-name>
-		<url-pattern>/logout</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
-		<url-pattern>/vehRegLoginVerify</url-pattern>
-	</servlet-mapping>
 </web-app>
