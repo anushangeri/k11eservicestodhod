@@ -29,6 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$(document).ready(function() {
 			$('table').DataTable({
