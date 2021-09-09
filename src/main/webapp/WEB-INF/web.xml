@@ -14,68 +14,7 @@
 		<servlet-class>net.javatutorial.tutorials.SimpleServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>CEmployeeTblServlet</display-name>
-		<servlet-name>CEmployeeTblServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.CEmployeeTblServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>DEmployeeTblServlet</display-name>
-		<servlet-name>DEmployeeTblServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.DEmployeeTblServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>AddEmployeeServlet</display-name>
-		<servlet-name>AddEmployeeServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.AddEmployeeServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>UEmployeeTblServlet</display-name>
-		<servlet-name>UEmployeeTblServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.UEmployeeTblServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>TodHodSearchServlet</display-name>
-		<servlet-name>TodHodSearchServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.TodHodSearchServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>sembcorptest</display-name>
-		<servlet-name>sembcorptest</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.sembcorptest</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>LoginVerifyServlet</display-name>
-		<servlet-name>LoginVerifyServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.LoginVerifyServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>LogoutServlet</display-name>
-		<servlet-name>LogoutServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.LogoutServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description />
-		<display-name>VehRegLoginVerifyServlet</display-name>
-		<servlet-name>VehRegLoginVerifyServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.VehRegLoginVerifyServlet</servlet-class>
-	</servlet>
+
 	
 	<!-- Client Account START  -->
 	<servlet>
