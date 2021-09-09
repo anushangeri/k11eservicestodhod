@@ -91,7 +91,7 @@
 							<th class="th-sm">Site Name</th>
 							<th class="th-sm">Shift</th>
 							<th class="th-sm">TOD Time</th>
-<!-- 							<th class="th-sm">HOD Time</th> -->
+							<th class="th-sm">HOD Time</th>
 						</tr>
 					</thead>
 					<tbody>
