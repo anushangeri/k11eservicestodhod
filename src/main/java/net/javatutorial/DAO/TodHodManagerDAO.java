@@ -188,7 +188,7 @@ public class TodHodManagerDAO {
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		" FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' AND TIME_OUT_DT IS NULL"
-    				+ " ORDER BY TIME_IN_DT DESC;";
+    				+ " ORDER BY TIME_IN_DT DESC LIMIT 1;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
