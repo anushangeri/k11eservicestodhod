@@ -63,9 +63,8 @@ public class TodHodTblDAO {
 		try {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
-	        stmt.executeUpdate("ALTER TABLE TODHOD\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        stmt.executeUpdate("UPDATE TODHOD\r\n" + 
+	        		"SET TIME_OUT_DT = NOW() WHERE TIME_OUT_DT IS NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

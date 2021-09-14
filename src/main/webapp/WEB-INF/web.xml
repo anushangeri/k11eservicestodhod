@@ -120,6 +120,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UTodHodTblServlet</display-name>
+		<servlet-name>UTodHodTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UTodHodTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>AddTodHodRecordServlet</display-name>
 		<servlet-name>AddTodHodRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddTodHodRecordServlet</servlet-class>
@@ -220,6 +226,10 @@
 	<servlet-mapping>
 		<servlet-name>CTodHodRecordTblServlet</servlet-name>
 		<url-pattern>/createTodHodTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UTodHodTblServlet</servlet-name>
+		<url-pattern>/updateTodHodTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddTodHodRecordServlet</servlet-name>
