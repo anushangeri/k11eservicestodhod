@@ -142,6 +142,12 @@
 		<servlet-name>UpdateTodHodTimeOutRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.UpdateTodHodTimeOutRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>LoadDashboardServlet</display-name>
+		<servlet-name>LoadDashboardServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.LoadDashboardServlet</servlet-class>
+	</servlet>
 	<!-- TOD HOD END  -->
 	
 	<!-- Client Account START  -->
@@ -230,6 +236,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateTodHodTimeOutRecordServlet</servlet-name>
 		<url-pattern>/updateTodHodRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoadDashboardServlet</servlet-name>
+		<url-pattern>/loadDashboard</url-pattern>
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	

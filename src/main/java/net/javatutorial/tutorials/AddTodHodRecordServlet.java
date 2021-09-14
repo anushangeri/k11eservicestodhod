@@ -47,8 +47,8 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		String message = TodHodManagerDAO.addTodHod(v);
 		
 		
-		request.setAttribute("responseObj", message);
-		RequestDispatcher rd = request.getRequestDispatcher("todhodsearch.jsp");
+		request.setAttribute("message", message);
+		RequestDispatcher rd = request.getRequestDispatcher("/loadDashboard");
 		rd.forward(request, response);
 	}
 	@Override

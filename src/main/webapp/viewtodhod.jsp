@@ -108,7 +108,7 @@
 									<td><%=((v.getSiteName() == null) ? "" : v.getSiteName())%></td>
 									<td><%=v.getShift()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
-<!-- 									TO DO: if timeout is null - send to update servlet to update with system time -->
+<!-- 								TO DO: if timeout is null - send to update servlet to update with system time -->
  									<% if (v.getTimeOutDt() != null) { %> 
  										<td><%=sdf.format(v.getTimeOutDt())%></td> 
  									<% 
@@ -141,7 +141,7 @@
 		<div class="container body-content">
 			<center>
 				<div class="form-row">
-					<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
+					<a href="/todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
 						aria-pressed="true">Back</a>
 				</div>
 			</center>

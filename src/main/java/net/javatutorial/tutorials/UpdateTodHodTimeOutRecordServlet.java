@@ -33,7 +33,7 @@ public class UpdateTodHodTimeOutRecordServlet extends HttpServlet {
 			
 		}
 		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("todhodsearch.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/loadDashboard");
 		rd.forward(request, response);
 	}
 	@Override

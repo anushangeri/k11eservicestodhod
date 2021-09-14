@@ -98,13 +98,14 @@
 		    </div>
 		    <div class="form-row">
 				<button type="submit" class="btn btn-primary">VIEW TOD/HOD</button>
-					
-				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">Back</a>
 			</div>
 		    </div>
 		</form>
+		<form action="loadDashboard" method="post">
+			<div class="form-row">
+				<button type="submit" class="btn btn-warning btn-lg active">Back</button>
+			</div>
+		</form>
 		</center>
-		
     </body>
 </html>

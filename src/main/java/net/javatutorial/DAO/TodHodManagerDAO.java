@@ -29,7 +29,7 @@ public class TodHodManagerDAO {
 	        		 +v.getSiteName()+ "','" +v.getShift()+ "','" +v.getTimeInDt()+ "');");
 	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID = '" +v.getRecordId()+ "';");
 	        while (rs.next()) {
-	        	message = "successfull";
+	        	message = "successfully added record";
 	        }
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
@@ -43,7 +43,6 @@ public class TodHodManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "successfull" ;
 		return message;
 	}
 	
@@ -157,6 +156,39 @@ public class TodHodManagerDAO {
             String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
             		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' ORDER BY TIME_IN_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<TodHodRecord> retrieveByLatestTod(String officerIdNo) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            		" FROM TODHOD "
+            		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' AND TIME_OUT_DT IS NULL"
+    				+ " ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

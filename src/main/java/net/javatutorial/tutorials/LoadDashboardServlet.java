@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.TodHodManagerDAO;
@@ -20,42 +22,23 @@ import net.javatutorial.entity.TodHodRecord;
 /**
  * Servlet implementation class PasswordVerifiedServlet
  */
-public class ProcessPasswordServlet extends HttpServlet {
+public class LoadDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		String idNo = request.getParameter("idNo");
-		String password = request.getParameter("psw");
-				
-		//retrieving the hashed password by DB based on idNo entered by user
-		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
+		String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
 		
-		boolean verified = false;
-		String key = " ";
-		String salt = " ";
-		ClientAccount c = null;
-		if(vList != null && vList.size() > 0 ) {
-			c = vList.get(0);
-			if(c != null) {
-				key = c.getPassword();
-				salt = c.getSalt();
-				verified = PasswordUtils.verifyPassword(password, key, salt);
-			}
-		}
-		if(verified) {
-			session.setAttribute("idNo", c.getIdNo());
-			session.setAttribute("name", c.getName());
-			session.setAttribute("usertype", c.getAccessType());
-			RequestDispatcher rd = request.getRequestDispatcher("/loadDashboard");
-			rd.forward(request, response);
-		}
-		else {
-			request.setAttribute("responseObj","Invalid Password or ID");
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
-		}
+		//retrieving on idNo entered by user
+		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
+		ArrayList<TodHodRecord> todRecords = TodHodManagerDAO.retrieveByLatestTod(idNo);
+		
+		session.setAttribute("siteDropdown", siteDropdown);
+		request.setAttribute("vList", todRecords);
+		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
+		rd.forward(request, response);
+		
 	}
 	@Override
 	public void init() throws ServletException {
