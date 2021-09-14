@@ -62,6 +62,8 @@
 	 	String message = (String) request.getAttribute("message");
 		ArrayList<TodHodRecord> vList = (ArrayList<TodHodRecord>) request.getAttribute("vList");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
+		String usertype = "";
+		String idNo = "";
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 			<label class="heading"><%=message%></label>
@@ -69,7 +71,8 @@
 <body>
 	<center>
 	<%if ( !(session.getAttribute("usertype") == null)) {
-			String usertype = (String) session.getAttribute("usertype");
+		usertype = (String) session.getAttribute("usertype");
+		idNo = (String) session.getAttribute("idNo");
 			
 		%>
 			<br>
@@ -78,7 +81,7 @@
 			<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
 					aria-pressed="true">View TOD HOD</a>
 			<a role="button" class="btn btn-lg btn-primary" href="/populateTodHod" 
-			  <%= !usertype.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</a>
+			  <%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</a>
 			<br>
 			<!-- access control for K11 Admin -->
 			<%if (usertype.equals("ADMIN")) {%>
@@ -95,7 +98,7 @@
 </center>
 <br>
 	<% 
-		if (vList != null && vList.size() > 0) {
+		if  (!idNo.equals("K11RELIEF") && vList != null && vList.size() > 0) {
 	%>
 			<div class="container body-content" id="tableview">
 				<table id="example"
