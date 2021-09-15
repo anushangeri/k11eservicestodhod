@@ -78,6 +78,7 @@
 			<br>
 			<label class="heading">Please complete HOD before submitting another TOD.</label>
 			<br>
+			<div class="container body-content">
 			<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
 					aria-pressed="true">View TOD HOD</a>
 					
@@ -96,6 +97,7 @@
 			<%} %>
 			<a href="index.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
+			</div>
 	<%} %>
 </center>
 <br>
