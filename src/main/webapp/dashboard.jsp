@@ -141,7 +141,9 @@
  									%> 
  										<td><form method="POST" action ="/updateTodHodRecord"> 
  											<input type="hidden" id="recordId" name="recordId" value="<%=v.getRecordId()%>"> 
- 											<input type="submit" name="Submit" value="Update"></form></td> 
+ 											<input type="submit" name="Submit"  class="btn btn-primary btn-lg active" value="Update">
+											</form>
+										</td> 
 									<% 
 										}
 									%>
