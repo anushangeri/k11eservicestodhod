@@ -82,8 +82,9 @@
 			<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
 					aria-pressed="true">View TOD HOD</a>
 					
-			<form  method="POST" action="/populateTodHod">
-				<button type="submit" class="btn btn-warning btn-lg active" <%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
+			<form  method="GET" action="/populateTodHod">
+				<button type="submit" class="btn btn-warning btn-lg active" 
+				<%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
 			</form>
 			<br>
 			<!-- access control for K11 Admin -->
