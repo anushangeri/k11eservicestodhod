@@ -80,8 +80,10 @@
 			<br>
 			<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
 					aria-pressed="true">View TOD HOD</a>
-			<a role="button" class="btn btn-lg btn-primary" href="/populateTodHod" 
-			  <%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</a>
+					
+			<form  method="POST" action="/populateTodHod">
+				<button type="submit" <%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
+			</form>
 			<br>
 			<!-- access control for K11 Admin -->
 			<%if (usertype.equals("ADMIN")) {%>
