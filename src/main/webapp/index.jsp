@@ -52,7 +52,7 @@
 						
 						<input type="checkbox" onclick="showPassword()"><label for="showPassword">Show Password</label>
 				</div>
-				<div class="form-group">
+				<div class="form-group col-sm-2">
 					<input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
 				</div>
 			</div>
