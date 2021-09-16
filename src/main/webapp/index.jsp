@@ -15,28 +15,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 <script>
-	function validateForm() {
-		var idNo = document.forms["checkNRIC"]["idNo"].value;
-		var first = idNo.charAt(0);
-		var isDigitFirst = (first >= '0' && first <= '9');
-		var second = idNo.charAt(1);
-		var isDigitSecond = (second >= '0' && second <= '9');
-		var third = idNo.charAt(2);
-		var isDigitThird = (third >= '0' && third <= '9');
-		var forth = idNo.charAt(3);
-		var isDigitForth = (forth >= '0' && forth <= '9');
-		var n = idNo.length;
-		if (idNo != "K11ADMIN" && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
-			return false;
-		}
-		if (idNo != "K11ADMIN" && (!(n >= 4) ||
-				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
-			return false;
-		}
-	}
 	function showPassword() {
 		  var x = document.getElementById("psw");
 		  if (x.type === "password") {
@@ -59,8 +37,7 @@
 			<label class="heading"><%=responseObj%> </label><br>
 		<%} %>
 	<center>
-	<form name="verifyLogin" action="verifyLogin" method="post"
-			onsubmit="return validateForm()">
+	<form name="verifyLogin" action="verifyLogin" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
@@ -68,18 +45,52 @@
 						minlength="4" maxlength="9" required>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+					<label for="psw">Password</label> <input type="password" class="form-control" id="psw" 
 						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-						required><input type="checkbox" onclick="showPassword()">Show Password
+						required>
+						
+						<input type="checkbox" onclick="showPassword()"><label for="showPassword">Show Password</label>
+				</div>
+				<div class="form-group">
+					<input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
 				</div>
 			</div>
 			<br>
 			<div class="form-row">
-				<button type="submit" class="btn btn-primary btn-lg active">
+				<button type="submit" class="btn btn-primary btn-lg active"  onclick="lsRememberMe()">
 				Login</button>
 			</div>
 		</form>
 	</center>
+	
+	
+	<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+	<script>
+		const rmCheck = document.getElementById("rememberMe");
+		idNo = document.getElementById("idNo");
+		psw = document.getElementById("psw");
+		if (localStorage.checkbox && localStorage.checkbox !== "") {
+			rmCheck.setAttribute("checked", "checked");
+			idNo.value = localStorage.username;
+			psw.value = localStorage.psw;
+		} else {
+		  rmCheck.removeAttribute("checked");
+		  idNo.value = "";
+		  psw.value = "";
+		}
+		
+		function lsRememberMe() {
+		  if (rmCheck.checked && idNo.value !== "") {
+		    localStorage.username = idNo.value;
+		    localStorage.psw = psw.value;
+		    localStorage.checkbox = rmCheck.value;
+		  } else {
+		    localStorage.username = "";
+		    localStorage.psw = "";
+		    localStorage.checkbox = "";
+		  }
+		}
+	</script>
 </body>
 </html>
