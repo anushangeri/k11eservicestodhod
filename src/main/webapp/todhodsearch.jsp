@@ -101,9 +101,13 @@
 			</div>
 		    </div>
 		</form>
+		<br>
 		<form action="loadDashboard" method="post">
 			<div class="form-row">
-				<button type="submit" class="btn btn-warning btn-lg active">Back</button>
+				<div class="form-group col-md-6">
+			      <button type="submit" class="btn btn-warning btn-lg active">Back</button>
+			    </div>
+				
 			</div>
 		</form>
 		</center>
