@@ -79,27 +79,64 @@
 			<label class="heading">Please complete HOD before submitting another TOD.</label>
 			<br>
 			<div class="container body-content">
-			<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">View TOD HOD</a>
-					
-			<form  method="GET" action="/populateTodHod">
-				<button type="submit" class="btn btn-warning btn-lg active" 
-				<%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
-			</form>
-			<br>
-			<!-- access control for K11 Admin -->
-			<%if (usertype.equals("ADMIN")) {%>
-			<br>
-				<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Add Account</a>
-				<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Add Site</a>
-			<br>
-			<%} %>
-			<a href="index.jsp" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Back</a>
+				<table id="example"
+						class="table table-striped table-bordered table-sm" style="width: 80%;">
+						<thead>
+							<tr>
+								<th class="th-sm">Description</th>
+								<th class="th-sm">Click!</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							 	<td>
+							 		View TOD/HOD records
+							 	</td>
+							 	<td> 
+								 	<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
+									aria-pressed="true">View TOD HOD
+									</a>
+								</td>
+							</tr>
+							<tr>
+							 	<td>
+							 		Add TOD/HOD record
+							 	</td>
+							 	<td> 
+								 	<form  method="GET" action="/populateTodHod">
+										<button type="submit" class="btn btn-warning btn-lg active" 
+										<%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
+									</form>
+								</td>
+							</tr>
+							<!-- access control for K11 Admin -->
+							<%if (usertype.equals("ADMIN")) {%>
+								<tr>
+									<td>
+								 		Create Account for K11 Employee
+								 	</td>
+								 	<td> 
+									 	<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Add Account</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Create Site record
+								 	</td>
+								 	<td> 
+									 	<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Add Site</a>
+									</td>
+								</tr>
+							<%} %>
+						</tbody>
+				</table>		
+				<br>
+				<a href="index.jsp" class="btn btn-warning btn-lg active" role="button"
+														aria-pressed="true">Back</a>	
 			</div>
-	<%} %>
+		<%} %>
 </center>
 <br>
 	<% 
