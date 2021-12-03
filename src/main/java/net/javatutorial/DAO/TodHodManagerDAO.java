@@ -397,7 +397,7 @@ public class TodHodManagerDAO {
             String sql = "DELETE FROM TODHOD WHERE RECORD_ID ='" + recordId + "'";
             pstmt = connection.prepareStatement(sql);
 
-            rs = pstmt.executeQuery();
+            pstmt.executeQuery();
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -408,21 +408,21 @@ public class TodHodManagerDAO {
     }
 	
 	public static String deleteAll() {
-        PreparedStatement pstmt = null;
+		Statement stmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "All records deleted - No tod hod records available";
+        String message = "Records deleted - 60 days worth of records in database";
         try {
-        	connection = Main.getConnection();
-            String sql = "DELETE FROM TODHOD WHERE TIME_OUT_DT <= GETDATE() - 30;";
-            pstmt = connection.prepareStatement(sql);
-
-            rs = pstmt.executeQuery();
+            String sql = "DELETE FROM TODHOD WHERE DATE_PART('day', NOW()::timestamp - TIME_IN_DT::timestamp) >= 60;";
+            connection = Main.getConnection();
+			stmt = connection.createStatement();
+	        stmt.executeUpdate(sql);
             
         } catch (Exception e) {
+        	message = "there is issue: " + e;
             e.printStackTrace();
         } finally {
-        	Main.close(connection, pstmt, rs);
+        	Main.close(connection, stmt, rs);
         }
         return message;
     }

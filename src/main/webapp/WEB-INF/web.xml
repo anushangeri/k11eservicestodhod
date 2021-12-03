@@ -154,6 +154,12 @@
 		<servlet-name>LoadDashboardServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.LoadDashboardServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ArchiveTodHodRecordsServlet</display-name>
+		<servlet-name>ArchiveTodHodRecordsServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ArchiveTodHodRecordsServlet</servlet-class>
+	</servlet>
 	<!-- TOD HOD END  -->
 	
 	<!-- Client Account START  -->
@@ -250,6 +256,10 @@
 	<servlet-mapping>
 		<servlet-name>LoadDashboardServlet</servlet-name>
 		<url-pattern>/loadDashboard</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ArchiveTodHodRecordsServlet</servlet-name>
+		<url-pattern>/archiveTodHod</url-pattern>
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	
