@@ -64,6 +64,7 @@
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String usertype = "";
 		String idNo = "";
+		String name = "";
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 			<label class="heading"><%=message%></label>
@@ -73,9 +74,10 @@
 	<%if ( !(session.getAttribute("usertype") == null)) {
 		usertype = (String) session.getAttribute("usertype");
 		idNo = (String) session.getAttribute("idNo");
-			
+		name = (String) session.getAttribute("name");	
 		%>
 			<br>
+			<label class="heading">Welcome, <%=name%></label>
 			<label class="heading">Please complete HOD before submitting another TOD.</label>
 			<br>
 			<div class="container body-content">
