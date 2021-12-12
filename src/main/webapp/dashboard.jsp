@@ -110,34 +110,36 @@
 								</td>
 							</tr>
 							<!-- access control for K11 Admin -->
-							<%if (usertype.equals("ADMIN")) {%>
-								<tr>
-									<td>
-								 		Create Account for K11 Employee
-								 	</td>
-								 	<td> 
-									 	<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">Add Account</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-								 		View/Update Account for K11 Employee
-								 	</td>
-								 	<td> 
-									 	<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">View Account</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-								 		Create Site Record
-								 	</td>
-								 	<td> 
-									 	<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">Add Site</a>
-									</td>
-								</tr>
+							<%if (usertype.equals("MANAGEMENT")) {%>
+								<%if (usertype.equals("ADMIN")) {%>
+									<tr>
+										<td>
+									 		Create Account for K11 Employee
+									 	</td>
+									 	<td> 
+										 	<a href="/addClientAccount.jsp" class="btn btn-warning btn-lg active" role="button"
+													aria-pressed="true">Add Account</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+									 		View/Update Account for K11 Employee
+									 	</td>
+									 	<td> 
+										 	<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active" role="button"
+													aria-pressed="true">View Account</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+									 		Create Site Record
+									 	</td>
+									 	<td> 
+										 	<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
+													aria-pressed="true">Add Site</a>
+										</td>
+									</tr>
+								<%} %>
 								<tr>
 									<td>
 								 		View/Update Site Record
