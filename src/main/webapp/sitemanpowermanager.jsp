@@ -146,17 +146,21 @@
 					<% 
 						int diff = m.getRequiredManpower() - m.getActualManpower();
 						String status = "";
+						String style = "";
 						if(diff > 0){
 							status = "Short " + diff + " man";
+							style = "color:red;";
 						}
 						else if(diff == 0){
-							status = "Sufficent man";
+							status = "Sufficent men";
+							style = "color:green;";
 						}
 						else if(diff < 0){
 							status = "Access " + diff + " man";
+							style = "color:red;";
 						}
 					%>
-					<td><%=status%></td>
+					<td style="<%=style%>"><%=status%></td>
 				</tr>
 				<%
 				}
