@@ -27,7 +27,7 @@ public class ViewSiteRecordServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String message = "No site accounts available";
 		ArrayList<Site> vList = null;
-		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
+		if(usertype != null && (usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("MANAGEMENT") )) {
 			vList = SiteManagerDAO.retrieveAll();
 			message = "List of site accounts";
 			request.setAttribute("vList", vList);
