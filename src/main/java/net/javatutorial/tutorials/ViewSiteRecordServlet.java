@@ -34,7 +34,7 @@ public class ViewSiteRecordServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("siteManager.jsp");
         rd.forward(request, response);
 	}
 	@Override
