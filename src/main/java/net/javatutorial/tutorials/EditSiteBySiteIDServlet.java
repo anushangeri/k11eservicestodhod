@@ -34,7 +34,7 @@ public class EditSiteBySiteIDServlet extends HttpServlet {
 		ArrayList<Site> vList = null;
 		Site v = null;
 		
-		if(usertype.equals("ADMIN")) {
+		if(usertype.equals("ADMIN") || usertype.equals("MANAGEMENT")) {
 			if(!StringUtils.isEmpty(idNo)) {
 				vList = SiteManagerDAO.retrieveBySiteId(siteId);
 				if(vList != null && vList.size() > 0) {
