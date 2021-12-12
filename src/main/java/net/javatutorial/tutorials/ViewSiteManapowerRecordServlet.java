@@ -66,19 +66,24 @@ public class ViewSiteManapowerRecordServlet extends HttpServlet {
 		ArrayList<Site> sites = SiteManagerDAO.retrieveAll();
 		ArrayList<Manpower> mList = new ArrayList<Manpower>();
 		
-		int requiredManpower = 0;
-		int actualManpower = 0;
+		
 		
 		//Step 3: loop through sites
 		if(vList != null && vList.size() > 0 && sites != null && sites.size() > 0 ) {
 			for(Site s: sites) {
+				int requiredManpower = 0;
+				int actualManpower = 0;
 				if(shift.toUpperCase().equals("DAY")){
 					requiredManpower = s.getDayShiftManpower();
-					actualManpower = vList.get(s.getSiteName());
+					if(vList.containsKey(s.getSiteName())) {
+						actualManpower = vList.get(s.getSiteName());
+					}
 				}
 				if(shift.toUpperCase().equals("NIGHT")){
 					requiredManpower = s.getNightShiftManpower();
-					actualManpower = vList.get(s.getSiteName());
+					if(vList.containsKey(s.getSiteName())) {
+						actualManpower = vList.get(s.getSiteName());
+					}
 				}
 				Manpower m = new Manpower(s.getSiteName(), requiredManpower, actualManpower);
 				mList.add(m);
