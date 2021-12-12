@@ -156,7 +156,7 @@
 							style = "color:green;";
 						}
 						else if(diff < 0){
-							status = "Access " + diff + " man";
+							status = "Access " + -(diff) + " man";
 							style = "color:red;";
 						}
 					%>
