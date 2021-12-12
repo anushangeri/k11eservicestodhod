@@ -113,7 +113,7 @@
 								</td>
 							</tr>
 							<!-- access control for K11 Admin -->
-							<%if (usertype.equals("MANAGEMENT")) {%>
+							<%if (usertype.equals("MANAGEMENT") || usertype.equals("ADMIN"))) {%>
 								<%if (usertype.equals("ADMIN")) {%>
 									<tr>
 										<td>
