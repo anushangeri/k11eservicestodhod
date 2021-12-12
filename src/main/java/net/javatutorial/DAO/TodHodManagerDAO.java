@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.javatutorial.entity.TodHodRecord;
 import net.javatutorial.tutorials.Main;
@@ -272,6 +273,34 @@ public class TodHodManagerDAO {
             			rs.getTimestamp(6),
             			rs.getTimestamp(7));
                 vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static HashMap<String, Integer> retrieveByTimeShift(String shift, Timestamp date) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        HashMap<String, Integer> vList = new HashMap<String, Integer>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT SITE_NAME, COUNT(*) FROM "
+            		+ " (SELECT DISTINCT OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT "  
+            		+ " FROM TODHOD "
+    				+ " WHERE DATE(TIME_IN_DT)  ='" + date + "' "
+    				+ " AND SHIFT ='" + shift + "' ) t"
+					+ " GROUP BY SITE_NAME ;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	vList.put(rs.getString(1), 
+            			rs.getInt(2));
             }
         } catch (Exception e) {
             e.printStackTrace();

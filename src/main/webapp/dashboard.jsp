@@ -90,7 +90,7 @@
 						<tbody>
 							<tr>
 							 	<td>
-							 		View TOD/HOD records
+							 		View TOD/HOD Record
 							 	</td>
 							 	<td> 
 								 	<a href="todhodsearch.jsp" class="btn btn-warning btn-lg active" role="button"
@@ -100,7 +100,7 @@
 							</tr>
 							<tr>
 							 	<td>
-							 		Add TOD/HOD record
+							 		Add TOD/HOD Record
 							 	</td>
 							 	<td> 
 								 	<form  method="GET" action="/populateTodHod">
@@ -122,11 +122,38 @@
 								</tr>
 								<tr>
 									<td>
-								 		Create Site record
+								 		View/Update Account for K11 Employee
+								 	</td>
+								 	<td> 
+									 	<a href="/clientManager.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">View Account</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Create Site Record
 								 	</td>
 								 	<td> 
 									 	<a href="/addSite.jsp" class="btn btn-warning btn-lg active" role="button"
 												aria-pressed="true">Add Site</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		View/Update Site Record
+								 	</td>
+								 	<td> 
+									 	<a href="/siteManager.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">View Site</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		View Site Manpower Status 
+								 	</td>
+								 	<td> 
+									 	<a href="/sitemanpowermanager.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">View Status</a>
 									</td>
 								</tr>
 							<%} %>

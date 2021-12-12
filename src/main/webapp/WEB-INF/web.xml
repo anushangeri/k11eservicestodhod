@@ -160,6 +160,12 @@
 		<servlet-name>ArchiveTodHodRecordsServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ArchiveTodHodRecordsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewSiteManapowerRecordServlet</display-name>
+		<servlet-name>ViewSiteManapowerRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewSiteManapowerRecordServlet</servlet-class>
+	</servlet>
 	<!-- TOD HOD END  -->
 	
 	<!-- Client Account START  -->
@@ -260,6 +266,10 @@
 	<servlet-mapping>
 		<servlet-name>ArchiveTodHodRecordsServlet</servlet-name>
 		<url-pattern>/archiveTodHod</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>ViewSiteManapowerRecordServlet</servlet-name>
+		<url-pattern>/viewSiteManpower</url-pattern>
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	
