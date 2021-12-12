@@ -78,6 +78,7 @@
 		%>
 			<br>
 			<label class="heading">Welcome, <%=name%></label>
+			<br>
 			<label class="heading">Please complete HOD before submitting another TOD.</label>
 			<br>
 			<div class="container body-content">
