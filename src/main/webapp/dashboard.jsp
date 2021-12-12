@@ -125,7 +125,7 @@
 								 		View/Update Account for K11 Employee
 								 	</td>
 								 	<td> 
-									 	<a href="/clientManager.jsp" class="btn btn-warning btn-lg active" role="button"
+									 	<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active" role="button"
 												aria-pressed="true">View Account</a>
 									</td>
 								</tr>
@@ -143,7 +143,7 @@
 								 		View/Update Site Record
 								 	</td>
 								 	<td> 
-									 	<a href="/siteManager.jsp" class="btn btn-warning btn-lg active" role="button"
+									 	<a href="/retrieveAllSiteRecords" class="btn btn-warning btn-lg active" role="button"
 												aria-pressed="true">View Site</a>
 									</td>
 								</tr>
