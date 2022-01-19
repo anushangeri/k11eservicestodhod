@@ -36,7 +36,7 @@ img {
     font-family: Garamond;
     margin-left: 5%;
     margin-right: 5%;
-    color: #ff6600;
+    color: #000098;
 }
 a{
     color: black;
@@ -51,7 +51,7 @@ a{
 #title{
     text-align: center;
 }
-#k11title { color: #ff6600; font-family:'Droid Sans', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; text-align: center;}
+#k11title { color: #000098; font-family:'Droid Sans', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; text-align: center;}
 
 table.everytable thead{
     padding-top: 12px;
@@ -67,18 +67,18 @@ table.eptable{
     text-align: left;
     background-color: orange !important;
     color: black;
-    border-color: #ff6600;
+    border-color: #000098;
     border-radius:6px;
     -moz-border-radius:6px;
 }
 table.everytable tr:hover td {
-    background-color: #ff6600;
+    background-color: #000098;
    
 }
 .heading{
     color: black ; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0; text-align: center;
     border-bottom-style: solid;
-    border-bottom-color: coral;
+    border-bottom-color: #000098;
     margin-bottom: 2%;
 }
 
@@ -99,8 +99,8 @@ table.everytable tr:hover td {
 .backbutton{
     width: 20%;
     text-align: center;
-    background-color: #ff6600;
-    color: #e6e6e6;
+    background-color: #000098;
+    color: white;
     margin-bottom: 20px !important;
 }
 .address{
@@ -117,32 +117,10 @@ table.everytable tr:hover td {
     width: 100%;
     text-align: center;
 }
-.payslipbtn{
-    width: 30%;
-    text-align: center;
-    background-color: #ff6600;
-    color: #e6e6e6;
-    margin-bottom: 20px !important;
-}
-#isMoreThan12Hr{
-    background-color: #ff6961 !important;
-}
-#isNotMoreThan12Hr{
-    background-color: #77dd77 !important;
-}
 .row{
     width: 80% !important;
     margin: 0 auto !important;
     border: 3px solid black;
-}
-.payslipdiv{
-    width: 100% !important;
-    text-align: center;
-    border-bottom: 1px solid black;
-}
-.payslipnowidth{
-    text-align: center;
-    border-bottom: 1px solid black;
 }
 input{
     border: none;
@@ -163,7 +141,7 @@ input{
 /*for printing lable*/
 @media print {
 table.eptable {
-    background-color: orange!important;
+    background-color: orange !important;
     -webkit-print-color-adjust: exact; 
 }}
 
@@ -172,7 +150,15 @@ form{
 	align: center;
 	display: inline-block;
 }
-
+.btn-warning,
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning:visited,
+.btn-warning:focus {
+	background-color: #000098 !important;
+	border-color: #000098 !important;
+	color: white !important;
+}
 /* Bootstrap css */
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
 

@@ -128,7 +128,7 @@ $(function() {
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
 							
-						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
+						<a href="/manageOccurrenceRecord" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
 					<br> <br>

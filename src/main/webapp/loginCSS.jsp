@@ -28,7 +28,7 @@
 }
 
 .navbar-default .navbar-brand {
-	color: #ff6600;
+	color: #000098;
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
@@ -37,11 +37,11 @@
 }
 
 .navbar-default .navbar-text {
-	color: #ff6600;
+	color: #000098;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: #ff6600;
+	color: #000098;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
@@ -79,7 +79,7 @@
 }
 
 .navbar-default .navbar-link {
-	color: #ff6600;
+	color: #000098;
 }
 
 .navbar-default .navbar-link:hover {
@@ -87,12 +87,12 @@
 }
 
 .list{
-	background-color: #FFA8A4 !important;
+	background-color: #000098 !important;
 }
 
 
 body {
-	background-color: #F3F3F3;
+	background-color: #white;
 }
 </style>
 <nav class="navbar list" role="navigation">

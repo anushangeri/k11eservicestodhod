@@ -112,7 +112,7 @@
 									</form>
 								</td>
 							</tr>
-							<!-- access control for K11 Admin -->
+							<!-- access control for K11 Admin/Management -->
 							<%if (usertype.equals("MANAGEMENT") || usertype.equals("ADMIN")) {%>
 								<%if (usertype.equals("ADMIN")) {%>
 									<tr>
@@ -159,6 +159,15 @@
 								 	<td> 
 									 	<a href="/sitemanpowermanager.jsp" class="btn btn-warning btn-lg active" role="button"
 												aria-pressed="true">View Status</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Manage Occurrence Reports 
+								 	</td>
+								 	<td> 
+									 	<a href="/manageOccurrenceRecord" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Manage Reports</a>
 									</td>
 								</tr>
 							<%} %>

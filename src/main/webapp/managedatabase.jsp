@@ -128,7 +128,7 @@
 	    </tr>
 	    <tr>
 	      <th scope="row">7</th>
-	      <td>Dropdown List</td>
+	      <td>Dropdown List - not started</td>
 	      <td><form action="createDropdownTbl" method="post">
                   <button class="btn" type="submit">Create</button>
               </form>
@@ -150,6 +150,22 @@
               </form>
           </td>
 	      <td><form action="updateTodHodTbl" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">9</th>
+	      <td>Occurrence Records</td>
+	      <td><form action="createOccurrenceTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
                   <button class="btn" type="submit">Update</button>
               </form>
           </td>
