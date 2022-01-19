@@ -168,6 +168,39 @@
 	</servlet>
 	<!-- TOD HOD END  -->
 	
+	<!-- Occurrence Reports START  -->
+	<servlet>
+		<description />
+		<display-name>COccurrenceTblServlet</display-name>
+		<servlet-name>COccurrenceTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.COccurrenceTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewOccurrenceRecordServlet</display-name>
+		<servlet-name>ViewOccurrenceRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewOccurrenceRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddOccurrenceRecordServlet</display-name>
+		<servlet-name>AddOccurrenceRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddOccurrenceRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewEditOccurrenceRecordServlet</display-name>
+		<servlet-name>ViewEditOccurrenceRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewEditOccurrenceRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateOccurrenceRecordServlet</display-name>
+		<servlet-name>UpdateOccurrenceRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateOccurrenceRecordServlet</servlet-class>
+	</servlet>
+	<!-- Occurrence Reports END  -->
+	
 	<!-- Client Account START  -->
 	<servlet-mapping>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
@@ -273,6 +306,28 @@
 	</servlet-mapping>
 	<!-- TOD HOD END  -->
 	
+	<!-- Occurrence Reports START  -->
+	<servlet-mapping>
+		<servlet-name>COccurrenceTblServlet</servlet-name>
+		<url-pattern>/createOccurrenceTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewOccurrenceRecordServlet</servlet-name>
+		<url-pattern>/manageOccurrenceRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddOccurrenceRecordServlet</servlet-name>
+		<url-pattern>/addOccurrenceRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewEditOccurrenceRecordServlet</servlet-name>
+		<url-pattern>/viewEditOccurrence</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateOccurrenceRecordServlet</servlet-name>
+		<url-pattern>/updateOccurrenceRecord</url-pattern>
+	</servlet-mapping>
+	<!-- Occurrence Reports END  -->	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
