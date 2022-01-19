@@ -199,6 +199,12 @@
 		<servlet-name>UpdateOccurrenceRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.UpdateOccurrenceRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteOccurrenceRecordServlet</display-name>
+		<servlet-name>DeleteOccurrenceRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteOccurrenceRecordServlet</servlet-class>
+	</servlet>
 	<!-- Occurrence Reports END  -->
 	
 	<!-- Client Account START  -->
@@ -326,6 +332,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateOccurrenceRecordServlet</servlet-name>
 		<url-pattern>/updateOccurrenceRecord</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteOccurrenceRecordServlet</servlet-name>
+		<url-pattern>/deleteOccurrence</url-pattern>
 	</servlet-mapping>
 	<!-- Occurrence Reports END  -->	
 	<servlet-mapping>
