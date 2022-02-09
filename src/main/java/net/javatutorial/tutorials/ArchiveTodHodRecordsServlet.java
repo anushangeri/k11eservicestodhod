@@ -2,6 +2,8 @@ package net.javatutorial.tutorials;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Properties;
@@ -45,6 +47,10 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 
 		ArrayList<TodHodRecord> aList = TodHodManagerDAO.retrieveAll();
 		System.out.println("retrived attendance successful");
+		
+		LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
+		String fileName = "todhod_"+ localDate +".xls";
+		
 		// workbook object
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		// spreadsheet object
@@ -82,7 +88,7 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 		System.out.println("writing finished, sending email ...");
 		// .xlsx is the format for Excel Sheets...
 		// writing the workbook into the file...
-		FileOutputStream fos = new FileOutputStream("todhod.xls");
+		FileOutputStream fos = new FileOutputStream(fileName);
 		workbook.write(fos);
 		fos.close();
 
@@ -122,11 +128,11 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 
 			// Part two is attachment
 			messageBodyPart = new MimeBodyPart();
-			DataSource source = new FileDataSource("todhod.xls");
+			DataSource source = new FileDataSource(fileName);
 
 			// Now use your ByteArrayDataSource as
 			messageBodyPart.setDataHandler(new DataHandler(source));
-			messageBodyPart.setFileName("todhod.xls");
+			messageBodyPart.setFileName(fileName);
 			multipart.addBodyPart(messageBodyPart);
 
 			// 6) set the multiplart object to the message object
