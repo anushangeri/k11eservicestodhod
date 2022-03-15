@@ -416,6 +416,69 @@ public class TodHodManagerDAO {
         return v;
     }
 	
+	public static TodHodRecord retrieveShiftCountByIdNo(String officerIdNo, Timestamp from, Timestamp to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        TodHodRecord v = null;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT SHIFT, COUNT(*) " + 
+            		"FROM TODHOD "
+            		+ " WHERE time_in_dt >= '" + from + "' "
+            		+ " AND time_in_dt <= '" + to + "' "
+            		+ " AND officer_idno <= '" + officerIdNo + "' "
+    				+ " GROUP BY SHIFT ; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new TodHodRecord(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getTimestamp(6),
+            			rs.getTimestamp(7));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return v;
+    }
+	
+	public static int retrieveDaysWorkedByIdNo(String officerIdNo, String from, String to) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        int v = 0;
+        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT COUNT(*) " + 
+            		"FROM (SELECT DISTINCT officer_idno, CAST(time_in_dt AS DATE) AS TIME_IN_DATE "
+            		+ " FROM todhod "
+            		+ " WHERE time_in_dt >= '" + from + "' "
+            		+ " AND time_in_dt <= '" + to + "' "
+            		+ " AND officer_idno <= '" + officerIdNo + "' ) temp; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return v;
+    }
+	
 	public static String deleteByRecordId(String recordId) {
         PreparedStatement pstmt = null;
         Connection connection = null;

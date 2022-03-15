@@ -20,41 +20,22 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
 <script src="https://code.jquery.com/jquery-1.12.3.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(document).ready(function() {
-			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
-			$('table').DataTable({
-				"order": [[ 0, "desc" ]],
-				dom : 'Blfrtip',
-				buttons : [ {
-					text : 'Export To Excel',
-					extend : 'excelHtml5',
-					exportOptions : {
-						modifier : {
-							selected : true
-						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-						format : {
-							header : function(data, columnIdx) {
-								return data;
-							},
-						}
-					},
-					footer : false,
-					customize : function(xlsx) {
-						var sheet = xlsx.xl.worksheets['sheet1.xml'];
-					}
-				} ],
-				"order": [[15, 'desc']]
-			});
-		});
-	});
+<script>
+    function displayDaysWorked() {
+        $.ajax({
+            type: 'POST',
+            url: '/retrieveTodHodCount',
+            data: 'from=' + from + '&to=' + to + '&retrieveTodHodCount_requestType=' + retrieveTodHodCount_requestType,
+            error: function(response) {
+                // Gets called when an error occurs with error details in variable response
+            },
+            success: function(response) {
+                // Gets called when the action is successful with server response in variable response
+            	var val = request.responseText;
+            	console.log(val);
+            }
+        });
+    }
 </script>
 </head>
 
@@ -82,6 +63,50 @@
 			<label class="heading">Please complete HOD before submitting another TOD.</label>
 			<br>
 			<div class="container body-content">
+				<table id="example"
+						class="table table-striped table-bordered table-sm" style="width: 80%;">
+						<thead>
+							<tr>
+								<th class="th-sm" colspan="5"><center>DAYS WORKED</center></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<form action="retrieveTodHodCount" method="post">
+									<input type="hidden" class="form-control" 
+									name="retrieveTodHodCount_requestType" value="month">
+									<td>
+										<button type="submit" class="btn btn-primary btn-sm active" onclick="displayDaysWorked();" >Month</button>
+									</td>
+								</form>
+								<form action="retrieveTodHodCount" method="post">
+									<input type="hidden" class="form-control" 
+									name="retrieveTodHodCount_requestType" value="week">
+									<td>
+										<button type="submit" class="btn btn-primary btn-sm active" onclick="displayDaysWorked();" >Week</button>
+									</td>
+								</form>
+								<form action="retrieveTodHodCount" method="post">
+									<td><label for="from">From: </label> <input type="date"
+										class="form-control" name="from">
+									</td>
+									<td><label for="to">To: </label> <input type="date"
+										class="form-control" name="to">
+									</td>
+									<input type="hidden" class="form-control" 
+									name="retrieveTodHodCount_requestType" value="custom">
+									<td>
+										<button type="submit" class="btn btn-primary btn-sm active" onclick="displayDaysWorked();" >Submit</button>
+									</td>
+								</form>
+								
+							</tr>
+							<tr>
+								<th colspan="5"><center><%= request.getAttribute("daysWorked") == null ? 0 : request.getAttribute("daysWorked") %></center></th>
+							</tr>
+						</tbody>
+				</table>
+				<br>
 				<table id="example"
 						class="table table-striped table-bordered table-sm" style="width: 80%;">
 						<thead>
@@ -168,6 +193,15 @@
 								 	<td> 
 									 	<a href="/manageOccurrenceRecord" class="btn btn-warning btn-lg active" role="button"
 												aria-pressed="true">Manage Reports</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Generate Payslip
+								 	</td>
+								 	<td> 
+									 	<a href="payslipGenerator.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Manage Payslips</a>
 									</td>
 								</tr>
 							<%} %>

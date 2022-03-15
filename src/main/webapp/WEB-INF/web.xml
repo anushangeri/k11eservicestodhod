@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
@@ -166,6 +165,13 @@
 		<servlet-name>ViewSiteManapowerRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewSiteManapowerRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>RetrieveTodHodCountServlet</display-name>
+		<servlet-name>RetrieveTodHodCountServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.RetrieveTodHodCountServlet</servlet-class>
+	</servlet>
+
 	<!-- TOD HOD END  -->
 	
 	<!-- Occurrence Reports START  -->
@@ -206,6 +212,33 @@
 		<servlet-class>net.javatutorial.tutorials.DeleteOccurrenceRecordServlet</servlet-class>
 	</servlet>
 	<!-- Occurrence Reports END  -->
+	
+	<!-- Payslip START  -->
+	<servlet>
+		<description />
+		<display-name>CPayslipTblServlet</display-name>
+		<servlet-name>CPayslipTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CPayslipTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeletePayslipTblServlet</display-name>
+		<servlet-name>DeletePayslipTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeletePayslipTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UploadFilePayslipServlet</display-name>
+		<servlet-name>UploadFilePayslipServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UploadFilePayslipServlet</servlet-class>
+	</servlet>	
+	<servlet>
+		<description />
+		<display-name>CreatePayslipServlet</display-name>
+		<servlet-name>CreatePayslipServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CreatePayslipServlet</servlet-class>
+	</servlet>
+	<!-- Payslip END  -->
 	
 	<!-- Client Account START  -->
 	<servlet-mapping>
@@ -306,12 +339,35 @@
 		<servlet-name>ArchiveTodHodRecordsServlet</servlet-name>
 		<url-pattern>/archiveTodHod</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ViewSiteManapowerRecordServlet</servlet-name>
 		<url-pattern>/viewSiteManpower</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RetrieveTodHodCountServlet</servlet-name>
+		<url-pattern>/retrieveTodHodCount</url-pattern>
+	</servlet-mapping>
 	<!-- TOD HOD END  -->
-	
+
+	<!-- PAYSLIP START -->
+	<servlet-mapping>
+		<servlet-name>CPayslipTblServlet</servlet-name>
+		<url-pattern>/createPayslipTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeletePayslipTblServlet</servlet-name>
+		<url-pattern>/deletePayslipTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadFilePayslipServlet</servlet-name>
+		<url-pattern>/uploadFilePayslip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatePayslipServlet</servlet-name>
+		<url-pattern>/createPayslip</url-pattern>
+	</servlet-mapping>	
+	<!-- PAYSLIP END -->
+		
 	<!-- Occurrence Reports START  -->
 	<servlet-mapping>
 		<servlet-name>COccurrenceTblServlet</servlet-name>
