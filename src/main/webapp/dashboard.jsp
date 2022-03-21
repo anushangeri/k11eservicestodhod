@@ -133,7 +133,7 @@
 							 	<td> 
 								 	<form  method="GET" action="/populateTodHod">
 										<button type="submit" class="btn btn-warning btn-lg active" 
-										<%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 ? "disabled" : "" %>>Add TOD HOD</button>
+										<%= !idNo.equals("K11RELIEF") && vList != null && vList.size() > 0 && !(usertype.equals("MANAGEMENT") || usertype.equals("ADMIN")) ? "disabled" : "" %>>Add TOD HOD</button>
 									</form>
 								</td>
 							</tr>
