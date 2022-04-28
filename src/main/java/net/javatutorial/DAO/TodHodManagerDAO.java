@@ -503,7 +503,7 @@ public class TodHodManagerDAO {
 		Statement stmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "Records deleted - 60 days worth of records in database";
+        String message = "Records deleted - 37 days worth of records in database";
         try {
             String sql = "DELETE FROM TODHOD WHERE DATE_PART('day', NOW()::timestamp - TIME_IN_DT::timestamp) >= 37;";
             connection = Main.getConnection();
