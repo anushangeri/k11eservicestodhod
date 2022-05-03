@@ -79,15 +79,9 @@
 				"order" : [ [ 5, 'desc' ] ]
 			});
 		});
-	});
-	function functionSetColorForDiffHours() {
-		document.getElementById("setColorForDiffHours").style.color = document
-				.getElementById("setColorForDiffHours").innerHTML.value <= "12" ? "green"
-				: "red";
-	}
 </script>
 </head>
-<body onload="functionSetColorForDiffHours()">
+<body>
 	<center>
 		<%
 		ArrayList<TodHodRecord> vList = (ArrayList<TodHodRecord>) request.getAttribute("vList");
@@ -191,4 +185,9 @@
 	</div>
 
 </body>
+<script>
+	document.getElementById("setColorForDiffHours").style.color = document
+			.getElementById("setColorForDiffHours").innerHTML <= 12 ? "green"
+			: "red";
+</script>
 </html>
