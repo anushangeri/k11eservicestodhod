@@ -1,7 +1,7 @@
 <%-- 
     Document   : loginCSS
     Created on : Sep 19, 2014, 5:58:46 PM
-    Author     : Wei Fa
+    Author     : Shangeri
 --%>
 
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all">
 <link rel="stylesheet" href="css/styles.css" media="all">
 <link
-	href=' http://fonts.googleapis.com/css?family=Inconsolata|Droid+Sans'
+	href='https://fonts.googleapis.com/css?family=Inconsolata|Droid+Sans'
 	rel='stylesheet' type='text/css'>
 <style type="text/css">
 .navbar-default {

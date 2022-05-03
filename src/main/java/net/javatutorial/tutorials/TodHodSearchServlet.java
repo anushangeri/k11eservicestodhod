@@ -19,7 +19,7 @@ public class TodHodSearchServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String site = request.getParameter("site");
+		String site = request.getParameter("siteName");
 		String idNo = request.getParameter("idNo");
 		String shift = request.getParameter("shift");
 		String from = request.getParameter("from");

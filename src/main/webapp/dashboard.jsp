@@ -192,7 +192,16 @@
 								 	</td>
 								 	<td> 
 									 	<a href="/manageOccurrenceRecord" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">Manage Reports</a>
+												aria-pressed="true">Manage Occurences</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Manage Incident Reports 
+								 	</td>
+								 	<td> 
+									 	<a href="/manageIncidentRecord" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Manage Incidents</a>
 									</td>
 								</tr>
 								<tr>

@@ -77,12 +77,12 @@
 						<div class="form-group col-md-6">
 							<label for="dayManpower">Day Shift Manpower: </label> <input type="text"
 								class="form-control" name="dayManpower"
-								oninput="this.value = this.value.toUpperCase()" required>
+								value="<%=((v == null) ? "" : v.getDayShiftManpower())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="nightManpower">Night Shift Manpower: </label> <input type="text"
 								class="form-control" name="nightManpower"
-								oninput="this.value = this.value.toUpperCase()" required>
+								value="<%=((v == null) ? "" : v.getNightShiftManpower())%>" required>
 						</div>
 					</div>
 					<div class="form-row">

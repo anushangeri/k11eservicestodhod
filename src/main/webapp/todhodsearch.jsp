@@ -72,8 +72,9 @@
 		<form action="todHodRecordSearch" method="post">
 		  <div class="form-row">
 		    <div class="form-group col-md-6">
-		      <label for="site">Site: </label>
+		      <label for="siteName">Site: </label>
 		      <select name="siteName" class="form-control">
+		      	<option value=""> </option>
 		      	<%
 				for(Site s: siteDropdown){
 				%>

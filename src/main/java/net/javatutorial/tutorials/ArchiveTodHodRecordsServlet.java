@@ -5,9 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Properties;
-import java.util.TimeZone;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -91,7 +89,7 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 		FileOutputStream fos = new FileOutputStream(fileName);
 		workbook.write(fos);
 		fos.close();
-
+		workbook.close();
 		// out.close();
 
 		String to = "k11.sivalingam@gmail.com";// change accordingly

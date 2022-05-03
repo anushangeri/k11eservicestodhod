@@ -50,7 +50,7 @@ import net.javatutorial.entity.AttendanceUploadFile;
 import net.javatutorial.entity.Payslip;
 
 /**
- * Servlet implementation class AddSiteRecordServlet
+ * Servlet implementation class CreatePayslipServlet
  * https://dev.to/codesharing/converting-excel-to-pdf-in-java-application-474i
  */
 public class CreatePayslipServlet extends HttpServlet {
@@ -594,7 +594,7 @@ public class CreatePayslipServlet extends HttpServlet {
 			wb.close();
 			
 			System.out.println("writing finished, sending email ...");
-			String to = "sivalingaw@gmail.com";// change accordingly
+			String to = "k11.sivalingam@gmail.com";// change accordingly
 			final String user = "Shangeri1994@k11.com.sg";// change accordingly
 			final String password = "Shanger!1994";// change accordingly
 

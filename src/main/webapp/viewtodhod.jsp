@@ -4,6 +4,7 @@
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="net.javatutorial.entity.*"%>
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@
 		$(document).ready(function() {
 			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
 			$('table').DataTable({
-				"order": [[5, "desc" ]],
+				"order" : [ [ 5, "desc" ] ],
 				dom : 'Blfrtip',
 				buttons : [ {
 					text : 'Export To Excel',
@@ -63,7 +64,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [0, 1, 2, 3, 4, 5, 6],
+						columns : [ 0, 1, 2, 3, 4, 5, 6 ],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -75,17 +76,18 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[5, 'desc']]
+				"order" : [ [ 5, 'desc' ] ]
 			});
 		});
 	});
-	function showDiv(divId, element)
-	{
-	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
+	function functionSetColorForDiffHours() {
+		document.getElementById("setColorForDiffHours").style.color = document
+				.getElementById("setColorForDiffHours").innerHTML.value <= "12" ? "green"
+				: "red";
 	}
 </script>
 </head>
-<body>
+<body onload="functionSetColorForDiffHours()">
 	<center>
 		<%
 		ArrayList<TodHodRecord> vList = (ArrayList<TodHodRecord>) request.getAttribute("vList");
@@ -93,19 +95,19 @@
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "";
 		String userType = "";
-	 	if (request.getSession(false).getAttribute("idNo") != null) {
-	 		idNo = (String) request.getSession(false).getAttribute("idNo");
-	 		userType = (String) request.getSession(false).getAttribute("usertype");
-	 	}
+		if (request.getSession(false).getAttribute("idNo") != null) {
+			idNo = (String) request.getSession(false).getAttribute("idNo");
+			userType = (String) request.getSession(false).getAttribute("usertype");
+		}
 		if (message != null && !StringUtils.isEmpty(message)) {
-	%>
+		%>
 		<label class="heading"><%=message%> </label><br> <b>*Individuals
 			are required to self-identify should they experience any COVID-19
 			symptoms.</b>
 	</center>
-	<% 
-			if (vList != null && vList.size() > 0) {
-		%>
+	<%
+	if (vList != null && vList.size() > 0) {
+	%>
 	<div class="container body-content" id="tableview">
 		<table id="example"
 			class="table table-striped table-bordered table-sm sortable"
@@ -119,15 +121,16 @@
 					<th class="th-sm">Shift</th>
 					<th class="th-sm">TOD Time</th>
 					<th class="th-sm">HOD Time</th>
+					<th class="th-sm">Hours Worked</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-							if (!vList.isEmpty()) {
-								Iterator<TodHodRecord> vListIter = vList.iterator();
-								while (vListIter.hasNext()) {
-									TodHodRecord v = vListIter.next();
-						%>
+				if (!vList.isEmpty()) {
+					Iterator<TodHodRecord> vListIter = vList.iterator();
+					while (vListIter.hasNext()) {
+						TodHodRecord v = vListIter.next();
+				%>
 				<tr>
 					<td><%=v.getRecordId()%></td>
 					<td><%=v.getOfficerName()%></td>
@@ -135,37 +138,48 @@
 					<td><%=((v.getSiteName() == null) ? "" : v.getSiteName())%></td>
 					<td><%=v.getShift()%></td>
 					<td><%=sdf.format(v.getTimeInDt())%></td>
-					<!-- 								TO DO: if timeout is null - send to update servlet to update with system time -->
-					<% if (v.getTimeOutDt() != null) { %>
+					<!--TO DO: if timeout is null - send to update servlet to update with system time -->
+					<%
+					if (v.getTimeOutDt() != null) {
+					%>
 					<td><%=sdf.format(v.getTimeOutDt())%></td>
-					<% 
- 										}
- 										else{
- 									%>
+					<%
+					} else {
+					%>
 					<td><form method="POST" action="/updateTodHodRecord">
 							<input type="hidden" id="recordId" name="recordId"
 								value="<%=v.getRecordId()%>"> <input type="submit"
 								name="Submit" value="Update HOD Time">
 						</form></td>
-					<% 
-										}
-									%>
+					<%
+					}
+					%>
+					<%
+					long differenceInTime = 0;
+					long differenceInHours = 0;
+					if (v.getTimeOutDt() != null) {
+						differenceInTime = v.getTimeOutDt().getTime() - v.getTimeInDt().getTime();
+						differenceInHours = TimeUnit.MILLISECONDS.toHours(differenceInTime) % 24;
+
+					}
+					%>
+					<td id="setColorForDiffHours"><%=differenceInHours%></td>
 				</tr>
 				<%
-								}
-							%>
+				}
+				%>
 
 				<%
-							}
-						%>
+				}
+				%>
 			</tbody>
 		</table>
 		<%
-			}
+		}
 		%>
 		<%
 		}
-	%>
+		%>
 	</div>
 	<div class="container body-content">
 		<center>

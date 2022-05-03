@@ -189,6 +189,22 @@
                   <button class="btn" type="submit">Delete</button>
               </form>
           </td>
+	    </tr>	
+	    <tr>
+	      <th scope="row">10</th>
+	      <td>Incident Reports</td>
+	      <td><form action="createIncidentTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
 	    </tr>	    
 	  </tbody>
 	</table>

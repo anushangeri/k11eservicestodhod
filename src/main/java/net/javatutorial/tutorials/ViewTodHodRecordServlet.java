@@ -33,7 +33,7 @@ public class ViewTodHodRecordServlet extends HttpServlet {
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
-		String site = (StringUtils.isEmpty(request.getParameter("site"))) ? "" : request.getParameter("site");
+		String site = (StringUtils.isEmpty(request.getParameter("siteName"))) ? "" : request.getParameter("siteName");
 		String from = (StringUtils.isEmpty(request.getParameter("from"))) ? "01/01/2012" : request.getParameter("from");
 		String to = (StringUtils.isEmpty(request.getParameter("to"))) ? timestamp.toString() : request.getParameter("to");
 		String shift = (StringUtils.isEmpty(request.getParameter("shift"))) ? "" : request.getParameter("shift");

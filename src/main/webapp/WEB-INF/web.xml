@@ -240,6 +240,39 @@
 	</servlet>
 	<!-- Payslip END  -->
 	
+	<!-- Incident START  -->
+	<servlet>
+		<description />
+		<display-name>CIncidentTblServlet</display-name>
+		<servlet-name>CIncidentTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CIncidentTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddIncidentRecordServlet</display-name>
+		<servlet-name>AddIncidentRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddIncidentRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewIncidentRecordsServlet</display-name>
+		<servlet-name>ViewIncidentRecordsServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewIncidentRecordsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewEditIncidentRecordServlet</display-name>
+		<servlet-name>ViewEditIncidentRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewEditIncidentRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DisplayImagesServlet</display-name>
+		<servlet-name>DisplayImagesServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DisplayImagesServlet</servlet-class>
+	</servlet>
+	<!-- Incident END  -->
+	
 	<!-- Client Account START  -->
 	<servlet-mapping>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
@@ -367,6 +400,30 @@
 		<url-pattern>/createPayslip</url-pattern>
 	</servlet-mapping>	
 	<!-- PAYSLIP END -->
+	
+	
+	<!-- Incident START -->
+	<servlet-mapping>
+		<servlet-name>CIncidentTblServlet</servlet-name>
+		<url-pattern>/createIncidentTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddIncidentRecordServlet</servlet-name>
+		<url-pattern>/addIncident</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>ViewIncidentRecordsServlet</servlet-name>
+		<url-pattern>/manageIncidentRecord</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>ViewEditIncidentRecordServlet</servlet-name>
+		<url-pattern>/viewEditIncident</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DisplayImagesServlet</servlet-name>
+		<url-pattern>/displayImages</url-pattern>
+	</servlet-mapping>
+	<!-- Incident END -->
 		
 	<!-- Occurrence Reports START  -->
 	<servlet-mapping>
