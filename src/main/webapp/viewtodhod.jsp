@@ -157,7 +157,7 @@
 
 					}
 					%>
-					<td id="setColorForDiffHours"><%=differenceInHours%></td>
+					<td style="color:<%= differenceInHours <= 12 && differenceInHours > 0 ? "green":"red"%>;"><%=differenceInHours%></td>
 				</tr>
 				<%
 				}
@@ -185,9 +185,4 @@
 	</div>
 
 </body>
-<script>
-	document.getElementById("setColorForDiffHours").style.color = document
-			.getElementById("setColorForDiffHours").innerHTML <= 12 ? "green"
-			: "red";
-</script>
 </html>
