@@ -1513,7 +1513,7 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 
 	     			wb.close();
 	     			System.out.println("done with payslip portion");
-	     			message = "Success! Click 'Back' and go to 'View Payslips' to verify payslip generation";
+	     			message = message + "Success for the other officers! Go to 'View Payslips' to verify payslip generation";
 	     		}
 	     		catch(Exception e) {
 	     			message = message + " check logs: " + e.toString();
