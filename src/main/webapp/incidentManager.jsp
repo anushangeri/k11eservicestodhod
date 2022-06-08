@@ -35,7 +35,7 @@ $(document).ready(function() {
 					modifier : {
 						selected : true
 					},
-					columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+					columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
 					format : {
 						header : function(data, columnIdx) {
 							return data;
@@ -47,7 +47,7 @@ $(document).ready(function() {
 					var sheet = xlsx.xl.worksheets['sheet1.xml'];
 				}
 			} ],
-			"order": [[20, 'desc']]
+			"order": [[7, 'desc']]
 		});
 	});
 });
@@ -87,13 +87,13 @@ $(document).ready(function() {
 							
 							<th class="th-sm" style="display:none;">dateOfIncident</th>
 							<th class="th-sm" style="display:none;">timeOfIncident</th>
-							<th class="th-sm" style="display:none;">dateOfIncidentReported</th>
+							<th class="th-sm">dateOfIncidentReported</th>
 							
 							<th class="th-sm" style="display:none;">partiesInvolved</th>
-							<th class="th-sm" style="display:none;">incidentCategory</th>
+							<th class="th-sm">incidentCategory</th>
 							
 							<th class="th-sm" style="display:none;">howIncidentOccurred</th>
-							<th class="th-sm" style="display:none;">whatIncidentOccurred</th>
+							<th class="th-sm">whatIncidentOccurred</th>
 							<th class="th-sm" style="display:none;">whyIncidentOccurred</th>
 							
 							<th class="th-sm" style="display:none;">declarationByOfficerOnDuty</th>
@@ -104,8 +104,8 @@ $(document).ready(function() {
 							
 							<th class="th-sm" style="display:none;">images</th>
 							
-							<th class="th-sm">Created Date</th>
-							<th class="th-sm">Last Modified Date</th>
+							<th class="th-sm" style="display:none;">Created Date</th>
+							<th class="th-sm" style="display:none;">Last Modified Date</th>
 							
 							<th class="th-sm">View</th>
 							<th class="th-sm">Edit</th>
@@ -128,11 +128,11 @@ $(document).ready(function() {
 									<td style="display:none;"><%=v.getOfficerOnDutyDesignation()%></td>
 									<td style="display:none;"><%=v.getDateOfIncident()%></td>
 									<td style="display:none;"><%=v.getTimeOfIncident()%></td>
-									<td style="display:none;"><%=v.getDateOfIncidentReported()%></td>
+									<td><%=v.getDateOfIncidentReported()%></td>
 									<td style="display:none;"><%=v.getPartiesInvolved()%></td>
-									<td style="display:none;"><%=v.getIncidentCategory()%></td>
+									<td><%=v.getIncidentCategory()%></td>
 									<td style="display:none;"><%=v.getHowIncidentOccurred()%></td>
-									<td style="display:none;"><%=v.getWhatIncidentOccurred()%></td>
+									<td><%=v.getWhatIncidentOccurred()%></td>
 									<td style="display:none;"><%=v.getWhyIncidentOccurred()%></td>
 									<td style="display:none;"><%=v.getDeclarationByOfficerOnDuty()%></td>
 									<td style="display:none;"><%=v.getDeclarationofSecurityImplications()%></td>
@@ -140,8 +140,8 @@ $(document).ready(function() {
 									<td style="display:none;"><%=v.getSignatureOfOpsManagerOnDuty()%></td>
 									<td style="display:none;"><%=v.getImages()%></td>
 									
-									<td><%=v.getCreatedDt()%></td>
-									<td><%=v.getLastModifiedDt()%></td>
+									<td style="display:none;"><%=v.getCreatedDt()%></td>
+									<td style="display:none;"><%=v.getLastModifiedDt()%></td>
 									<td>
 										<form method="POST" action ="/viewEditIncident">
 											<input type="hidden" id="incidentId" name="incidentId" value="<%=v.getIncidentId()%>">

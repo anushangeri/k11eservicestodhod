@@ -11,11 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.javatutorial.DAO.ClientAccountManagerDAO;
-import net.javatutorial.DAO.SiteManagerDAO;
-import net.javatutorial.DAO.TodHodManagerDAO;
 import net.javatutorial.entity.ClientAccount;
-import net.javatutorial.entity.Site;
-import net.javatutorial.entity.TodHodRecord;
 
 /**
  * Servlet implementation class PasswordVerifiedServlet
@@ -26,6 +22,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
+		session.setMaxInactiveInterval(0);
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
 				

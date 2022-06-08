@@ -1,8 +1,7 @@
 package net.javatutorial.entity;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-
+//this is user account for all user type: ADMIN, MANAGEMENT and OFFICER
 public class ClientAccount {
 	private String accountId;
     private String name;

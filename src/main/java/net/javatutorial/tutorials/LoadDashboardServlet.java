@@ -12,15 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.TodHodManagerDAO;
-import net.javatutorial.entity.ClientAccount;
 import net.javatutorial.entity.Site;
 import net.javatutorial.entity.TodHodRecord;
 
 /**
- * Servlet implementation class PasswordVerifiedServlet
+ * Servlet implementation class LoadDashboardServlet
  */
 public class LoadDashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;

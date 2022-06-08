@@ -3,8 +3,6 @@ package net.javatutorial.tutorials;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +19,6 @@ import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.TodHodManagerDAO;
 import net.javatutorial.entity.Manpower;
 import net.javatutorial.entity.Site;
-import net.javatutorial.entity.TodHodRecord;
 
 /**
  * Servlet implementation class ViewSiteManapowerRecordServlet
@@ -36,10 +33,6 @@ public class ViewSiteManapowerRecordServlet extends HttpServlet {
 		request.removeAttribute("manpowerStatusMessage");
 		
 		String usertype = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("usertype"))) ? "" : (String) request.getSession(false).getAttribute("usertype");
-		String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
-
-		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
-		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
 		String date = (StringUtils.isEmpty(request.getParameter("from"))) ? "01/01/2012" : request.getParameter("from");
 		String shift = (StringUtils.isEmpty(request.getParameter("shift"))) ? "" : request.getParameter("shift");

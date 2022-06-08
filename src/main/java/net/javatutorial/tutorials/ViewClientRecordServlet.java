@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.javatutorial.DAO.ClientAccountManagerDAO;
 import net.javatutorial.entity.ClientAccount;
 
@@ -23,8 +21,6 @@ public class ViewClientRecordServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
-		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String name = (String) request.getSession(false).getAttribute("name");
 		
 		String message = "No client accounts available";
 		ArrayList<ClientAccount> vList = null;

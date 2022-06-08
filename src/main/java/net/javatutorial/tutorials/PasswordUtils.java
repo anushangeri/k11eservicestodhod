@@ -15,7 +15,6 @@ import javax.crypto.spec.PBEKeySpec;
  */
 
 public class PasswordUtils {
-	private static final long serialVersionUID = -4751096228274971485L;
 	private static final SecureRandom RAND = new SecureRandom();
 	
 	private static final int ITERATIONS = 65536;

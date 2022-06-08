@@ -1,7 +1,6 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,29 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import net.javatutorial.DAO.SiteManagerDAO;
-import net.javatutorial.entity.Site;
+import net.javatutorial.DAO.OfficerPayslipManagerDAO;
 
 /**
- * Servlet implementation class ViewSiteRecordServlet
+ * Servlet implementation class DeleteSiteServlet
+ * Deletes site using site id
  */
-public class ViewSiteRecordServlet extends HttpServlet {
+public class DeleteAllOfficerPayslipTblServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String usertype = (String) request.getSession(false).getAttribute("usertype");
-		String message = "No site accounts available";
-		ArrayList<Site> vList = null;
-		if(usertype != null && (usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("MANAGEMENT") )) {
-			vList = SiteManagerDAO.retrieveAll();
-			message = "List of site accounts";
-			request.setAttribute("vList", vList);
-		}
+		String message = OfficerPayslipManagerDAO.deleteAll();
 		
-		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("siteManager.jsp");
+		request.setAttribute("responseObj", message);
+        RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
         rd.forward(request, response);
 	}
 	@Override

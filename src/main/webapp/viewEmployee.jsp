@@ -6,6 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="net.javatutorial.entity.*"%>
+<%@page import="java.io.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
 		$(document).ready(function() {
 			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
 			$('table').DataTable({
-				"order": [[ 0, "desc" ]],
+				"order" : [ [ 5, "desc" ] ],
 				dom : 'Blfrtip',
 				buttons : [ {
 					text : 'Export To Excel',
@@ -64,7 +65,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7 ],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -76,16 +77,16 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[5, 'desc']]
+				"order" : [ [ 6, 'desc' ] ]
 			});
 		});
-	});
 </script>
 </head>
 <body>
 	<center>
 		<%
-		ArrayList<TodHodRecord> vList = (ArrayList<TodHodRecord>) request.getAttribute("vList");
+		
+		ArrayList<Employee> vList = (ArrayList<Employee>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "";
@@ -110,58 +111,33 @@
 			<thead>
 				<tr>
 					<th class="th-sm">S/N</th>
-					<th class="th-sm">Officer Name</th>
 					<th class="th-sm">Officer ID</th>
-					<th class="th-sm">Site Name</th>
-					<th class="th-sm">Shift</th>
-					<th class="th-sm">TOD Time</th>
-					<th class="th-sm">HOD Time</th>
-					<th class="th-sm">Hours Worked</th>
+					<th class="th-sm">Paid Annual Leave Per Year</th>
+					<th class="th-sm">Paid Outpatient Sick Leave Per Year</th>
+					<th class="th-sm">Paid Hospitalisation Leave Per Year</th>
+					<th class="th-sm">KET</th>
+					<th class="th-sm">Created Date</th>
+					<th class="th-sm">Last Modified Date</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
 				if (!vList.isEmpty()) {
-					Iterator<TodHodRecord> vListIter = vList.iterator();
+					Iterator<Employee> vListIter = vList.iterator();
 					while (vListIter.hasNext()) {
-						TodHodRecord v = vListIter.next();
+						Employee v = vListIter.next();
+						
+
 				%>
 				<tr>
-					<td><%=v.getRecordId()%></td>
-					<td><%=v.getOfficerName()%></td>
-					<td><%=v.getOfficerIdNo()%></td>
-					<td><%=((v.getSiteName() == null) ? "" : v.getSiteName())%></td>
-					<td><%=v.getShift()%></td>
-					<td><%=sdf.format(v.getTimeInDt())%></td>
-					<!--TO DO: if timeout is null - send to update servlet to update with system time -->
-					<%
-					if (v.getTimeOutDt() != null) {
-					%>
-					<td><%=sdf.format(v.getTimeOutDt())%></td>
-					<%
-					} else {
-					%>
-					<td>
-						<form method="POST" action="/updateTodHodRecord">
-							<input type="hidden" id="recordId" name="recordId"
-								value="<%=v.getRecordId()%>"> <input type="submit"
-								name="Submit" value="Update HOD Time">
-						</form>
-						
-					</td>
-					<%
-					}
-					%>
-					<%
-					long differenceInTime = 0;
-					long differenceInHours = 0;
-					if (v.getTimeOutDt() != null) {
-						differenceInTime = v.getTimeOutDt().getTime() - v.getTimeInDt().getTime();
-						differenceInHours = TimeUnit.MILLISECONDS.toHours(differenceInTime) % 24;
-
-					}
-					%>
-					<td style="color:<%= differenceInHours <= 12 && differenceInHours > 0 ? "green":"red"%>;"><%=differenceInHours%></td>
+					<td><%=v.getEmployeeId()%></td>
+					<td><%=v.getIdNo()%></td>
+					<td><%=v.getPaidAnnualLeavePerYear()%></td>
+					<td><%=v.getPaidOutpatientSickLeavePerYear()%></td>
+					<td><%=v.getPaidHospitalisationLeavePerYear()%></td>
+					<td><a href="generateKET?employeeID=<%=v.getEmployeeId()%>">Download</a></td>
+					<td><%=v.getCreated_dt()%></td>
+					<td><%=v.getLast_modified_dt()%></td>
 				</tr>
 				<%
 				}
@@ -182,7 +158,7 @@
 	<div class="container body-content">
 		<center>
 			<div class="form-row">
-				<a href="/todhodsearch.jsp" class="btn btn-warning btn-lg active"
+				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 			</div>
 		</center>

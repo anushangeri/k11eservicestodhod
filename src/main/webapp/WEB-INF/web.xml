@@ -5,6 +5,9 @@
 	version="3.1">
 	
 	<display-name>Simple Servlet Application</display-name>
+	<session-config>
+        <session-timeout>60</session-timeout>
+	</session-config>
 	<welcome-file-list>
      	<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
@@ -65,6 +68,116 @@
 		<servlet-class>net.javatutorial.tutorials.DeleteClientAccountServlet</servlet-class>
 	</servlet>
 	<!-- Client Account END  -->
+	
+	<!-- Employee START  -->
+	<servlet>
+		<description />
+		<display-name>CEmployeeTblServlet</display-name>
+		<servlet-name>CEmployeeTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CEmployeeTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddEmployeeRecordServlet</display-name>
+		<servlet-name>AddEmployeeRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddEmployeeRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewEmployeeRecordServlet</display-name>
+		<servlet-name>ViewEmployeeRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewEmployeeRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>GenerateKETServlet</display-name>
+		<servlet-name>GenerateKETServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.GenerateKETServlet</servlet-class>
+	</servlet>
+	<!-- Employee END  -->	
+
+	
+	<!-- Leave START  -->
+	<servlet>
+		<description />
+		<display-name>CLeaveTblServlet</display-name>
+		<servlet-name>CLeaveTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CLeaveTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddLeaveRecordServlet</display-name>
+		<servlet-name>AddLeaveRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddLeaveRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewLeaveRecordServlet</display-name>
+		<servlet-name>ViewLeaveRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewLeaveRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UpdateLeaveRecordServlet</display-name>
+		<servlet-name>UpdateLeaveRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateLeaveRecordServlet</servlet-class>
+	</servlet>
+	<!-- Leave END  -->	
+	
+	<!-- PWM Details START  -->
+	<servlet>
+		<description />
+		<display-name>CPWMTblServlet</display-name>
+		<servlet-name>CPWMTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CPWMTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddPWMRecordServlet</display-name>
+		<servlet-name>AddPWMRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddPWMRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewPWMRecordServlet</display-name>
+		<servlet-name>ViewPWMRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewPWMRecordServlet</servlet-class>
+	</servlet>
+	<!-- PWM Details END  -->	
+
+	<!-- Officer Payslip START  -->
+	<servlet>
+		<description />
+		<display-name>COfficerPayslipTblServlet</display-name>
+		<servlet-name>COfficerPayslipTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.COfficerPayslipTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>GenerateIndividualPayslipServlet</display-name>
+		<servlet-name>GenerateIndividualPayslipServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.GenerateIndividualPayslipServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewOfficerPayslipRecordServlet</display-name>
+		<servlet-name>ViewOfficerPayslipRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewOfficerPayslipRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DownloadOfficerPayslipServlet</display-name>
+		<servlet-name>DownloadOfficerPayslipServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DownloadOfficerPayslipServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteAllOfficerPayslipTblServlet</display-name>
+		<servlet-name>DeleteAllOfficerPayslipTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteAllOfficerPayslipTblServlet</servlet-class>
+	</servlet>
+	<!-- Officer Payslip END  -->	
+		
 	<!-- Site START  -->
 	<servlet>
 		<description />
@@ -171,7 +284,6 @@
 		<servlet-name>RetrieveTodHodCountServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.RetrieveTodHodCountServlet</servlet-class>
 	</servlet>
-
 	<!-- TOD HOD END  -->
 	
 	<!-- Occurrence Reports START  -->
@@ -307,6 +419,86 @@
 		<url-pattern>/deleteClientRecord</url-pattern>
 	</servlet-mapping>
 	<!-- Client Account END  -->
+	
+	<!-- Employee START  -->
+	<servlet-mapping>
+		<servlet-name>CEmployeeTblServlet</servlet-name>
+		<url-pattern>/createEmpTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddEmployeeRecordServlet</servlet-name>
+		<url-pattern>/addEmployee</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewEmployeeRecordServlet</servlet-name>
+		<url-pattern>/viewEmp</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GenerateKETServlet</servlet-name>
+		<url-pattern>/generateKET</url-pattern>
+	</servlet-mapping>
+	<!-- Employee END  -->
+	
+
+	
+	<!-- Leave START  -->
+	<servlet-mapping>
+		<servlet-name>CLeaveTblServlet</servlet-name>
+		<url-pattern>/createLeaveTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddLeaveRecordServlet</servlet-name>
+		<url-pattern>/addLeave</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewLeaveRecordServlet</servlet-name>
+		<url-pattern>/viewLeave</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateLeaveRecordServlet</servlet-name>
+		<url-pattern>/updateLeave</url-pattern>
+	</servlet-mapping>
+	<!-- Leave END  -->
+
+	<!-- PWM Details START  -->
+	<servlet-mapping>
+		<servlet-name>CPWMTblServlet</servlet-name>
+		<url-pattern>/createPWMTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddPWMRecordServlet</servlet-name>
+		<url-pattern>/addPWM</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewPWMRecordServlet</servlet-name>
+		<url-pattern>/retrieveAllPWMRecords</url-pattern>
+	</servlet-mapping>
+	<!-- PWM Details END  -->
+
+
+
+	<!-- Officer Payslip START  -->
+	<servlet-mapping>
+		<servlet-name>COfficerPayslipTblServlet</servlet-name>
+		<url-pattern>/createOfficerPayslipTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GenerateIndividualPayslipServlet</servlet-name>
+		<url-pattern>/generateOfficerPayslip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewOfficerPayslipRecordServlet</servlet-name>
+		<url-pattern>/viewOfficerPayslip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadOfficerPayslipServlet</servlet-name>
+		<url-pattern>/downloadPayslip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteAllOfficerPayslipTblServlet</servlet-name>
+		<url-pattern>/deleteAllOfficerPayslips</url-pattern>
+	</servlet-mapping>
+	<!-- Officer Payslip END  -->
 	
 	<!-- Site START  -->
 	<servlet-mapping>

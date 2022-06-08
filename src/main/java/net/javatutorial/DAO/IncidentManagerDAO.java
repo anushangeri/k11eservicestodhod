@@ -1,9 +1,6 @@
 package net.javatutorial.DAO;
 
 import java.io.ByteArrayInputStream;
-import java.io.Console;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.sql.Array;
@@ -16,11 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Hex;
 import org.postgresql.jdbc4.Jdbc4Array;
 
-import net.javatutorial.entity.AttendanceUploadFile;
 import net.javatutorial.entity.Incident;
 import net.javatutorial.tutorials.Main;
 

@@ -9,29 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import net.javatutorial.DAO.SiteManagerDAO;
-import net.javatutorial.entity.Site;
+import net.javatutorial.DAO.PWMManagerDAO;
+import net.javatutorial.entity.PWMDetails;
 
 /**
  * Servlet implementation class ViewSiteRecordServlet
  */
-public class ViewSiteRecordServlet extends HttpServlet {
+public class ViewPWMRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
-		String message = "No site accounts available";
-		ArrayList<Site> vList = null;
+		String message = "No PWM details available";
+		ArrayList<PWMDetails> vList = null;
 		if(usertype != null && (usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("MANAGEMENT") )) {
-			vList = SiteManagerDAO.retrieveAll();
-			message = "List of site accounts";
+			vList = PWMManagerDAO.retrieveAll();
+			message = "List of PWM details";
 			request.setAttribute("vList", vList);
 		}
 		
 		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("siteManager.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("pwmManager.jsp");
         rd.forward(request, response);
 	}
 	@Override

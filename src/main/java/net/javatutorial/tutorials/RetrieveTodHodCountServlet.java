@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.javatutorial.DAO.SiteManagerDAO;
 import net.javatutorial.DAO.TodHodManagerDAO;
-import net.javatutorial.entity.Site;
-import net.javatutorial.entity.TodHodRecord;
 
 /**
  * Servlet implementation class RetrieveTodHodCountServlet

@@ -191,7 +191,7 @@
           </td>
 	    </tr>	
 	    <tr>
-	      <th scope="row">10</th>
+	      <th scope="row">11</th>
 	      <td>Incident Reports</td>
 	      <td><form action="createIncidentTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -206,6 +206,54 @@
               </form>
           </td>
 	    </tr>	    
+	    <tr>
+	      <th scope="row">12</th>
+	      <td>Leave</td>
+	      <td><form action="createLeaveTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	   	<tr>
+	      <th scope="row">13</th>
+	      <td>Officer Payslip</td>
+	      <td><form action="createOfficerPayslipTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">14</th>
+	      <td>PWM Details</td>
+	      <td><form action="createPWMTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
 	  </tbody>
 	</table>
 </body>

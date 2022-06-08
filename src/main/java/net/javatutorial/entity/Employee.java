@@ -1,269 +1,182 @@
 package net.javatutorial.entity;
 
-import java.sql.Date;
-
+import java.io.InputStream;
+import java.sql.Timestamp;
+//this is the KET module
+//to-do: add other sections from KET form and recreated employee table
 public class Employee {
+//	//Section A: details of employments
 	private String employeeId;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private String maritalStatus;
-    private Date dob;
-    private int age;
-    private String nationality;
-    private String pob;
-    private String identification;
-    private String idType;
+//	private String companyName;
+//	private String jobTitle;
+//    private String employeeName;
+//    private String employementType; //full-time or part-time
     private String idNo;
-    private String religion;
-    private String race;
-    private String mobileNo;
-    private String email;
-    private String emergencyName;
-    private String emergencyRlp;
-    private String emergencyNo;
-    private String employeeStatus;
-    private Date joiningDt;
-    private Date probDtFrm;
-    private Date probDtTo;
-    private String supervisor;
-    private String allowLogin;
+//    private String durationOfEmployment; //permanent or contract
+//    private Date employmentStartDate; //permanent or contract
+//    private String employmentPlaceOfWork; //brief description of site
+//    
+//    //Section B: Working Hours and Rest days
+//    private String workingHoursDetails;
+//    private String numberOfWorkingDaysPerWeek;	
     
-    private Date created_dt;
-    private Date last_modified_dt;
-    private String created_by;
-    private String last_modified_by;
+	//Shangeri on June 6th, we are just going to upload the KET form as PDF and enter the leave numbers manually
+	//so those number can be used in the leave module. later on, come back and continue creating the fields for the other sections
+	// as commented out above
+	
+	//Section D: types of leaves
+	private int paidAnnualLeavePerYear;
+	private int paidOutpatientSickLeavePerYear;
+	private int paidHospitalisationLeavePerYear;
+	
+	private InputStream ketDocument;
+	
+    private Timestamp created_dt;
+    private Timestamp last_modified_dt;
     
-    
-	public Employee(String firstName, String lastName, String idNo) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.idNo = idNo;
-	}
-	public Employee(String employeeId, String firstName, String lastName, String gender, String maritalStatus, Date dob,
-			int age, String nationality, String pob, String identification, String idType, String idNo, String religion,
-			String race, String mobileNo, String email, String emergencyName, String emergencyRlp, String emergencyNo,
-			String employeeStatus, Date joiningDt, Date probDtFrm, Date probDtTo, String supervisor, String allowLogin,
-			Date created_dt, Date last_modified_dt, String created_by, String last_modified_by) {
+	/**
+	 * @param employeeId
+	 * @param idNo
+	 * @param paidAnnualLeavePerYear
+	 * @param paidOutpatientSickLeavePerYear
+	 * @param paidHospitalisationLeavePerYear
+	 * @param ketDocument
+	 * @param created_dt
+	 * @param last_modified_dt
+	 */
+	public Employee(String employeeId, String idNo, int paidAnnualLeavePerYear, int paidOutpatientSickLeavePerYear,
+			int paidHospitalisationLeavePerYear, InputStream ketDocument, Timestamp created_dt,
+			Timestamp last_modified_dt) {
 		super();
 		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.maritalStatus = maritalStatus;
-		this.dob = dob;
-		this.age = age;
-		this.nationality = nationality;
-		this.pob = pob;
-		this.identification = identification;
-		this.idType = idType;
 		this.idNo = idNo;
-		this.religion = religion;
-		this.race = race;
-		this.mobileNo = mobileNo;
-		this.email = email;
-		this.emergencyName = emergencyName;
-		this.emergencyRlp = emergencyRlp;
-		this.emergencyNo = emergencyNo;
-		this.employeeStatus = employeeStatus;
-		this.joiningDt = joiningDt;
-		this.probDtFrm = probDtFrm;
-		this.probDtTo = probDtTo;
-		this.supervisor = supervisor;
-		this.allowLogin = allowLogin;
+		this.paidAnnualLeavePerYear = paidAnnualLeavePerYear;
+		this.paidOutpatientSickLeavePerYear = paidOutpatientSickLeavePerYear;
+		this.paidHospitalisationLeavePerYear = paidHospitalisationLeavePerYear;
+		this.ketDocument = ketDocument;
 		this.created_dt = created_dt;
 		this.last_modified_dt = last_modified_dt;
-		this.created_by = created_by;
-		this.last_modified_by = last_modified_by;
 	}
+
+	/**
+	 * @return the employeeId
+	 */
 	public String getEmployeeId() {
 		return employeeId;
 	}
+
+	/**
+	 * @param employeeId the employeeId to set
+	 */
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getMaritalStatus() {
-		return maritalStatus;
-	}
-	public void setMaritalStatus(String maritalStatus) {
-		this.maritalStatus = maritalStatus;
-	}
-	public Date getDob() {
-		return dob;
-	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-	public String getPob() {
-		return pob;
-	}
-	public void setPob(String pob) {
-		this.pob = pob;
-	}
-	public String getIdentification() {
-		return identification;
-	}
-	public void setIdentification(String identification) {
-		this.identification = identification;
-	}
-	public String getIdType() {
-		return idType;
-	}
-	public void setIdType(String idType) {
-		this.idType = idType;
-	}
+
+	/**
+	 * @return the idNo
+	 */
 	public String getIdNo() {
 		return idNo;
 	}
+
+	/**
+	 * @param idNo the idNo to set
+	 */
 	public void setIdNo(String idNo) {
 		this.idNo = idNo;
 	}
-	public String getReligion() {
-		return religion;
+
+	/**
+	 * @return the paidAnnualLeavePerYear
+	 */
+	public int getPaidAnnualLeavePerYear() {
+		return paidAnnualLeavePerYear;
 	}
-	public void setReligion(String religion) {
-		this.religion = religion;
+
+	/**
+	 * @param paidAnnualLeavePerYear the paidAnnualLeavePerYear to set
+	 */
+	public void setPaidAnnualLeavePerYear(int paidAnnualLeavePerYear) {
+		this.paidAnnualLeavePerYear = paidAnnualLeavePerYear;
 	}
-	public String getRace() {
-		return race;
+
+	/**
+	 * @return the paidOutpatientSickLeavePerYear
+	 */
+	public int getPaidOutpatientSickLeavePerYear() {
+		return paidOutpatientSickLeavePerYear;
 	}
-	public void setRace(String race) {
-		this.race = race;
+
+	/**
+	 * @param paidOutpatientSickLeavePerYear the paidOutpatientSickLeavePerYear to set
+	 */
+	public void setPaidOutpatientSickLeavePerYear(int paidOutpatientSickLeavePerYear) {
+		this.paidOutpatientSickLeavePerYear = paidOutpatientSickLeavePerYear;
 	}
-	public String getMobileNo() {
-		return mobileNo;
+
+	/**
+	 * @return the paidHospitalisationLeavePerYear
+	 */
+	public int getPaidHospitalisationLeavePerYear() {
+		return paidHospitalisationLeavePerYear;
 	}
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
+
+	/**
+	 * @param paidHospitalisationLeavePerYear the paidHospitalisationLeavePerYear to set
+	 */
+	public void setPaidHospitalisationLeavePerYear(int paidHospitalisationLeavePerYear) {
+		this.paidHospitalisationLeavePerYear = paidHospitalisationLeavePerYear;
 	}
-	public String getEmail() {
-		return email;
+
+	/**
+	 * @return the ketDocument
+	 */
+	public InputStream getKetDocument() {
+		return ketDocument;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	/**
+	 * @param ketDocument the ketDocument to set
+	 */
+	public void setKetDocument(InputStream ketDocument) {
+		this.ketDocument = ketDocument;
 	}
-	public String getEmergencyName() {
-		return emergencyName;
-	}
-	public void setEmergencyName(String emergencyName) {
-		this.emergencyName = emergencyName;
-	}
-	public String getEmergencyRlp() {
-		return emergencyRlp;
-	}
-	public void setEmergencyRlp(String emergencyRlp) {
-		this.emergencyRlp = emergencyRlp;
-	}
-	public String getEmergencyNo() {
-		return emergencyNo;
-	}
-	public void setEmergencyNo(String emergencyNo) {
-		this.emergencyNo = emergencyNo;
-	}
-	public String getEmployeeStatus() {
-		return employeeStatus;
-	}
-	public void setEmployeeStatus(String employeeStatus) {
-		this.employeeStatus = employeeStatus;
-	}
-	public Date getJoiningDt() {
-		return joiningDt;
-	}
-	public void setJoiningDt(Date joiningDt) {
-		this.joiningDt = joiningDt;
-	}
-	public Date getProbDtFrm() {
-		return probDtFrm;
-	}
-	public void setProbDtFrm(Date probDtFrm) {
-		this.probDtFrm = probDtFrm;
-	}
-	public Date getProbDtTo() {
-		return probDtTo;
-	}
-	public void setProbDtTo(Date probDtTo) {
-		this.probDtTo = probDtTo;
-	}
-	public String getSupervisor() {
-		return supervisor;
-	}
-	public void setSupervisor(String supervisor) {
-		this.supervisor = supervisor;
-	}
-	public String getAllowLogin() {
-		return allowLogin;
-	}
-	public void setAllowLogin(String allowLogin) {
-		this.allowLogin = allowLogin;
-	}
-	public Date getCreated_dt() {
+
+	/**
+	 * @return the created_dt
+	 */
+	public Timestamp getCreated_dt() {
 		return created_dt;
 	}
-	public void setCreated_dt(Date created_dt) {
+
+	/**
+	 * @param created_dt the created_dt to set
+	 */
+	public void setCreated_dt(Timestamp created_dt) {
 		this.created_dt = created_dt;
 	}
-	public Date getLast_modified_dt() {
+
+	/**
+	 * @return the last_modified_dt
+	 */
+	public Timestamp getLast_modified_dt() {
 		return last_modified_dt;
 	}
-	public void setLast_modified_dt(Date last_modified_dt) {
+
+	/**
+	 * @param last_modified_dt the last_modified_dt to set
+	 */
+	public void setLast_modified_dt(Timestamp last_modified_dt) {
 		this.last_modified_dt = last_modified_dt;
 	}
-	public String getCreated_by() {
-		return created_by;
-	}
-	public void setCreated_by(String created_by) {
-		this.created_by = created_by;
-	}
-	public String getLast_modified_by() {
-		return last_modified_by;
-	}
-	public void setLast_modified_by(String last_modified_by) {
-		this.last_modified_by = last_modified_by;
-	}
-	
+
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", gender=" + gender + ", maritalStatus=" + maritalStatus + ", dob=" + dob + ", age=" + age
-				+ ", nationality=" + nationality + ", pob=" + pob + ", identification=" + identification + ", idType="
-				+ idType + ", idNo=" + idNo + ", religion=" + religion + ", race=" + race + ", mobileNo=" + mobileNo
-				+ ", email=" + email + ", emergencyName=" + emergencyName + ", emergencyRlp=" + emergencyRlp
-				+ ", emergencyNo=" + emergencyNo + ", employeeStatus=" + employeeStatus + ", joiningDt=" + joiningDt
-				+ ", probDtFrm=" + probDtFrm + ", probDtTo=" + probDtTo + ", supervisor=" + supervisor + ", allowLogin="
-				+ allowLogin + ", created_dt=" + created_dt + ", last_modified_dt=" + last_modified_dt + ", created_by="
-				+ created_by + ", last_modified_by=" + last_modified_by + "]";
+		return "Employee [employeeId=" + employeeId + ", idNo=" + idNo + ", paidAnnualLeavePerYear="
+				+ paidAnnualLeavePerYear + ", paidOutpatientSickLeavePerYear=" + paidOutpatientSickLeavePerYear
+				+ ", paidHospitalisationLeavePerYear=" + paidHospitalisationLeavePerYear + ", ketDocument="
+				+ ketDocument + ", created_dt=" + created_dt + ", last_modified_dt=" + last_modified_dt + "]";
 	}
     
-    
+	
 }

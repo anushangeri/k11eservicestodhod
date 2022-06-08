@@ -86,7 +86,7 @@
 <body>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor/Vehicle Management System</label> <br>
+			<label class="heading">Incident Management System</label> <br>
 			<b>How to use:</b> Please enter Client Details.
 			<%
 			//getting all sites

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -45,6 +46,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.google.gdata.util.common.base.StringUtil;
+
 import net.javatutorial.DAO.PayslipManagerDAO;
 import net.javatutorial.entity.AttendanceUploadFile;
 import net.javatutorial.entity.Payslip;
@@ -63,7 +66,6 @@ public class CreatePayslipServlet extends HttpServlet {
 
 		AttendanceUploadFile p = PayslipManagerDAO.retrieveAll();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat display = new SimpleDateFormat("dd-MMM-yyyy");
 		
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
@@ -86,7 +88,8 @@ public class CreatePayslipServlet extends HttpServlet {
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			// creating a Sheet object to retrieve the object
 			XSSFSheet sheet = wb.getSheetAt(0);
-			
+			sheet.setColumnWidth(1, 3766);
+			sheet.setColumnWidth(3, 3766);
 			//evaluating cell type   
 			FormulaEvaluator formulaEvaluator=wb.getCreationHelper().createFormulaEvaluator();  
 			//creating a list of payslips
@@ -184,8 +187,70 @@ public class CreatePayslipServlet extends HttpServlet {
 							jlogCPPay, tvDormCount, tvDormPay, mbikePay, bonusPay,
 							uniformAllowancePay, grossPay, advancedPay, deductionPay, balancePay,paymentsMade);
 					
+					//Now to add the actual days worked - the list of attendance at the bottom
+					//We will capture it in ArrayList<String> - ArrayList<Date, Day or Night Shift, Status>
+					//loop through the dates
+					System.out.println("starting to read attendance");
+					ArrayList<ArrayList<String>> attendance = new ArrayList<ArrayList<String>>();
+					int aCol = 8; //attendance starts from column 8
+					String checkColName = "";
+					while(aCol <= 69) {
+						ArrayList<String> a = new ArrayList<>();
+						if(aCol % 2 == 0) {
+							switch(formulaEvaluator.evaluateInCell(wb.getSheetAt(0).getRow(1).getCell(aCol)).getCellType())  
+							{  
+								case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
+								//getting the value of the cell as a number  
+								checkColName = wb.getSheetAt(0).getRow(1).getCell(aCol).getDateCellValue() + "";
+								if(!checkColName.equalsIgnoreCase("Day")) {
+									a.add(checkColName); //date
+									a.add("Day"); //Shift
+									String val = "0"; //type
+									switch(formulaEvaluator.evaluateInCell(row.getCell(aCol)).getCellType())  
+									{  
+										case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
+										//getting the value of the cell as a number  
+										val = row.getCell(aCol).getNumericCellValue() + "";
+										break;  
+										case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
+										//getting the value of the cell as a string
+										val =  row.getCell(aCol).getStringCellValue();
+										break;  
+									}
+									a.add(val);
+								}
+							}  
+						}
+						else{
+							switch(formulaEvaluator.evaluateInCell(wb.getSheetAt(0).getRow(1).getCell(aCol-1)).getCellType())  {
+								case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
+								//getting the value of the cell as a number  
+								checkColName = wb.getSheetAt(0).getRow(1).getCell(aCol-1).getDateCellValue() + "";
+								if(!checkColName.equalsIgnoreCase("Day")) {
+									a.add(checkColName); //date
+									a.add("Night"); //Shift
+									String val = "0"; //type
+									switch(formulaEvaluator.evaluateInCell(row.getCell(aCol)).getCellType())  
+									{  
+										case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
+										//getting the value of the cell as a number  
+										val = row.getCell(aCol).getNumericCellValue() + "";
+										break;  
+										case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
+										//getting the value of the cell as a string
+										val =  row.getCell(aCol).getStringCellValue();
+										break;  
+									} 
+									a.add(val);
+								}
+							}
+							
+						}
+						aCol++;
+						attendance.add(a);
+					}
 					//create the payslip
-					// create spreadsheet object
+					//create spreadsheet object
 					System.out.println("creating sheet: " + payslip.getName());
 					XSSFSheet spreadsheet = workbookEmailAttachment.createSheet(payslip.getName());
 					
@@ -580,6 +645,167 @@ public class CreatePayslipServlet extends HttpServlet {
 							i++;
 						}
 					}
+					
+					//start at row 25 to list out attendance
+					System.out.println("creating attendance content... ");
+				    XSSFRow attendanceRowHeader = spreadsheet.createRow(25);
+					Cell c1 = attendanceRowHeader.createCell(1);
+					c1.setCellValue("Date ");
+					c1.setCellStyle(contentColumn1);
+					
+					Cell c2 = attendanceRowHeader.createCell(2);
+					c2.setCellValue("Time In ");
+					c2.setCellStyle(contentColumn1);
+					
+					Cell c3 = attendanceRowHeader.createCell(3);
+					c3.setCellValue("Date Out ");
+					c3.setCellStyle(contentColumn1);
+					
+					Cell c4 = attendanceRowHeader.createCell(4);
+					c4.setCellValue("Time Out ");
+					c4.setCellStyle(contentColumn1);
+					
+					Cell c5 = attendanceRowHeader.createCell(5);
+					c5.setCellValue("Break Hours ");
+					c5.setCellStyle(contentColumn1);
+					
+					Cell c6 = attendanceRowHeader.createCell(6);
+					c6.setCellValue("Type ");
+					c6.setCellStyle(contentColumn1);
+
+					SimpleDateFormat formatter5 = new SimpleDateFormat("E MMM dd HH:mm:ss zzz yyyy"); 
+					 
+					int r = 26;
+					for(int e = 0; e <= attendance.size() - 1; e++) {
+						//even
+						ArrayList<String> aEven = attendance.get(e);
+						String dateEven = aEven.get(0) != null || !StringUtil.isEmpty(aEven.get(0)) ? aEven.get(0) : "";
+						String statusEven = aEven.get(2) != null || !StringUtil.isEmpty(aEven.get(2)) ? aEven.get(2) : "";
+						
+						e++;
+						
+						//odd
+						ArrayList<String> aOdd = attendance.get(e);
+						String dateOdd = aOdd.get(0) != null || !StringUtil.isEmpty(aOdd.get(0)) ? aOdd.get(0) : "";
+						String statusOdd = aOdd.get(2) != null || !StringUtil.isEmpty(aOdd.get(2)) ? aOdd.get(2) : "";
+						
+						if(dateEven.equals(dateOdd)) {
+							Date dateEvenDt = formatter5.parse(dateEven);
+							String d = display.format(dateEvenDt);
+							//if day shift and night shift is the same
+							if(statusEven.equals(statusOdd)) {
+								XSSFRow attendanceRow = spreadsheet.createRow(r);
+								c1 = attendanceRow.createCell(1);
+								c1.setCellValue(d);
+								
+								c2 = attendanceRow.createCell(2);
+								c2.setCellValue("8:00");
+								
+								c3 = attendanceRow.createCell(3);
+								c3.setCellValue(d);
+								
+								c4 = attendanceRow.createCell(4);
+								c4.setCellValue("20:00");
+								
+								c5 = attendanceRow.createCell(5);
+								c5.setCellValue("2.0 hr");
+								
+								c6 = attendanceRow.createCell(6);
+								c6.setCellValue(statusEven);
+
+							}
+							//if day shift 
+							else if(statusEven.equals("1") && !statusOdd.equals("1")) {
+								XSSFRow attendanceRow = spreadsheet.createRow(r);
+								c1 = attendanceRow.createCell(1);
+								c1.setCellValue(d);
+								
+								c2 = attendanceRow.createCell(2);
+								c2.setCellValue("8:00");
+								
+								c3 = attendanceRow.createCell(3);
+								c3.setCellValue(d);
+								
+								c4 = attendanceRow.createCell(4);
+								c4.setCellValue("20:00");
+								
+								c5 = attendanceRow.createCell(5);
+								c5.setCellValue("2.0 hr");
+								
+								c6 = attendanceRow.createCell(6);
+								c6.setCellValue(statusEven);
+
+							}
+							//if night shift 
+							else if(!statusEven.equals("1") && statusOdd.equals("1")) {
+								XSSFRow attendanceRow = spreadsheet.createRow(r);
+								c1 = attendanceRow.createCell(1);
+								c1.setCellValue(d);
+								
+								c2 = attendanceRow.createCell(2);
+								c2.setCellValue("20:00");
+								
+								c3 = attendanceRow.createCell(3);
+								c3.setCellValue(d);
+								
+								c4 = attendanceRow.createCell(4);
+								c4.setCellValue("8:00");
+								
+								c5 = attendanceRow.createCell(5);
+								c5.setCellValue("2.0 hr");
+								
+								c6 = attendanceRow.createCell(6);
+								c6.setCellValue(statusOdd);
+
+							}
+							//if day shift is X 
+							else if(statusEven.equals("X") && !statusOdd.equals("X") && !statusOdd.equals("1")) {
+								XSSFRow attendanceRow = spreadsheet.createRow(r);
+								c1 = attendanceRow.createCell(1);
+								c1.setCellValue(d);
+								
+								c2 = attendanceRow.createCell(2);
+								c2.setCellValue("20:00");
+								
+								c3 = attendanceRow.createCell(3);
+								c3.setCellValue(d);
+								
+								c4 = attendanceRow.createCell(4);
+								c4.setCellValue("8:00");
+								
+								c5 = attendanceRow.createCell(5);
+								c5.setCellValue("2.0 hr");
+								
+								c6 = attendanceRow.createCell(6);
+								c6.setCellValue(statusOdd);
+
+							}
+							//if night shift is X
+							else if(statusOdd.equals("X") && !statusEven.equals("X") && !statusEven.equals("1")) {
+								XSSFRow attendanceRow = spreadsheet.createRow(r);
+								c1 = attendanceRow.createCell(1);
+								c1.setCellValue(d);
+								
+								c2 = attendanceRow.createCell(2);
+								c2.setCellValue("8:00");
+								
+								c3 = attendanceRow.createCell(3);
+								c3.setCellValue(d);
+								
+								c4 = attendanceRow.createCell(4);
+								c4.setCellValue("20:00");
+								
+								c5 = attendanceRow.createCell(5);
+								c5.setCellValue("2.0 hr");
+								
+								c6 = attendanceRow.createCell(6);
+								c6.setCellValue(statusEven);
+
+							}
+							r++;
+						}
+						
+					}
 				}
 				
 			}
@@ -596,7 +822,7 @@ public class CreatePayslipServlet extends HttpServlet {
 			System.out.println("writing finished, sending email ...");
 			String to = "k11.sivalingam@gmail.com";// change accordingly
 			final String user = "Shangeri1994@k11.com.sg";// change accordingly
-			final String password = "Shanger!1994";// change accordingly
+			final String password = "EbSDkwr+Hvc7!U57";// change accordingly
 
 			Properties properties = System.getProperties();
 			properties.setProperty("mail.smtp.host", "smtp.k11.com.sg");

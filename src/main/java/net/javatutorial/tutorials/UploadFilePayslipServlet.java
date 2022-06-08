@@ -14,7 +14,7 @@ import javax.servlet.http.Part;
 import net.javatutorial.DAO.PayslipManagerDAO;
 import net.javatutorial.entity.AttendanceUploadFile;
 /**
- * Servlet implementation class AddSiteRecordServlet
+ * Servlet implementation class UploadFilePayslipServlet
  */
 @MultipartConfig
 public class UploadFilePayslipServlet extends HttpServlet {

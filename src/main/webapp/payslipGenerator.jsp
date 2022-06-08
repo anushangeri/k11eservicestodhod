@@ -20,17 +20,19 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Pay slip Management System</label> <br> 
-			<b>How to use:</b> Please upload attendance file.
+			<label class="heading">Payslip Management System</label> <br> 
+			<b>How to use:</b>Please upload attendance file, then click "Create Payslip"<br>
 			<%
 			 String message = (String) request.getAttribute("message");
 			 if (message != null && !StringUtils.isEmpty(message)) {
 			 %>
-				<label class="heading"><%=message%></label>
+				<p><%=message%></p><br>
 			<%
 			}
 			%>
@@ -38,34 +40,44 @@
 			 String didItWork = (String) request.getAttribute("didItWork");
 			 if (didItWork != null && !StringUtils.isEmpty(didItWork)) {
 			 %>
-				<label class="heading"><%=didItWork%></label>
+				<p><%=didItWork%></p><br>
 			<%
 			}
 			%>
 			<center>
 				<form action="uploadFilePayslip" enctype='multipart/form-data' method="post">
 					<div class="form-row">
-						<div class="form-group col-md-6">
+						<div class="form-group">
 							<label for="uploadFile">Upload File: </label> <input type="file"
 								class="form-control" name="uploadFile">
 						</div>
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Submit
-							Record</button>
-
-						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
-							role="button" aria-pressed="true">Back</a>
-						
+						<div class="form-group col-md-6">
+							<input type="submit" value="Submit File" class="btn btn-primary btn-lg active">
+						</div>
+						<div class="form-group col-md-6">
+							<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
+								role="button" aria-pressed="true">Back</a>
+						</div>
 					</div>
-					<br> <br>
 				</form>
-				<form action="createPayslip" method="post">
+				<br>
+				<form action="generateOfficerPayslip" method="post">
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Create Payslip</button>
+						<div class="form-group">
+							<input type="submit" value="Create Payslip" class="btn btn-primary btn-lg active"
+							    onclick="document.getElementById('loader').style.display = 'block';">
+						</div>
 					</div>
-					<br> <br>
 				</form>
+				<br>
+				<div id="loader"  style="display: none;">
+					<img src="1473.gif"/>
+					<label>Please Wait..generating payslips. If page times out, just go back to previous page and log in, DO NOT REFRESH as it will create duplicate payslips. 
+					It happens when there is a lot of payslips to generate. Programme is still running in the background with no issues.</label>
+				</div>
+						
 			</center>
 		</div>
 	</div>

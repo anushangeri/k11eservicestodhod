@@ -37,30 +37,35 @@
 			<label class="heading"><%=responseObj%> </label><br>
 		<%} %>
 	<center>
-	<form name="verifyLogin" action="verifyLogin" method="post">
+	<form name="verifyLogin" action="verifyLogin" method="post" >
 			<div class="form-row">
-				<div class="form-group col-md-6">
+				<div class="form-group">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
 						minlength="4" maxlength="9" required>
 				</div>
-				<div class="form-group col-md-4">
+			</div>
+			<div class="form-row">
+				<div class="form-group">
 					<label for="psw">Password</label> <input type="password" class="form-control" id="psw" 
 						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 						required>
-						
-						<input type="checkbox" onclick="showPassword()"><label for="showPassword">Show Password</label>
 				</div>
-				<div class="form-group col-md-6">
-					<input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
+			</div>
+			<div class="form-row">
+				<div class="form-check">
+					<input type="checkbox" value="showPassword" onclick="showPassword()"><label for="showPassword">Show Password</label>
 				</div>
+				<div class="form-check">
+					<input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember Me</label>
+				</div>
+			</div>
+			<div class="form-row">
+					<button type="submit" class="btn btn-primary btn-lg active"  onclick="lsRememberMe()">
+					Login</button>
 			</div>
 			<br>
-			<div class="form-row">
-				<button type="submit" class="btn btn-primary btn-lg active"  onclick="lsRememberMe()">
-				Login</button>
-			</div>
 		</form>
 	</center>
 	

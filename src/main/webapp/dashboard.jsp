@@ -137,6 +137,46 @@
 									</form>
 								</td>
 							</tr>
+							<tr>
+							 	<td>
+							 		Request for Leave
+							 	</td>
+							 	<td> 
+								 	<a href="addLeave.jsp" class="btn btn-warning btn-lg active" role="button"
+									aria-pressed="true">Request for Leave
+									</a>
+								</td>
+							</tr>
+							<tr>
+							 	<td>
+							 		View Leave Requests
+							 	</td>
+							 	<td> 
+								 	<a href="/viewLeave" class="btn btn-warning btn-lg active" role="button"
+									aria-pressed="true">View Leave Requests
+									</a>
+								</td>
+							</tr>					
+							<tr>
+								<td>
+							 		View Employee KET Record
+							 		<br><small>To view your KET</small>
+							 	</td>
+							 	<td> 
+								 	<a href="/viewEmp" class="btn btn-warning btn-lg active" role="button"
+											aria-pressed="true">View Employee KET</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+							 		View Payslips
+								 	<br><small>To view all payslip records</small>
+							 	</td>
+							 	<td> 
+								 	<a href="/viewOfficerPayslip" class="btn btn-warning btn-lg active" role="button"
+											aria-pressed="true">View Payslips</a>
+								</td>
+							</tr>
 							<!-- access control for K11 Admin/Management -->
 							<%if (usertype.equals("MANAGEMENT") || usertype.equals("ADMIN")) {%>
 								<%if (usertype.equals("ADMIN")) {%>
@@ -167,6 +207,15 @@
 													aria-pressed="true">Add Site</a>
 										</td>
 									</tr>
+									<tr>
+										<td>
+									 		Delete All Officer Payslip Records
+									 	</td>
+									 	<td> 
+										 	<a href="/deleteAllOfficerPayslips" class="btn btn-warning btn-lg active" role="button"
+													aria-pressed="true">Delete All Officer Payslips</a>
+										</td>
+									</tr>
 								<%} %>
 								<tr>
 									<td>
@@ -189,6 +238,7 @@
 								<tr>
 									<td>
 								 		Manage Occurrence Reports 
+								 		<br><small>To view and add occurences</small>
 								 	</td>
 								 	<td> 
 									 	<a href="/manageOccurrenceRecord" class="btn btn-warning btn-lg active" role="button"
@@ -198,6 +248,7 @@
 								<tr>
 									<td>
 								 		Manage Incident Reports 
+								 		<br><small>To view and add incidents</small>
 								 	</td>
 								 	<td> 
 									 	<a href="/manageIncidentRecord" class="btn btn-warning btn-lg active" role="button"
@@ -207,12 +258,34 @@
 								<tr>
 									<td>
 								 		Generate Payslip
+								 		<br><small>This will generate all the individual officer payslips for the month.</small>
 								 	</td>
 								 	<td> 
 									 	<a href="payslipGenerator.jsp" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">Manage Payslips</a>
+												aria-pressed="true">Generate Payslips</a>
 									</td>
 								</tr>
+								<tr>
+									<td>
+								 		Add Employee KET Record
+								 	</td>
+								 	<td> 
+									 	<a href="/addEmployee.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Add Employee KET</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+								 		Manage PWM Details
+								 		<br><small>Click to view PWM wage model or add a PWM record.This will be used in payslip 
+								 		generation.</small>
+								 	</td>
+								 	<td> 
+									 	<a href="retrieveAllPWMRecords" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Manage PWM Details</a>
+									</td>
+								</tr>
+								
 							<%} %>
 						</tbody>
 				</table>		

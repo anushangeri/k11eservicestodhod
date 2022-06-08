@@ -52,7 +52,7 @@
 <body>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor/Vehicle Management System</label> <br>
+			<label class="heading">Incident Management System</label> <br>
 			<b>How to use:</b> Please enter Client Details.
 			<%
 			Incident v = null;
@@ -153,90 +153,90 @@
 								readonly><%=((v == null) ? "" : v.getWhyIncidentOccurred())%></textarea>
 						</div>
 					</div>
-<!-- 					<div class="form-row"> -->
-<!-- 						<div class="form-group col-md-12"> -->
-<!-- 							<label for="declarationByOfficerOnDuty">The security -->
-<!-- 								officer involved is sober, free from medical issue(s) and -->
-<!-- 								fitness of state prior to the time of incident/ accident </label> -->
-<!-- 							<div class="form-check"> -->
-<!-- 								<div class="form-check form-check-inline"> -->
-<!-- 									<input class="form-check-input" type="radio" -->
-<!-- 										name="declarationByOfficerOnDuty" -->
-<!-- 										onclick="stateReasonDeclarationByOfficerOnDuty()" -->
-<!-- 										id="yesCheckDeclarationByOfficerOnDuty" value="Yes"> <label -->
-<!-- 										class="form-check-label" for="declarationByOfficerOnDuty">Yes</label> -->
-<!-- 								</div> -->
-<!-- 								<div class="form-check form-check-inline"> -->
-<!-- 									<input class="form-check-input" type="radio" -->
-<!-- 										onclick="stateReasonDeclarationByOfficerOnDuty()" -->
-<!-- 										name="declarationByOfficerOnDuty" -->
-<!-- 										id="noCheckDeclarationByOfficerOnDuty" value="No"> <label -->
-<!-- 										class="form-check-label" for="declarationByOfficerOnDuty">No</label> -->
-
-<!-- 									<textarea type="text" class="form-control" -->
-<!-- 										name="reasonDeclarationByOfficerOnDuty" -->
-<!-- 										id="reasonDeclarationByOfficerOnDuty" -->
-<!-- 										style="margin-left: 5px; display: none"></textarea> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-row"> -->
-<!-- 						<div class="form-group col-md-12"> -->
-<!-- 							<label for="declarationofSecurityImplications">Is there -->
-<!-- 								any security implication due to the incident?</label> -->
-<!-- 							<div class="form-check"> -->
-<!-- 								<div class="form-check form-check-inline"> -->
-<!-- 									<input class="form-check-input" type="radio" -->
-<!-- 										name="declarationofSecurityImplications" -->
-<!-- 										onclick="stateReasonDeclarationofSecurityImplications()" -->
-<!-- 										id="yesCheckDeclarationofSecurityImplications" value="Yes"> -->
-<!-- 									<label class="form-check-label" -->
-<!-- 										for="declarationofSecurityImplications">Yes</label> -->
-<!-- 								</div> -->
-<!-- 								<div class="form-check form-check-inline"> -->
-<!-- 									<input class="form-check-input" type="radio" -->
-<!-- 										onclick="stateReasonDeclarationofSecurityImplications()" -->
-<!-- 										name="declarationofSecurityImplications" -->
-<!-- 										id="noCheckDeclarationofSecurityImplications" value="No"> -->
-<!-- 									<label class="form-check-label" -->
-<!-- 										for="declarationofSecurityImplications">No</label> -->
-
-<!-- 									<textarea type="text" class="form-control" -->
-<!-- 										name="reasonDeclarationofSecurityImplications" -->
-<!-- 										id="reasonDeclarationofSecurityImplications" -->
-<!-- 										style="margin-left: 5px; display: none"></textarea> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="files">Select files:</label> 
-							<%
-								for(InputStream s: v.getImages()){
-									ByteArrayOutputStream os = new ByteArrayOutputStream();
-									 
-							        byte[] buffer = new byte[1024];
-							        int len;
-							 
-							        // read bytes from the input stream and store them in the buffer
-							        while ((len = s.read(buffer)) != -1)
-							        {
-							            // write bytes from the buffer into the output stream
-							            os.write(buffer, 0, len);
-							        }
-							 
-							        byte [] byteArray = os.toByteArray();
-							%>
-									<input type="text" onload="handleFileSelect()" id="test" value=<%=s%>>
-									<img src="data:image/png;base64,<%=byteArray %>">
-									<div id="display"></div>
-							<%
-								}
-							%>
-							 <div id="display"></div>
+						<div class="form-group col-md-12">
+							<label for="declarationByOfficerOnDuty">The security
+								officer involved is sober, free from medical issue(s) and
+								fitness of state prior to the time of incident/ accident </label>
+							<div class="form-check">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										name="declarationByOfficerOnDuty"
+										onclick="stateReasonDeclarationByOfficerOnDuty()"
+										id="yesCheckDeclarationByOfficerOnDuty" value="Yes"> <label
+										class="form-check-label" for="declarationByOfficerOnDuty">Yes</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										onclick="stateReasonDeclarationByOfficerOnDuty()"
+										name="declarationByOfficerOnDuty"
+										id="noCheckDeclarationByOfficerOnDuty" value="No"> <label
+										class="form-check-label" for="declarationByOfficerOnDuty">No</label>
+
+									<textarea type="text" class="form-control"
+										name="reasonDeclarationByOfficerOnDuty"
+										id="reasonDeclarationByOfficerOnDuty"
+										style="margin-left: 5px; display: none"></textarea>
+								</div>
+							</div>
 						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="declarationofSecurityImplications">Is there
+								any security implication due to the incident?</label>
+							<div class="form-check">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										name="declarationofSecurityImplications"
+										onclick="stateReasonDeclarationofSecurityImplications()"
+										id="yesCheckDeclarationofSecurityImplications" value="Yes">
+									<label class="form-check-label"
+										for="declarationofSecurityImplications">Yes</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										onclick="stateReasonDeclarationofSecurityImplications()"
+										name="declarationofSecurityImplications"
+										id="noCheckDeclarationofSecurityImplications" value="No">
+									<label class="form-check-label"
+										for="declarationofSecurityImplications">No</label>
+
+									<textarea type="text" class="form-control"
+										name="reasonDeclarationofSecurityImplications"
+										id="reasonDeclarationofSecurityImplications"
+										style="margin-left: 5px; display: none"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+<!-- 						<div class="form-group col-md-6"> -->
+<!-- 							<label for="files">Select files:</label>  -->
+<%-- 							<% --%>
+// 								for(InputStream s: v.getImages()){
+// 									ByteArrayOutputStream os = new ByteArrayOutputStream();
+									 
+// 							        byte[] buffer = new byte[1024];
+// 							        int len;
+							 
+// 							        // read bytes from the input stream and store them in the buffer
+// 							        while ((len = s.read(buffer)) != -1)
+// 							        {
+// 							            // write bytes from the buffer into the output stream
+// 							            os.write(buffer, 0, len);
+// 							        }
+							 
+// 							        byte [] byteArray = os.toByteArray();
+<%-- 							%> --%>
+<%-- 									<input type="text" onload="handleFileSelect()" id="test" value=<%=s%>> --%>
+<%-- 									<img src="data:image/png;base64,<%=byteArray %>"> --%>
+<!-- 									<div id="display"></div> -->
+<%-- 							<% --%>
+// 								}
+<%-- 							%> --%>
+<!-- 							 <div id="display"></div> -->
+<!-- 						</div> -->
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
