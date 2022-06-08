@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.aspose.cells.PageOrientationType;
 import com.aspose.cells.PageSetup;
+import com.aspose.cells.PdfSaveOptions;
 import com.aspose.cells.SaveFormat;
 import com.aspose.cells.Workbook;
 
@@ -41,15 +41,20 @@ public class DownloadOfficerPayslipServlet extends HttpServlet {
         Workbook workbook;
 		try {
 			workbook = new Workbook(inputStream);
+	        // Create and initialize an instance of PdfSaveOptions
+	        PdfSaveOptions saveOptions = new PdfSaveOptions(SaveFormat.PDF);
+	        // Set AllColumnsInOnePagePerSheet to true
+	        saveOptions.setOnePagePerSheet(true);
 			PageSetup pageSetup = workbook.getWorksheets().get(0).getPageSetup();
-			pageSetup.setOrientation(PageOrientationType.LANDSCAPE);
+			//pageSetup.setOrientation(PageOrientationType.LANDSCAPE);
+			pageSetup.setFitToPagesWide(1);
+			pageSetup.setFitToPagesTall(0); 
 			 // Save the document in PDF format
-	        workbook.save("Excel-to-PDF.pdf", SaveFormat.PDF);
+	        workbook.save("Excel-to-PDF.pdf", saveOptions);
 	        
 	        //Save to byte array output stream
 	        ByteArrayOutputStream baout = new ByteArrayOutputStream();
 	        workbook.save(baout, SaveFormat.PDF);
-
 	        //Get the byte[] in which output pdf is saved
 	        byte[] btsPdf = baout.toByteArray();
 	        output.write(btsPdf, 0, btsPdf.length);
