@@ -93,18 +93,19 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	
 	public String checkCellType(Cell c, FormulaEvaluator formulaEvaluator) {
 		String val = "0.0";
-		switch(formulaEvaluator.evaluateInCell(c).getCellType())  
-		{  
-			case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
-			//getting the value of the cell as a number  
-			val = c.getNumericCellValue() + "";
-			break;  
-			case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
-			//getting the value of the cell as a string
-			val =  c.getStringCellValue();
-			break;  
-		} 
-		
+		if(c != null) {
+			switch(formulaEvaluator.evaluateInCell(c).getCellType())  
+			{  
+				case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
+				//getting the value of the cell as a number  
+				val = c.getNumericCellValue() + "";
+				break;  
+				case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
+				//getting the value of the cell as a string
+				val =  c.getStringCellValue();
+				break;  
+			} 
+		}
 		return val != null || !StringUtil.isEmpty(val) ? val.trim() : "0.0";
 	}
 
@@ -112,8 +113,7 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	    
 	    executor.submit(new Runnable(){
 	         public void run() {
-	        	 AttendanceUploadFile p = PayslipManagerDAO.retrieveAll();
-	     		
+	        	AttendanceUploadFile p = PayslipManagerDAO.retrieveAll();
 	     		SimpleDateFormat display = new SimpleDateFormat("dd-MMM-yyyy");
 	     		SimpleDateFormat formatter5 = new SimpleDateFormat("E MMM dd HH:mm:ss zzz yyyy"); 
 	     		SimpleDateFormat monthYearDisplay = new SimpleDateFormat("MMM-yy");
@@ -1571,6 +1571,8 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
      				message = message + " check logs: " + ex.toString();
      				ex.printStackTrace();
      			}
+     			
+     			PayslipManagerDAO.deleteAll();
 	         }
 	    });
 	}
