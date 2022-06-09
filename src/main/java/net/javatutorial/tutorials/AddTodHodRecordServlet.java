@@ -32,6 +32,7 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		String siteName = (StringUtils.isEmpty(request.getParameter("siteName"))) ? "" : request.getParameter("siteName").trim();
 		String shift = (StringUtils.isEmpty(request.getParameter("shift"))) ? "" : request.getParameter("shift").trim();
 		String timeInDt = (String) request.getParameter("timeInDt");
+		String remarks = (StringUtils.isEmpty(request.getParameter("remarks"))) ? "" : request.getParameter("remarks").trim();
 		
 		Timestamp timestamp = null;
 		try {
@@ -42,7 +43,7 @@ public class AddTodHodRecordServlet extends HttpServlet {
 		    // look the origin of excption 
 		}
 				
-		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp);
+		TodHodRecord v = new TodHodRecord( recordId, officerName, officerIdNo, siteName, shift,  timestamp, remarks);
 
 		String message = TodHodManagerDAO.addTodHod(v);
 		

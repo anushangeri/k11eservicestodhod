@@ -123,6 +123,12 @@ $(function() {
 					          </span>  
 					        </div> 
 				        </div> 
+				        <div class="form-group col-md-6">
+							<label for="remarks">Remarks: </label> <input type="text"
+								class="form-control" name="remarks"
+								oninput="this.value = this.value.toUpperCase()" 
+								value="<%=((v == null) ? "" : v.getRemark())%>" >
+						</div>
 					</div>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit

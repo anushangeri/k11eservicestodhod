@@ -10,6 +10,7 @@ public class TodHodRecord {
     private String shift;
     private Timestamp timeInDt;
     private Timestamp timeOutDt;
+    private String remark;
     
     public TodHodRecord(String recordId, String officerName, String officerIdNo, String siteName, String shift,
 			Timestamp timeInDt) {
@@ -33,6 +34,66 @@ public class TodHodRecord {
 		this.timeInDt = timeInDt;
 		this.timeOutDt = timeOutDt;
 	}
+	
+	
+	/**
+	 * @param recordId
+	 * @param officerName
+	 * @param officerIdNo
+	 * @param siteName
+	 * @param shift
+	 * @param timeInDt
+	 * @param timeOutDt
+	 * @param remark
+	 */
+	public TodHodRecord(String recordId, String officerName, String officerIdNo, String siteName, String shift,
+			Timestamp timeInDt, Timestamp timeOutDt, String remark) {
+		super();
+		this.recordId = recordId;
+		this.officerName = officerName;
+		this.officerIdNo = officerIdNo;
+		this.siteName = siteName;
+		this.shift = shift;
+		this.timeInDt = timeInDt;
+		this.timeOutDt = timeOutDt;
+		this.remark = remark;
+	}
+
+	/**
+	 * @param recordId
+	 * @param officerName
+	 * @param officerIdNo
+	 * @param siteName
+	 * @param shift
+	 * @param timeInDt
+	 * @param remark
+	 */
+	public TodHodRecord(String recordId, String officerName, String officerIdNo, String siteName, String shift,
+			Timestamp timeInDt, String remark) {
+		super();
+		this.recordId = recordId;
+		this.officerName = officerName;
+		this.officerIdNo = officerIdNo;
+		this.siteName = siteName;
+		this.shift = shift;
+		this.timeInDt = timeInDt;
+		this.remark = remark;
+	}
+
+	/**
+	 * @return the remark
+	 */
+	public String getRemark() {
+		return remark;
+	}
+
+	/**
+	 * @param remark the remark to set
+	 */
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	/**
 	 * @return the recordId
 	 */

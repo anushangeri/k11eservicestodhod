@@ -23,6 +23,8 @@ public class UpdateTodHodTimeOutRecordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String recordId = (String) request.getParameter("recordId");
+		String remarks = (String) request.getParameter("remarks");
+		String updateRemark = (String) request.getParameter("updateRemark");
 		TodHodRecord v = null;
 		String message = "Record ID of TOD/HOD is unavailable, please add TOD/HOD record.";
 		if(recordId != null && !StringUtils.isEmpty(recordId)) {
@@ -30,6 +32,15 @@ public class UpdateTodHodTimeOutRecordServlet extends HttpServlet {
 			v = TodHodManagerDAO.retrieveByRecordId(recordId);
 			//update TOD/HOD object with current system time as time out
 			message = TodHodManagerDAO.updateTodHodDetails(v);
+			
+		}
+		if(recordId != null && !StringUtils.isEmpty(recordId) && updateRemark != null 
+				&& !StringUtils.isEmpty(updateRemark) && updateRemark.equalsIgnoreCase("yes")) {
+			//retrieve TOD/HOD object
+			v = TodHodManagerDAO.retrieveByRecordId(recordId);
+			//update TOD/HOD object with remark
+			v.setRemark(remarks);
+			message = TodHodManagerDAO.updateTodHodRemark(v);
 			
 		}
 		request.setAttribute("message", message);

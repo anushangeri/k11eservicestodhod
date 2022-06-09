@@ -25,9 +25,9 @@ public class TodHodManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO TODHOD "
-	        		+ "(RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT)" + 
+	        		+ "(RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, REMARKS)" + 
 	        		"  VALUES ('" +v.getRecordId()+ "','" +v.getOfficerName()+ "','" +v.getOfficerIdNo()+ "','" 
-	        		 +v.getSiteName()+ "','" +v.getShift()+ "','" +v.getTimeInDt()+ "');");
+	        		 +v.getSiteName()+ "','" +v.getShift()+ "','" +v.getTimeInDt()+ "','" + v.getRemark() + "');");
 	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID = '" +v.getRecordId()+ "';");
 	        while (rs.next()) {
 	        	message = "successfully added record";
@@ -82,7 +82,38 @@ public class TodHodManagerDAO {
 		
 		return message;
 	}
-	
+	public static String updateTodHodRemark(TodHodRecord v){
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			stmt = connection.createStatement();
+
+	        stmt.executeUpdate("SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE TODHOD "
+	        		+  "SET REMARKS = '" + v.getRemark() + "'"
+	        		+ "   WHERE RECORD_ID = '" + v.getRecordId() + "';");
+	        rs = stmt.executeQuery("SELECT OFFICER_NAME FROM TODHOD WHERE RECORD_ID ='" + v.getRecordId() +"';");
+	        while (rs.next()) {
+	        	message = "Successfully updated TOD / HOD record";
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		
+		return message;
+	}
 	public static int getNextVal(){
 		Connection connection = null;
 		ResultSet rs = null;
@@ -123,7 +154,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n"
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS \r\n"
             		+ "FROM TODHOD ORDER BY TIME_IN_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
@@ -135,7 +166,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -154,7 +186,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  \r\n" + 
             		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' ORDER BY TIME_IN_DT DESC;";
             pstmt = connection.prepareStatement(sql);
@@ -167,7 +199,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -186,7 +219,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT \r\n" + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  \r\n" + 
             		" FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' AND TIME_OUT_DT IS NULL"
     				+ " ORDER BY TIME_IN_DT DESC LIMIT 1;";
@@ -200,7 +233,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -219,7 +253,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  " + 
             		"FROM TODHOD "
     				+ " WHERE TIME_IN_DT >='" + from + "' "
     				+ " AND TIME_IN_DT <='" + to + "' "
@@ -235,7 +269,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -254,7 +289,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  " + 
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
     				+ " AND TIME_IN_DT >='" + from + "' "
@@ -271,7 +306,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -318,7 +354,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  " + 
             		"FROM TODHOD "
     				+ " WHERE SITE_NAME ='" + site + "' "
     				+ " AND OFFICER_IDNO ='" + idNo + "' "
@@ -336,7 +372,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -355,7 +392,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS  " + 
             		"FROM TODHOD "
             		+ " WHERE OFFICER_IDNO ='" + officerIdNo + "' "
     				+ " AND TIME_IN_DT >='" + from + "' "
@@ -372,7 +409,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -391,7 +429,7 @@ public class TodHodManagerDAO {
         ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT " + 
+            String sql = "SELECT RECORD_ID, OFFICER_NAME, OFFICER_IDNO, SITE_NAME, SHIFT, TIME_IN_DT, TIME_OUT_DT, REMARKS " + 
             		"FROM TODHOD "
             		+ " WHERE RECORD_ID ='" + recordId + "' "
     				+ " LIMIT 1 ; ";
@@ -405,7 +443,8 @@ public class TodHodManagerDAO {
             			rs.getString(4),
             			rs.getString(5),
             			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
+            			rs.getTimestamp(7),
+            			rs.getString(8));
                 vList.add(v);
             }
         } catch (Exception e) {
@@ -416,12 +455,11 @@ public class TodHodManagerDAO {
         return v;
     }
 	
-	public static TodHodRecord retrieveShiftCountByIdNo(String officerIdNo, Timestamp from, Timestamp to) {
+	public static HashMap<String, Integer> retrieveShiftCountByIdNo(String officerIdNo, Timestamp from, Timestamp to) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        TodHodRecord v = null;
-        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
+        HashMap<String, Integer> vList = new HashMap<String, Integer>();
         try {
         	connection = Main.getConnection();
             String sql = "SELECT SHIFT, COUNT(*) " + 
@@ -434,21 +472,15 @@ public class TodHodManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	v = new TodHodRecord(rs.getString(1), 
-            			rs.getString(2),
-            			rs.getString(3),
-            			rs.getString(4),
-            			rs.getString(5),
-            			rs.getTimestamp(6),
-            			rs.getTimestamp(7));
-                vList.add(v);
+            	vList.put(rs.getString(1), 
+            			rs.getInt(2));
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
         	Main.close(connection, pstmt, rs);
         }
-        return v;
+        return vList;
     }
 	
 	public static int retrieveDaysWorkedByIdNo(String officerIdNo, String from, String to) {
@@ -456,7 +488,6 @@ public class TodHodManagerDAO {
         Connection connection = null;
         ResultSet rs = null;
         int v = 0;
-        ArrayList<TodHodRecord> vList = new ArrayList<TodHodRecord>();
         try {
         	connection = Main.getConnection();
             String sql = "SELECT COUNT(*) " + 

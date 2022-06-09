@@ -80,6 +80,9 @@
 			});
 		});
 	});
+	function showDiv(divId, element) {
+		document.getElementById(divId).style.display = element.value == "Y" ? 'block': 'none';
+	}
 </script>
 </head>
 <body>
@@ -117,6 +120,7 @@
 					<th class="th-sm">TOD Time</th>
 					<th class="th-sm">HOD Time</th>
 					<th class="th-sm">Hours Worked</th>
+					<th class="th-sm">Remarks</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -162,6 +166,26 @@
 					}
 					%>
 					<td style="color:<%= differenceInHours <= 12 && differenceInHours > 0 ? "green":"red"%>;"><%=differenceInHours%></td>
+					<td>
+						<p><%=(v.getRemark() != null ? v.getRemark() : "No Remarks Yet")%></p>
+						<select id="ddlRemarks"
+						onchange="showDiv('dvRemarks<%=v.getRecordId()%>', this)">
+							<option value="N">No Edit Remarks</option>
+							<option value="Y">Yes Edit Remarks</option>
+					</select>
+						<hr />
+						<div id="dvRemarks<%=v.getRecordId()%>" style="display: none">
+							<form method="POST" action="/updateTodHodRecord">
+								<input type="hidden" id="recordId" name="recordId"
+								value="<%=v.getRecordId()%>">
+								<input type="hidden" id="updateRemark" name="updateRemark"
+									value="yes"> <input type="text"
+									class="form-control" name="remarks"
+									oninput="this.value = this.value.toUpperCase()"> <input
+									type="submit" name="Submit" value="Update">
+							</form>
+						</div>
+					</td>
 				</tr>
 				<%
 				}

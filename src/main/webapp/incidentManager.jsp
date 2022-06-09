@@ -87,13 +87,13 @@ $(document).ready(function() {
 							
 							<th class="th-sm" style="display:none;">dateOfIncident</th>
 							<th class="th-sm" style="display:none;">timeOfIncident</th>
-							<th class="th-sm">dateOfIncidentReported</th>
+							<th class="th-sm">Date of Incident Reported</th>
 							
-							<th class="th-sm" style="display:none;">partiesInvolved</th>
-							<th class="th-sm">incidentCategory</th>
+							<th class="th-sm">Parties Involved</th>
+							<th class="th-sm">Incident Category</th>
 							
 							<th class="th-sm" style="display:none;">howIncidentOccurred</th>
-							<th class="th-sm">whatIncidentOccurred</th>
+							<th class="th-sm">What Incident Occurred</th>
 							<th class="th-sm" style="display:none;">whyIncidentOccurred</th>
 							
 							<th class="th-sm" style="display:none;">declarationByOfficerOnDuty</th>
@@ -129,7 +129,7 @@ $(document).ready(function() {
 									<td style="display:none;"><%=v.getDateOfIncident()%></td>
 									<td style="display:none;"><%=v.getTimeOfIncident()%></td>
 									<td><%=v.getDateOfIncidentReported()%></td>
-									<td style="display:none;"><%=v.getPartiesInvolved()%></td>
+									<td><%=v.getPartiesInvolved()%></td>
 									<td><%=v.getIncidentCategory()%></td>
 									<td style="display:none;"><%=v.getHowIncidentOccurred()%></td>
 									<td><%=v.getWhatIncidentOccurred()%></td>
