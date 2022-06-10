@@ -148,23 +148,29 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	     				//check PWM
 	     				String basicSalaryPerMonth = checkCellType(row.getCell(41), formulaEvaluator);
 	     				String securityGrade = checkCellType(row.getCell(47), formulaEvaluator);
+	     				String empStatus = checkCellType(row.getCell(44), formulaEvaluator);
 	     				boolean generatePayslip = false;
 	     				//only make payslip if there is a ID in column BA (53)
 	     				PWMDetails pwm = PWMManagerDAO.retrieveByYearAndGrade(securityGrade);
-	     				if(pwm != null) {
-	     					if(Pattern.matches(decimalPattern, basicSalaryPerMonth) && Double.parseDouble(basicSalaryPerMonth) >= pwm.getPwmWages()) {
-	     						generatePayslip = true;
-	     						
-	     					}
+	     				if(empStatus.toUpperCase().contains("PERM")) {
+		     				if(pwm != null) {
+		     					if(Pattern.matches(decimalPattern, basicSalaryPerMonth) && Double.parseDouble(basicSalaryPerMonth) >= pwm.getPwmWages()) {
+		     						generatePayslip = true;
+		     						
+		     					}
+		     				}
+	     				}
+	     				else {
+	     					//non-perm staff no need to check PWM status
+	     					generatePayslip = true;
 	     				}
 	     				if(idNo != null && !StringUtils.isEmpty(idNo)
-	     						&& !idNo.equalsIgnoreCase("Emp ID") && !idNo.equalsIgnoreCase("0.0") && generatePayslip) {
+	     						&& !idNo.equalsIgnoreCase("Emp ID") && !(idNo.equalsIgnoreCase("0.0") || idNo.equalsIgnoreCase("Relief")) && generatePayslip) {
 	     					
 	     					String name = checkCellType(row.getCell(53), formulaEvaluator);
 	     					
 	     					
 	     					String payslipMonth = " ";
-	     					String empStatus = checkCellType(row.getCell(44), formulaEvaluator);
 	     					String salaryDate = " ";
 	     					String otHours = checkCellType(row.getCell(35), formulaEvaluator);
 	     					Date payslipMonthDt = null;
