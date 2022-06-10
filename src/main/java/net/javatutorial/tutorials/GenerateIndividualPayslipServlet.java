@@ -76,7 +76,7 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("message", "Payslip is being generated, check back in a 5 minutes.");
+		request.setAttribute("message", "<b>Payslip is being generated, check back in a 5 minutes.<b>");
 		RequestDispatcher rd = request.getRequestDispatcher("payslipGenerator.jsp");
 		rd.forward(request, response);
 	}

@@ -36,14 +36,15 @@
 			<%
 			}
 			%>
-			<%
-			 String didItWork = (String) request.getAttribute("didItWork");
-			 if (didItWork != null && !StringUtils.isEmpty(didItWork)) {
-			 %>
-				<p><%=didItWork%></p><br>
-			<%
-			}
-			%>
+			<br>
+			<small>
+			Things to note for input file:  <br>
+			- use 123 - no formulars <br>
+			- convert all data type of columns to "general" format  - don't worry if date is a number  <br>
+			- remember to remove backslash from "employee name"  <br>
+			<br>
+			*An email will be sent to k11.sivalingam@gmail.com of any errors or PWM non-compliance is caught <br>
+			</small>
 			<center>
 				<form action="uploadFilePayslip" enctype='multipart/form-data' method="post">
 					<div class="form-row">
