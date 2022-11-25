@@ -75,7 +75,7 @@
 		var noSelected = document
 				.getElementById("noCheckDeclarationofSecurityImplications");
 		var text = document.getElementById("reasonDeclarationofSecurityImplications");
-		if (noSelected.checked == true && yesSelected.checked == false) {
+		if (yesSelected.checked == true && noSelected.checked == false) {
 			text.style.display = "block";
 		} else {
 			text.style.display = "none";
@@ -240,7 +240,7 @@
 									<input class="form-check-input" type="radio"
 										name="declarationByOfficerOnDuty"
 										onclick="stateReasonDeclarationByOfficerOnDuty()"
-										id="yesCheckDeclarationByOfficerOnDuty" value="Yes"> <label
+										id="yesCheckDeclarationByOfficerOnDuty" value="Yes" checked> <label
 										class="form-check-label" for="declarationByOfficerOnDuty">Yes</label>
 								</div>
 								<div class="form-check form-check-inline">
@@ -275,7 +275,7 @@
 									<input class="form-check-input" type="radio"
 										onclick="stateReasonDeclarationofSecurityImplications()"
 										name="declarationofSecurityImplications"
-										id="noCheckDeclarationofSecurityImplications" value="No">
+										id="noCheckDeclarationofSecurityImplications" value="No" checked>
 									<label class="form-check-label"
 										for="declarationofSecurityImplications">No</label>
 

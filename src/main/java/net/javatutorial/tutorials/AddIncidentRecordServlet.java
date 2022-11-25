@@ -1,6 +1,5 @@
 package net.javatutorial.tutorials;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -11,15 +10,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
-import org.apache.poi.util.IOUtils;
 
 import net.javatutorial.DAO.IncidentManagerDAO;
 import net.javatutorial.entity.Incident;
@@ -83,8 +79,8 @@ public class AddIncidentRecordServlet extends HttpServlet {
 		
 		String message = IncidentManagerDAO.addIncident(i);
 		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
-        rd.forward(request, response);
+		// Redirect to view incident servlet to query all the incidents again.
+		response.sendRedirect("/manageIncidentRecord");
 	}
 	@Override
 	public void init() throws ServletException {

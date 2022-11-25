@@ -163,20 +163,20 @@
 									<input class="form-check-input" type="radio"
 										name="declarationByOfficerOnDuty"
 										onclick="stateReasonDeclarationByOfficerOnDuty()"
-										id="yesCheckDeclarationByOfficerOnDuty" value="Yes"> <label
+										id="yesCheckDeclarationByOfficerOnDuty" value="Yes" <%=((v != null) && v.getDeclarationByOfficerOnDuty().equals("Yes")  ? "checked" : "")%> readonly> <label
 										class="form-check-label" for="declarationByOfficerOnDuty">Yes</label>
 								</div>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="radio"
 										onclick="stateReasonDeclarationByOfficerOnDuty()"
 										name="declarationByOfficerOnDuty"
-										id="noCheckDeclarationByOfficerOnDuty" value="No"> <label
-										class="form-check-label" for="declarationByOfficerOnDuty">No</label>
+										id="noCheckDeclarationByOfficerOnDuty" value="No" <%=((v != null) && !(v.getDeclarationByOfficerOnDuty().equals("Yes"))  ? "checked" : "")%> readonly> <label
+										class="form-check-label" for="declarationByOfficerOnDuty" >No</label>
 
 									<textarea type="text" class="form-control"
 										name="reasonDeclarationByOfficerOnDuty"
-										id="reasonDeclarationByOfficerOnDuty"
-										style="margin-left: 5px; display: none"></textarea>
+										id="reasonDeclarationByOfficerOnDuty" 
+										style="margin-left: 5px;" readonly><%=((v != null) ? v.getDeclarationByOfficerOnDuty() : "")%></textarea>
 								</div>
 							</div>
 						</div>
@@ -190,7 +190,7 @@
 									<input class="form-check-input" type="radio"
 										name="declarationofSecurityImplications"
 										onclick="stateReasonDeclarationofSecurityImplications()"
-										id="yesCheckDeclarationofSecurityImplications" value="Yes">
+										id="yesCheckDeclarationofSecurityImplications" value="Yes" <%=((v != null) && v.getDeclarationofSecurityImplications().equals("Yes")  ? "checked" : "")%> readonly>
 									<label class="form-check-label"
 										for="declarationofSecurityImplications">Yes</label>
 								</div>
@@ -198,14 +198,14 @@
 									<input class="form-check-input" type="radio"
 										onclick="stateReasonDeclarationofSecurityImplications()"
 										name="declarationofSecurityImplications"
-										id="noCheckDeclarationofSecurityImplications" value="No">
+										id="noCheckDeclarationofSecurityImplications" value="No" <%=((v != null) && !(v.getDeclarationofSecurityImplications().equals("Yes"))  ? "checked" : "")%> readonly>
 									<label class="form-check-label"
 										for="declarationofSecurityImplications">No</label>
 
 									<textarea type="text" class="form-control"
 										name="reasonDeclarationofSecurityImplications"
 										id="reasonDeclarationofSecurityImplications"
-										style="margin-left: 5px; display: none"></textarea>
+										style="margin-left: 5px;" readonly><%=((v != null) ? v.getDeclarationofSecurityImplications() : "")%></textarea>
 								</div>
 							</div>
 						</div>
@@ -244,21 +244,19 @@
 								Officer on Duty:</label> <span> By entering your name, it is
 								equivalent to signature to sign off this report</span> <input
 								type="text" class="form-control" name="signatureOfOfficerOnDuty"
-								oninput="this.value = this.value.toUpperCase()" required>
+								oninput="this.value = this.value.toUpperCase()"  value=<%=((v != null) ? v.getSignatureOfOfficerOnDuty() : "")%> readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="signatureOfOpsManagerOnDuty">Signature of Ops
 								Manager:</label> <span> By entering your name, it is equivalent
 								to signature to sign off this report</span> <input type="text"
 								class="form-control" name="signatureOfOpsManagerOnDuty"
-								oninput="this.value = this.value.toUpperCase()">
+								oninput="this.value = this.value.toUpperCase()" value=<%=((v != null) ? v.getSignatureOfOpsManagerOnDuty() : "")%> readonly>
 						</div>
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Submit
-							Record</button>
 
-						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
+						<a href="/manageIncidentRecord" class="btn btn-warning btn-lg active"
 							role="button" aria-pressed="true">Back</a>
 					</div>
 					<br> <br>
