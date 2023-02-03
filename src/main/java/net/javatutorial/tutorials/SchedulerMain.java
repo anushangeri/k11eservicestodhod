@@ -19,7 +19,7 @@ public class SchedulerMain {
 		// check to see if the given date really is the last day of this month
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
-		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
+		if(cal.get(Calendar.DAY_OF_MONTH) != lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do todhod db clean up");
 			String line;
 			try 
