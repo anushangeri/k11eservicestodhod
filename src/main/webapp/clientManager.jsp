@@ -40,7 +40,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -51,7 +51,8 @@
 					customize : function(xlsx) {
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
-				} ]
+				} ],
+				"order" : [ [ 0, 'desc' ] ]
 			});
 		});
 	});
