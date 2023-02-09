@@ -65,7 +65,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7 ],
+						columns : [ 0, 1, 2, 3, 4, 5, 6],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -77,7 +77,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order" : [ [ 6, 'desc' ] ]
+				"order" : [ [ 0, 'desc' ] ]
 			});
 		});
 </script>
