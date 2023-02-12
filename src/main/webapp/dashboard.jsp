@@ -177,6 +177,16 @@
 											aria-pressed="true">View Payslips</a>
 								</td>
 							</tr>
+							<tr>
+								<td>
+							 		Change Password
+								 	<br><small>To changed your accounts password</small>
+							 	</td>
+							 	<td> 
+								 	<a href="resetPassword.jsp" class="btn btn-warning btn-lg active" role="button"
+											aria-pressed="true">Change Password</a>
+								</td>
+							</tr>
 							<!-- access control for K11 Admin/Management -->
 							<%if (usertype.equals("MANAGEMENT") || usertype.equals("ADMIN")) {%>
 								<%if (usertype.equals("ADMIN")) {%>
@@ -192,6 +202,7 @@
 									<tr>
 										<td>
 									 		View/Update Account for K11 Employee
+									 		<br><small>To view all K11 Employee account and reset password</small>
 									 	</td>
 									 	<td> 
 										 	<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active" role="button"
