@@ -30,7 +30,9 @@ public class ViewClientRecordServlet extends HttpServlet {
 			message = "List of client accounts";
 			request.setAttribute("vList", vList);
 		}
-		
+
+		String addAccountMessage = (String) request.getSession(false).getAttribute("addAccountMessage");
+		request.setAttribute("addAccountMessage", addAccountMessage);
 		request.setAttribute("message", message);
         RequestDispatcher rd = request.getRequestDispatcher("clientManager.jsp");
         rd.forward(request, response);

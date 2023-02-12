@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,19 +35,20 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		String accessType= request.getParameter("accessType");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-
-		//hashing the password
-		String salt = PasswordUtils.generateSalt(512).get();
-		String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
-				
-		ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
-		String message = ClientAccountManagerDAO.addClientAccount(v);
-		
-		
-		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
-        rd.forward(request, response);
+		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
+		String message = "This user already exists. Please verify.";
+		if(vList.size() == 0 ) {
+			//hashing the password
+			String salt = PasswordUtils.generateSalt(512).get();
+			String hashedPassword = PasswordUtils.hashPassword(password, salt).get();
+					
+			ClientAccount v = new ClientAccount( accountId,  name, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
+			
+			message = ClientAccountManagerDAO.addClientAccount(v);
+		}
+		request.getSession(false).setAttribute("addAccountMessage", message);
+		response.sendRedirect("/retrieveAllClientRecords");	
 	}
 	@Override
 	public void init() throws ServletException {

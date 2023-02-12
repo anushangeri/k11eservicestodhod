@@ -112,7 +112,7 @@
 							<select class="form-control" id="idType" name="idType">
 								<option>NRIC</option>
 								<option>FIN</option>
-								<option>PASSWORD</option>
+								<option>PASSPORT</option>
 						    </select>
 						</div>
 					</div>

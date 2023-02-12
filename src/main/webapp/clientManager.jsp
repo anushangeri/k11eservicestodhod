@@ -68,6 +68,7 @@
 	<%
 		ArrayList<ClientAccount> vList = (ArrayList<ClientAccount>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		String addAccountMessage = (String) request.getAttribute("addAccountMessage");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "SxxxxxxxJ";
 		String userType = "";
@@ -77,8 +78,13 @@
 	 	}
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
-		<label class="heading"><%=message%> </label><br>
-		<b>*Individuals are required to self-identify should they experience any COVID-19 symptoms.</b>
+			<label class="heading"><%=message%> </label><br>
+	<%
+		}
+		if (addAccountMessage != null && !StringUtils.isEmpty(addAccountMessage)) {
+	%>
+		<label class="heading"><%=addAccountMessage%> </label><br>
+	<%  } %>
 	</center>
 		<% 
 			if (vList != null && vList.size() > 0) {
@@ -136,9 +142,6 @@
 						%>
 					</tbody>
 				</table>
-		<%
-			}
-		%>
 	<%
 		}
 	%>
