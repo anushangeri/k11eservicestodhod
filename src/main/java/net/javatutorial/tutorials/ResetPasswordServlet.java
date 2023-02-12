@@ -48,12 +48,12 @@ public class ResetPasswordServlet extends HttpServlet {
 			c.setPassword(hashedPassword);
 			String message = ClientAccountManagerDAO.updateClientAccountPassword(c);
 			request.setAttribute("responseObj", message);
-			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 		else {
 			request.setAttribute("responseObj", "Wrong NRIC and Password entered. Please try again or contact K11 Admin.");
-			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
 		}
 	}
