@@ -3,13 +3,12 @@
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
-</head>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+	</head>
 <body>
  <%
 	        String responseObj = (String) request.getAttribute("responseObj");
@@ -48,38 +47,6 @@
 	    </tr>
 	    <tr>
 	      <th scope="row">2</th>
-	      <td>Visitor Management System (VMS)</td>
-	      <td><form action="createVmsTbl" method="post">
-                  <button class="btn" type="submit">Create</button>
-              </form>
-          </td>
-	      <td><form action="updateVmsTbl" method="post">
-                  <button class="btn" type="submit">Update</button>
-              </form>
-          </td>
-	      <td><form action="deleteVmsTbl" method="post">
-                  <button class="btn" type="submit">Delete</button>
-              </form>
-          </td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td>Vehicle Movement System</td>
-	      <td><form action="createVehmsTbl" method="post">
-                  <button class="btn" type="submit">Create</button>
-              </form>
-          </td>
-	      <td><form action="updateVehmsTbl" method="post">
-                  <button class="btn" type="submit">Update</button>
-              </form>
-          </td>
-	      <td><form action="deleteVehmsTbl" method="post">
-                  <button class="btn" type="submit">Delete</button>
-              </form>
-          </td>
-	    </tr>
-	    <tr>
-	      <th scope="row">4</th>
 	      <td>Client Account</td>
 	      <td><form action="clientAccountTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -95,7 +62,7 @@
           </td>
 	    </tr>
 	   	<tr>
-	      <th scope="row">5</th>
+	      <th scope="row">3</th>
 	      <td>Site</td>
 	      <td><form action="createSiteTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -111,23 +78,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">6</th>
-	      <td>VMS Archived</td>
-	      <td><form action="createVmsArchivedTbl" method="post">
-                  <button class="btn" type="submit">Create</button>
-              </form>
-          </td>
-	      <td><form action="-" method="post">
-                  <button class="btn" type="submit">Update</button>
-              </form>
-          </td>
-	      <td><form action="-" method="post">
-                  <button class="btn" type="submit">Delete</button>
-              </form>
-          </td>
-	    </tr>
-	    <tr>
-	      <th scope="row">7</th>
+	      <th scope="row">4</th>
 	      <td>Dropdown List - not started</td>
 	      <td><form action="createDropdownTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -143,7 +94,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">8</th>
+	      <th scope="row">5</th>
 	      <td>TOD HOD Records</td>
 	      <td><form action="createTodHodTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -159,7 +110,7 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">9</th>
+	      <th scope="row">6</th>
 	      <td>Occurrence Records</td>
 	      <td><form action="createOccurrenceTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -175,8 +126,8 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">10</th>
-	      <td>Pay slip Records</td>
+	      <th scope="row">7</th>
+	      <td>Upload Payslip Document Records</td>
 	      <td><form action="createPayslipTbl" method="post">
                   <button class="btn" type="submit">Create</button>
               </form>
@@ -191,7 +142,7 @@
           </td>
 	    </tr>	
 	    <tr>
-	      <th scope="row">11</th>
+	      <th scope="row">8</th>
 	      <td>Incident Reports</td>
 	      <td><form action="createIncidentTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -207,7 +158,7 @@
           </td>
 	    </tr>	    
 	    <tr>
-	      <th scope="row">12</th>
+	      <th scope="row">10</th>
 	      <td>Leave</td>
 	      <td><form action="createLeaveTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -223,7 +174,7 @@
           </td>
 	    </tr>
 	   	<tr>
-	      <th scope="row">13</th>
+	      <th scope="row">11</th>
 	      <td>Officer Payslip</td>
 	      <td><form action="createOfficerPayslipTbl" method="post">
                   <button class="btn" type="submit">Create</button>
@@ -239,9 +190,25 @@
           </td>
 	    </tr>
 	    <tr>
-	      <th scope="row">14</th>
+	      <th scope="row">12</th>
 	      <td>PWM Details</td>
 	      <td><form action="createPWMTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">13</th>
+	      <td>Misc Documents Records</td>
+	      <td><form action="createMiscDocsTbl" method="post">
                   <button class="btn" type="submit">Create</button>
               </form>
           </td>

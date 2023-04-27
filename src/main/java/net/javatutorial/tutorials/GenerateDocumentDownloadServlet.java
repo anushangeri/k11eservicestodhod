@@ -1,0 +1,65 @@
+package net.javatutorial.tutorials;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+
+import net.javatutorial.DAO.EmployeeManagerDAO;
+import net.javatutorial.DAO.MiscDocumentsManagerDAO;
+import net.javatutorial.entity.Employee;
+import net.javatutorial.entity.MiscDocuments;
+/**
+ * Servlet implementation class GenerateDocumentDownloadServlet
+ * generateDocDwnld
+ */
+@MultipartConfig
+public class GenerateDocumentDownloadServlet extends HttpServlet {
+	private static final long serialVersionUID = -4751096228274971485L;
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String dwnldDocInd = request.getParameter("dwnldDocInd");
+		InputStream inputStream = null;
+		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldKET")) {
+			String employeeID = request.getParameter("employeeID");
+	        Employee v = EmployeeManagerDAO.retrieveEmployeeByEmployeeID(employeeID);
+	       
+	        inputStream = v.getKetDocument(); // input stream of the upload file
+		}
+		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldMiscDoc")) {
+			String documentId = request.getParameter("documentId");
+			MiscDocuments v = MiscDocumentsManagerDAO.retrieveByDocumentID(documentId);
+	       
+	        inputStream = v.getDocument(); // input stream of the upload file
+		}
+        response.setContentType("application/pdf");
+        OutputStream output = response.getOutputStream();
+        byte[] buffer = new byte[8 * 1024];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+        	output.write(buffer, 0, bytesRead);
+        }
+        output.close();
+	}
+
+	@Override
+	public void init() throws ServletException {
+		System.out.println("Servlet " + this.getServletName() + " has started");
+	}
+
+	@Override
+	public void destroy() {
+		System.out.println("Servlet " + this.getServletName() + " has stopped");
+	}
+
+}

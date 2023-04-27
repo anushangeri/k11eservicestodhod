@@ -1,5 +1,3 @@
-<%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
@@ -11,11 +9,6 @@
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
-<%@page import="com.google.gdata.util.ServiceException"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 

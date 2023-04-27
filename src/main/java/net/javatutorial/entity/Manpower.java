@@ -1,7 +1,5 @@
 package net.javatutorial.entity;
 
-import java.sql.Timestamp;
-
 public class Manpower {
     private String siteName;
     private int requiredManpower;

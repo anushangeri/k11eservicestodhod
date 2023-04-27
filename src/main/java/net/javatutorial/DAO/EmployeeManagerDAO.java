@@ -102,16 +102,29 @@ public class EmployeeManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	byte[] bytea = rs.getBytes(6);
-            	v = new Employee(
-            			rs.getString(1), 
-            			rs.getString(2), 
-            			rs.getInt(3),
-            			rs.getInt(4),
-            			rs.getInt(5),
-            			new ByteArrayInputStream(bytea), 
-            			rs.getTimestamp(7),
-            			rs.getTimestamp(8));
+            	if(rs.getBytes(6) == null) {
+            		v = new Employee(
+                			rs.getString(1), 
+                			rs.getString(2), 
+                			rs.getInt(3),
+                			rs.getInt(4),
+                			rs.getInt(5),
+                			null, 
+                			rs.getTimestamp(7),
+                			rs.getTimestamp(8));
+            	}
+            	else {
+	            	byte[] bytea = rs.getBytes(6);
+	            	v = new Employee(
+	            			rs.getString(1), 
+	            			rs.getString(2), 
+	            			rs.getInt(3),
+	            			rs.getInt(4),
+	            			rs.getInt(5),
+	            			new ByteArrayInputStream(bytea), 
+	            			rs.getTimestamp(7),
+	            			rs.getTimestamp(8));
+            	}
             	vList.add(v);
             }
         } catch (Exception e) {
@@ -137,16 +150,29 @@ public class EmployeeManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	byte[] bytea = rs.getBytes(6);
-            	v = new Employee(
-            			rs.getString(1), 
-            			rs.getString(2), 
-            			rs.getInt(3),
-            			rs.getInt(4),
-            			rs.getInt(5),
-            			new ByteArrayInputStream(bytea), 
-            			rs.getTimestamp(7),
-            			rs.getTimestamp(8));
+            	if(rs.getBytes(6) == null) {
+            		v = new Employee(
+                			rs.getString(1), 
+                			rs.getString(2), 
+                			rs.getInt(3),
+                			rs.getInt(4),
+                			rs.getInt(5),
+                			null, 
+                			rs.getTimestamp(7),
+                			rs.getTimestamp(8));
+            	}
+            	else {
+	            	byte[] bytea = rs.getBytes(6);
+	            	v = new Employee(
+	            			rs.getString(1), 
+	            			rs.getString(2), 
+	            			rs.getInt(3),
+	            			rs.getInt(4),
+	            			rs.getInt(5),
+	            			new ByteArrayInputStream(bytea), 
+	            			rs.getTimestamp(7),
+	            			rs.getTimestamp(8));
+            	}
             	vList.add(v);
             }
         } catch (Exception e) {
@@ -156,6 +182,55 @@ public class EmployeeManagerDAO {
         }
         return vList;
     }
+	
+	public static String updateKETDocbyEmployeeID(Employee v){
+		Connection connection = null;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+	        String sql = "SET TIMEZONE = 'Singapore'; "
+	        		+ "UPDATE EMPLOYEE "
+	        		+ " SET LAST_MODIFIED_DT = NOW(),"
+	        		+ " PAID_ANNUAL_LEAVE = ?,"
+	        		+ " PAID_ANNUAL_OUTPATIENT_LEAVE = ?,"
+	        		+ " PAID_ANNUAL_HOSPITAL_LEAVE = ?,"
+	        		+ " FILE = ?"
+	        		+ "   WHERE ID_NO = ?;";
+	        
+	        stmt = connection.prepareStatement(sql);
+	        if (v.getKetDocument() != null) {
+                // fetches input stream of the upload file for the blob column
+	        	stmt.setInt(1, v.getPaidAnnualLeavePerYear());
+	        	stmt.setInt(2, v.getPaidOutpatientSickLeavePerYear());
+	        	stmt.setInt(3, v.getPaidHospitalisationLeavePerYear());
+	        	stmt.setBinaryStream(4, v.getKetDocument());
+	        	stmt.setString(5, v.getIdNo());
+            }
+	        // sends the statement to the database server
+            int row = stmt.executeUpdate();
+            if (row > 0) {
+                message = "File uploaded and saved into database";
+            }
+	        rs = stmt.executeQuery("SELECT ID_NO FROM EMPLOYEE WHERE EMPLOYEE_ID ='" + v.getEmployeeId() +"' LIMIT 1 ;");
+	        while (rs.next()) {
+	        	message = "Read from DB successfull: " + rs.getString(1);
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		return message;
+	}
 	
 	public static Employee retrieveEmployeeByEmployeeID(String employeeID) {
         PreparedStatement pstmt = null;
@@ -171,16 +246,29 @@ public class EmployeeManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
-            	byte[] bytea = rs.getBytes(6);
-            	v = new Employee(
-            			rs.getString(1), 
-            			rs.getString(2), 
-            			rs.getInt(3),
-            			rs.getInt(4),
-            			rs.getInt(5),
-            			new ByteArrayInputStream(bytea), 
-            			rs.getTimestamp(7),
-            			rs.getTimestamp(8));
+            	if(rs.getBytes(6) == null) {
+            		v = new Employee(
+                			rs.getString(1), 
+                			rs.getString(2), 
+                			rs.getInt(3),
+                			rs.getInt(4),
+                			rs.getInt(5),
+                			null, 
+                			rs.getTimestamp(7),
+                			rs.getTimestamp(8));
+            	}
+            	else {
+	            	byte[] bytea = rs.getBytes(6);
+	            	v = new Employee(
+	            			rs.getString(1), 
+	            			rs.getString(2), 
+	            			rs.getInt(3),
+	            			rs.getInt(4),
+	            			rs.getInt(5),
+	            			new ByteArrayInputStream(bytea), 
+	            			rs.getTimestamp(7),
+	            			rs.getTimestamp(8));
+            	}
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -189,6 +277,44 @@ public class EmployeeManagerDAO {
         }
         return v;
     }
+	
+	public static String deleteKETDocbyEmployeeID(String employeeID){
+		Connection connection = null;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		String message = "";
+		try {
+			connection = Main.getConnection();
+			String sql = "SET TIMEZONE = 'Singapore'; "
+	        		+ " UPDATE EMPLOYEE "
+	        		+  "SET LAST_MODIFIED_DT = NOW(), FILE = null"
+	        		+ " WHERE EMPLOYEE_ID = '" + employeeID + "';"; 
+			System.out.println(sql);
+			stmt = connection.prepareStatement(sql);
+			// sends the statement to the database server
+            int row = stmt.executeUpdate();
+            if (row > 0) {
+                message = "FILE DELETED";
+            }
+            System.out.println(message);
+	        rs = stmt.executeQuery("SELECT ID_NO FROM EMPLOYEE WHERE EMPLOYEE_ID ='" + employeeID +"' LIMIT 1 ;");
+	        while (rs.next()) {
+	        	message = "Read from DB successfull: " + rs.getString(1);
+	        }
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			message = "" + e;
+			//e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			message = "" + e;
+		}
+		finally {
+        	Main.close(connection, stmt, rs);
+        }
+		return message;
+	}
 	
 	public static String deleteAll() {
         PreparedStatement pstmt = null;

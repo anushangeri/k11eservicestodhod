@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.javatutorial.DAO.ClientAccountTblDAO;
+import net.javatutorial.DAO.MiscDocumentsTblDAO;
 
 /**
- * Servlet implementation class UVehMSTblServlet
- * update table Site
+ * Servlet implementation class CMiscDocumentsTblServlet
  */
-public class UClientAccountTblServlet extends HttpServlet {
+public class CMiscDocumentsTblServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String responseObj = ClientAccountTblDAO.updateClientAccountTbl();
+		String responseObj = MiscDocumentsTblDAO.createMiscDocumentsTbl();
+		
 		request.setAttribute("responseObj", responseObj);
         RequestDispatcher rd = request.getRequestDispatcher("managedatabase.jsp");
         rd.forward(request, response);

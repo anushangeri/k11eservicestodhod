@@ -2,8 +2,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
-<%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.Cell"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>

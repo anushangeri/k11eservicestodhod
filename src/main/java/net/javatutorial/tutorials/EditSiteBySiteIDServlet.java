@@ -26,7 +26,6 @@ public class EditSiteBySiteIDServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String idType = (String) request.getSession(false).getAttribute("idType");
 
 		//from edit option in siteManager.jsp
 		String siteId = request.getParameter("siteId");

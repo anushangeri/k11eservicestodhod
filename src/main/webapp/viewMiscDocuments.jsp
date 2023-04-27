@@ -37,7 +37,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6],
+						columns : [ 0, 1, 2, 3, 4, 5],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -58,10 +58,8 @@
 <body>
 	<center>
 		<%
-		ArrayList<Employee> vList = (ArrayList<Employee>) request.getAttribute("vList");
-		String message = (String) request.getAttribute("message");
-		String addEmpMessage = (String) request.getAttribute("addEmpMessage");
-		String deleteKETDocServMsg = (String) request.getAttribute("deleteKETDocServMsg");
+		ArrayList<MiscDocuments> vList = (ArrayList<MiscDocuments>) request.getAttribute("vList");
+		String viewMiscDocsServMsg = (String) request.getAttribute("viewMiscDocsServMsg");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "";
 		String userType = "";
@@ -69,20 +67,10 @@
 			idNo = (String) request.getSession(false).getAttribute("idNo");
 			userType = (String) request.getSession(false).getAttribute("usertype");
 		}
-		if (message != null && !StringUtils.isEmpty(message)) {
+		if (viewMiscDocsServMsg != null && !StringUtils.isEmpty(viewMiscDocsServMsg)) {
 		%>
-		<label class="heading"><%=message%> </label><br> 
-		<%}
-		if (addEmpMessage != null && !StringUtils.isEmpty(addEmpMessage)) {
-		%>
-			<label class="heading"><%=addEmpMessage%> </label><br>
-		<%  } 
-		if (deleteKETDocServMsg != null && !StringUtils.isEmpty(deleteKETDocServMsg)) {
-			%>
-				<label class="heading"><%=deleteKETDocServMsg%> </label><br>
+			<label class="heading"><%=viewMiscDocsServMsg%> </label><br>
 		<%  } %>
-		<b>*Individuals are required to self-identify should they experience any COVID-19
-			symptoms.</b>
 	</center>
 	<%
 	if (vList != null && vList.size() > 0) {
@@ -94,44 +82,34 @@
 			<thead>
 				<tr>
 					<th class="th-sm">S/N</th>
-					<th class="th-sm">Officer ID</th>
-					<th class="th-sm">Paid Annual Leave Per Year</th>
-					<th class="th-sm">Paid Outpatient Sick Leave Per Year</th>
-					<th class="th-sm">Paid Hospitalisation Leave Per Year</th>
+					<th class="th-sm">Employee ID</th>
+					<th class="th-sm">Description</th>
+					<th class="th-sm">Created By</th>
+					<th class="th-sm">Last Modified By</th>
 					<th class="th-sm">Created Date</th>
 					<th class="th-sm">Last Modified Date</th>
-					<th class="th-sm" colspan="2">KET Document</th>
-					<th class="th-sm" colspan="2">Employee Record</th>
+					<th class="th-sm">Document</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
 				if (!vList.isEmpty()) {
-					Iterator<Employee> vListIter = vList.iterator();
+					Iterator<MiscDocuments> vListIter = vList.iterator();
 					while (vListIter.hasNext()) {
-						Employee v = vListIter.next();
+						MiscDocuments v = vListIter.next();
 						
 
 					%>
 						<tr>
+							<td><%=v.getDocumentId()%></td>
 							<td><%=v.getEmployeeId()%></td>
-							<td><%=v.getIdNo()%></td>
-							<td><%=v.getPaidAnnualLeavePerYear()%></td>
-							<td><%=v.getPaidOutpatientSickLeavePerYear()%></td>
-							<td><%=v.getPaidHospitalisationLeavePerYear()%></td>
-							<td><%=v.getCreated_dt()%></td>
-							<td><%=v.getLast_modified_dt()%></td>
-							<td><a href="generateDocDwnld?dwnldDocInd=dwnldKET&employeeID=<%=v.getEmployeeId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getKetDocument() == null ? "disabled" : "active")%> role="button"
+							<td><%=v.getDescription()%></td>
+							<td><%=v.getCreatedBy()%></td>
+							<td><%=v.getLastModifiedBy()%></td>
+							<td><%=v.getCreatedDt()%></td>
+							<td><%=v.getLastModifiedDt()%></td>
+							<td><a href="generateDocDwnld?dwnldDocInd=dwnldMiscDoc&documentId=<%=v.getDocumentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getDocument() == null ? "disabled" : "active")%> role="button"
 									aria-pressed="true">Download</a></td>
-							<td>
-								<form method="POST" action="/deleteKETDocument">
-									<input type="hidden" id="employeeID" name="employeeID"
-												value="<%=v.getEmployeeId()%>">
-									<input type="submit" name="Submit" value="Delete">
-								</form>
-							</td>
-							<td><a href="addEmployee.jsp?employeeID=<%=v.getEmployeeId()%>">Modify</a></td>
-							<td><a href="generateKET?employeeID=<%=v.getEmployeeId()%>">Delete</a></td>
 						</tr>
 						<%
 						}
@@ -149,6 +127,10 @@
 	<div class="container body-content">
 		<center>
 			<div class="form-row">
+			<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
+				<a href="/addMiscDoc.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Add Document</a>
+			<%} %>
 				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 			</div>

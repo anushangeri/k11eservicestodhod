@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.Occurrence;
-import net.javatutorial.entity.Site;
 import net.javatutorial.tutorials.Main;
 
 public class OccurrenceManagerDAO {

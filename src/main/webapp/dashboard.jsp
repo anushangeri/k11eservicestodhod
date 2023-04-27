@@ -169,6 +169,16 @@
 							</tr>
 							<tr>
 								<td>
+							 		View Miscellaneous Documents
+							 		<br><small>To view your miscellaneous documents</small>
+							 	</td>
+							 	<td> 
+								 	<a href="/viewMiscDocs" class="btn btn-warning btn-lg active" role="button"
+											aria-pressed="true">View Miscellaneous Documents</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
 							 		View Payslips
 								 	<br><small>To view all payslip records</small>
 							 	</td>

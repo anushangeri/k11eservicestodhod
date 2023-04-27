@@ -47,7 +47,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.google.gdata.util.common.base.StringUtil;
 
 import net.javatutorial.DAO.OfficerPayslipManagerDAO;
 import net.javatutorial.DAO.PWMManagerDAO;
@@ -106,7 +105,7 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 				break;  
 			} 
 		}
-		return val != null || !StringUtil.isEmpty(val) ? val.trim() : "0.0";
+		return val != null || !StringUtils.isEmpty(val) ? val.trim() : "0.0";
 	}
 
 	private void executePayslip() throws Exception {
@@ -272,7 +271,6 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	     					String paymentClaim = checkCellType(row.getCell(21), formulaEvaluator);
 	     					String netGrossSalary = checkCellType(row.getCell(19), formulaEvaluator);
 	     					
-	     					double finalAdvance = Double.parseDouble(advance) + Double.parseDouble(lessLoan);
 	     					
 	     					//Now to add the actual days worked - the list of attendance at the bottom
 	     					//We will capture it in ArrayList<String> - ArrayList<Date, Day or Night Shift, Status>
@@ -1365,7 +1363,6 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	     					r23c9.setCellStyle(contentColumn2);
 	     					
 	     					Cell r23c10 = r23.createCell(10);
-	     					r23c10.setCellValue(nf.format(new BigDecimal(finalAdvance)));
 	     					r23c10.setCellStyle(contentColumn2);
 	     					
 	     					//row 24
@@ -1407,8 +1404,8 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	     						if(payslipShift.equalsIgnoreCase("Day") && (e % 2) == 0) {
 	     							//even
 	     							ArrayList<String> aEven = attendance.get(e);
-	     							String dateEven = aEven.get(0) != null || !StringUtil.isEmpty(aEven.get(0)) ? aEven.get(0) : "";
-	     							String statusEven = aEven.get(2) != null || !StringUtil.isEmpty(aEven.get(2)) ? aEven.get(2) : "";
+	     							String dateEven = aEven.get(0) != null || !StringUtils.isEmpty(aEven.get(0)) ? aEven.get(0) : "";
+	     							String statusEven = aEven.get(2) != null || !StringUtils.isEmpty(aEven.get(2)) ? aEven.get(2) : "";
 	     							
 	     							Date dateEvenDt = formatter5.parse(dateEven);
 	     							String d = display.format(dateEvenDt);
@@ -1438,8 +1435,8 @@ public class GenerateIndividualPayslipServlet extends HttpServlet {
 	     						if(payslipShift.equalsIgnoreCase("Night") && (e % 2) != 0) {
 	     							//odd
 	     							ArrayList<String> aOdd = attendance.get(e);
-	     							String dateOdd = aOdd.get(0) != null || !StringUtil.isEmpty(aOdd.get(0)) ? aOdd.get(0) : "";
-	     							String statusOdd = aOdd.get(2) != null || !StringUtil.isEmpty(aOdd.get(2)) ? aOdd.get(2) : "";
+	     							String dateOdd = aOdd.get(0) != null || !StringUtils.isEmpty(aOdd.get(0)) ? aOdd.get(0) : "";
+	     							String statusOdd = aOdd.get(2) != null || !StringUtils.isEmpty(aOdd.get(2)) ? aOdd.get(2) : "";
 	     							
 	     							Date dateOddDt = formatter5.parse(dateOdd);
 	     							String d = display.format(dateOddDt);

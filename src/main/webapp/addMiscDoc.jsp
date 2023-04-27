@@ -25,71 +25,35 @@
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading">Employee Management System</label> <br>
-			<b>How to use:</b> Please enter Employee Details.
+			<b>How to use:</b> Please enter Miscellaneous Documents.
 			<center>
 			<%
-			String employeeID = "";
-			if (request.getParameter("employeeID") != null) {
-				employeeID = (String) request.getParameter("employeeID");
-		 	}
-			
 			ArrayList<Employee> eList = EmployeeManagerDAO.retrieveAll();
-			Employee e = EmployeeManagerDAO.retrieveEmployeeByEmployeeID(employeeID);
 			%>
 			
-				<form action="addEmployee" enctype='multipart/form-data' method="post">
+				<form action="addMiscDocsRecord" enctype='multipart/form-data' method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label>
-							<%
-							if (e == null || e.getIdNo() == null) {
-							%>
-							<select name="idNo" class="form-control">
+							<label for="employeeId">Employee ID No: </label>
+							<select name="employeeId" class="form-control">
 								<option style="display:none;"></option>
 								<%
 								for (Employee eachEmp : eList) {
 								%>
-								<option value="<%=eachEmp.getIdNo()%>">
+								<option value="<%=eachEmp.getEmployeeId()%>">
 									<%=eachEmp.getIdNo()%></option>
 								<%
 								}
 								%>
 							</select>
-							<%
-							} else {
-							%>
-							<select name="idNo" class="form-control">
-								<%
-								for (Employee eachEmp : eList) {
-								%>
-								<option value="<%=eachEmp.getIdNo()%>"
-									<%=e.getIdNo() != null && e.getIdNo().equals(eachEmp.getIdNo()) ? "selected" : ""%>>
-									<%=eachEmp.getIdNo()%></option>
-								<%
-								}
-								%>
-							</select>
-							<%
-							}
-							%>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="annualLeave">Paid Annual Leave Per Year: </label> <input type="number"
-								class="form-control" name="annualLeave" value="<%=((e == null) ? 0 : e.getPaidAnnualLeavePerYear())%>"
+							<label for="description">File Description: </label> <input type="text"
+								class="form-control" name="description" 
 								required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="annualOutpatientLeave">Paid Outpatient Sick Leave Per Year: </label> <input type="number"
-								class="form-control" name="annualOutpatientLeave" value="<%=((e == null) ? 0 : e.getPaidOutpatientSickLeavePerYear())%>"
-								required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="annualHospitalLeave">Paid Hospitalisation Leave Per Year: </label> <input type="number"
-								class="form-control" name="annualHospitalLeave" value="<%=((e == null) ? 0 : e.getPaidHospitalisationLeavePerYear())%>"
-								required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="uploadFile">Upload KET File: </label> <input type="file"
+							<label for="uploadFile">Upload File: </label> <input type="file"
 								class="form-control" name="uploadFile">
 						</div>
 					</div>

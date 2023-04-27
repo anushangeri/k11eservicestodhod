@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -33,15 +34,18 @@ public class AddEmployeeRecordServlet extends HttpServlet {
 		Integer annualOutpatientLeave = request.getParameter("annualOutpatientLeave") != null ? Integer.parseInt(request.getParameter("annualOutpatientLeave")) : 0;
 		Integer annualHospitalLeave = request.getParameter("annualHospitalLeave") != null ? Integer.parseInt(request.getParameter("annualHospitalLeave")) : 0;
 		
-		 InputStream inputStream = null; // input stream of the upload file
-	        
+		ArrayList<Employee> vList = EmployeeManagerDAO.retrieveEmployeeByID(idNo);
+		String message = "Employee/KET record for this user already exists. Please verify.";
+		
+		InputStream inputStream = null; // input stream of the upload file
+        
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("uploadFile");
 
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 
-		String message = "did not work";
+		message = "Tried to add employee record, it did not work.";
         Employee v = null;
         if (filePart != null) {
             // prints out some information for debugging
@@ -52,11 +56,17 @@ public class AddEmployeeRecordServlet extends HttpServlet {
             // obtains input stream of the upload file
             inputStream = filePart.getInputStream();
             v = new Employee(employeeId, idNo, annualLeave, annualOutpatientLeave, annualHospitalLeave,inputStream,  timestamp, timestamp);
-
-            message = EmployeeManagerDAO.addEmployee(v);
+            System.out.println("Print employe : " + v.toString());
+            
+            if(vList.size() == 0 ) {
+                message = EmployeeManagerDAO.addEmployee(v);
+    		}
+    		else {
+    			message = EmployeeManagerDAO.updateKETDocbyEmployeeID(v);
+    		}
         }
 		
-		request.setAttribute("responseObj", message);
+		request.setAttribute("addEmpMessage", message);
 		// Redirect to view employee servlet to query all the employee again.
 		response.sendRedirect("/viewEmp");
 	}

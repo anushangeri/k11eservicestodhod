@@ -90,9 +90,15 @@
 	</servlet>
 	<servlet>
 		<description />
-		<display-name>GenerateKETServlet</display-name>
-		<servlet-name>GenerateKETServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.GenerateKETServlet</servlet-class>
+		<display-name>GenerateDocumentDownloadServlet</display-name>
+		<servlet-name>GenerateDocumentDownloadServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.GenerateDocumentDownloadServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteKETDocumentServlet</display-name>
+		<servlet-name>DeleteKETDocumentServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteKETDocumentServlet</servlet-class>
 	</servlet>
 	<!-- Employee END  -->	
 
@@ -385,6 +391,27 @@
 	</servlet>
 	<!-- Incident END  -->
 	
+	<!-- Misc Documents START  -->
+	<servlet>
+		<description />
+		<display-name>CMiscDocumentsTblServlet</display-name>
+		<servlet-name>CMiscDocumentsTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.CMiscDocumentsTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>AddMiscDocumentsRecordServlet</display-name>
+		<servlet-name>AddMiscDocumentsRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddMiscDocumentsRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>ViewMiscDocumentsRecordServlet</display-name>
+		<servlet-name>ViewMiscDocumentsRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.ViewMiscDocumentsRecordServlet</servlet-class>
+	</servlet>
+	<!-- Misc Documents END  -->
+	
 	<!-- Client Account START  -->
 	<servlet-mapping>
 		<servlet-name>CClientAccountTblServlet</servlet-name>
@@ -434,12 +461,14 @@
 		<url-pattern>/viewEmp</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>GenerateKETServlet</servlet-name>
-		<url-pattern>/generateKET</url-pattern>
+		<servlet-name>GenerateDocumentDownloadServlet</servlet-name>
+		<url-pattern>/generateDocDwnld</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteKETDocumentServlet</servlet-name>
+		<url-pattern>/deleteKETDocument</url-pattern>
 	</servlet-mapping>
 	<!-- Employee END  -->
-	
-
 	
 	<!-- Leave START  -->
 	<servlet-mapping>
@@ -474,8 +503,6 @@
 		<url-pattern>/retrieveAllPWMRecords</url-pattern>
 	</servlet-mapping>
 	<!-- PWM Details END  -->
-
-
 
 	<!-- Officer Payslip START  -->
 	<servlet-mapping>
@@ -593,7 +620,6 @@
 	</servlet-mapping>	
 	<!-- PAYSLIP END -->
 	
-	
 	<!-- Incident START -->
 	<servlet-mapping>
 		<servlet-name>CIncidentTblServlet</servlet-name>
@@ -642,7 +668,23 @@
 		<servlet-name>DeleteOccurrenceRecordServlet</servlet-name>
 		<url-pattern>/deleteOccurrence</url-pattern>
 	</servlet-mapping>
-	<!-- Occurrence Reports END  -->	
+	<!-- Occurrence Reports END  -->
+	
+	<!-- Misc Documents START -->
+	<servlet-mapping>
+		<servlet-name>CMiscDocumentsTblServlet</servlet-name>
+		<url-pattern>/createMiscDocsTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddMiscDocumentsRecordServlet</servlet-name>
+		<url-pattern>/addMiscDocsRecord</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>ViewMiscDocumentsRecordServlet</servlet-name>
+		<url-pattern>/viewMiscDocs</url-pattern>
+	</servlet-mapping>	
+	<!-- Misc Documents END -->
+		
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>

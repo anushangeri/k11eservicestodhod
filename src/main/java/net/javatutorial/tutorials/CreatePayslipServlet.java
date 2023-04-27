@@ -46,7 +46,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.google.gdata.util.common.base.StringUtil;
 
 import net.javatutorial.DAO.PayslipManagerDAO;
 import net.javatutorial.entity.AttendanceUploadFile;
@@ -679,15 +678,15 @@ public class CreatePayslipServlet extends HttpServlet {
 					for(int e = 0; e <= attendance.size() - 1; e++) {
 						//even
 						ArrayList<String> aEven = attendance.get(e);
-						String dateEven = aEven.get(0) != null || !StringUtil.isEmpty(aEven.get(0)) ? aEven.get(0) : "";
-						String statusEven = aEven.get(2) != null || !StringUtil.isEmpty(aEven.get(2)) ? aEven.get(2) : "";
+						String dateEven = aEven.get(0) != null || !StringUtils.isEmpty(aEven.get(0)) ? aEven.get(0) : "";
+						String statusEven = aEven.get(2) != null || !StringUtils.isEmpty(aEven.get(2)) ? aEven.get(2) : "";
 						
 						e++;
 						
 						//odd
 						ArrayList<String> aOdd = attendance.get(e);
-						String dateOdd = aOdd.get(0) != null || !StringUtil.isEmpty(aOdd.get(0)) ? aOdd.get(0) : "";
-						String statusOdd = aOdd.get(2) != null || !StringUtil.isEmpty(aOdd.get(2)) ? aOdd.get(2) : "";
+						String dateOdd = aOdd.get(0) != null || !StringUtils.isEmpty(aOdd.get(0)) ? aOdd.get(0) : "";
+						String statusOdd = aOdd.get(2) != null || !StringUtils.isEmpty(aOdd.get(2)) ? aOdd.get(2) : "";
 						
 						if(dateEven.equals(dateOdd)) {
 							Date dateEvenDt = formatter5.parse(dateEven);

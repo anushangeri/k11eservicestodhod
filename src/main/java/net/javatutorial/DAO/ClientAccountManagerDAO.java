@@ -222,16 +222,17 @@ public class ClientAccountManagerDAO {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "All records deleted - No client account records available";
+        String message = "deleteRecordByAccountId error";
         try {
         	connection = Main.getConnection();
             String sql = "DELETE FROM CLIENTACCOUNT WHERE ACCOUNT_ID ='" + accountId + "'";
-            message = "Successful";
+            message = "Record deleted";
             pstmt = connection.prepareStatement(sql);
             rs = pstmt.executeQuery();
             
             
         } catch (Exception e) {
+        	message = "" + e;
             e.printStackTrace();
         } finally {
         	Main.close(connection, pstmt, rs);
@@ -244,15 +245,16 @@ public class ClientAccountManagerDAO {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "All records deleted - No client account records available";
+        String message = "deleteAll error";
         try {
         	connection = Main.getConnection();
             String sql = "DELETE FROM CLIENTACCOUNT WHERE CREATED_DT <= GETDATE() - 30;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
-            
+            message = "All records deleted - No client account records available";
         } catch (Exception e) {
+        	message = "" + e;
             e.printStackTrace();
         } finally {
         	Main.close(connection, pstmt, rs);
