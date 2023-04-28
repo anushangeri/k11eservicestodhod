@@ -12,7 +12,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="net.javatutorial.entity.Employee"%>
+<%@page import="net.javatutorial.entity.ClientAccount"%>
 <%@page import="net.javatutorial.DAO.EmployeeManagerDAO"%>
+<%@page import="net.javatutorial.DAO.ClientAccountManagerDAO"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  
@@ -28,12 +30,13 @@
 			<b>How to use:</b> Please enter Employee Details.
 			<center>
 			<%
+			//if it is not modify, the employeeID will be null
 			String employeeID = "";
 			if (request.getParameter("employeeID") != null) {
 				employeeID = (String) request.getParameter("employeeID");
 		 	}
 			
-			ArrayList<Employee> eList = EmployeeManagerDAO.retrieveAll();
+			ArrayList<ClientAccount> eList = ClientAccountManagerDAO.retrieveAll();
 			Employee e = EmployeeManagerDAO.retrieveEmployeeByEmployeeID(employeeID);
 			%>
 			
@@ -47,10 +50,10 @@
 							<select name="idNo" class="form-control">
 								<option style="display:none;"></option>
 								<%
-								for (Employee eachEmp : eList) {
+								for (ClientAccount eachEmp : eList) {
 								%>
 								<option value="<%=eachEmp.getIdNo()%>">
-									<%=eachEmp.getIdNo()%></option>
+									<%=eachEmp.getName()%></option>
 								<%
 								}
 								%>
@@ -60,11 +63,11 @@
 							%>
 							<select name="idNo" class="form-control">
 								<%
-								for (Employee eachEmp : eList) {
+								for (ClientAccount eachEmp : eList) {
 								%>
 								<option value="<%=eachEmp.getIdNo()%>"
 									<%=e.getIdNo() != null && e.getIdNo().equals(eachEmp.getIdNo()) ? "selected" : ""%>>
-									<%=eachEmp.getIdNo()%></option>
+									<%=eachEmp.getName()%></option>
 								<%
 								}
 								%>

@@ -163,6 +163,10 @@
 	<div class="container body-content">
 		<center>
 			<div class="form-row">
+			<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
+				<a href="/addEmployee.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Add KET</a>
+			<%} %>
 				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 			</div>
