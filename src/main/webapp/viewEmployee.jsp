@@ -144,7 +144,7 @@
 									<input type="submit" name="Submit" value="Delete">
 								</form>
 							</td>
-							<td><a href="addEmployee.jsp?employeeID=<%=v.getEmployeeId()%>">Modify</a></td>
+							<td><a href="addUpdateEmployee.jsp?employeeID=<%=v.getEmployeeId()%>">Modify</a></td>
 							<td><a href="generateKET?employeeID=<%=v.getEmployeeId()%>">Delete</a></td>
 						</tr>
 						<%
@@ -164,7 +164,7 @@
 		<center>
 			<div class="form-row">
 			<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
-				<a href="/addEmployee.jsp" class="btn btn-warning btn-lg active"
+				<a href="/addUpdateEmployee.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Add KET</a>
 			<%} %>
 				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"

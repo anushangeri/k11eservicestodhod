@@ -78,9 +78,9 @@
 	</servlet>
 	<servlet>
 		<description />
-		<display-name>AddEmployeeRecordServlet</display-name>
-		<servlet-name>AddEmployeeRecordServlet</servlet-name>
-		<servlet-class>net.javatutorial.tutorials.AddEmployeeRecordServlet</servlet-class>
+		<display-name>AddUpdateEmployeeRecordServlet</display-name>
+		<servlet-name>AddUpdateEmployeeRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.AddUpdateEmployeeRecordServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -453,8 +453,8 @@
 		<url-pattern>/createEmpTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>AddEmployeeRecordServlet</servlet-name>
-		<url-pattern>/addEmployee</url-pattern>
+		<servlet-name>AddUpdateEmployeeRecordServlet</servlet-name>
+		<url-pattern>/addUpdateEmployee</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewEmployeeRecordServlet</servlet-name>

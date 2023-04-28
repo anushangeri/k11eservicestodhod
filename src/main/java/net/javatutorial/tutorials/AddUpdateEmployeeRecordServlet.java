@@ -14,14 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.javatutorial.DAO.EmployeeManagerDAO;
+import net.javatutorial.DAO.MiscDocumentsManagerDAO;
 import net.javatutorial.entity.Employee;
+import net.javatutorial.entity.MiscDocuments;
 
 /**
- * Servlet implementation class AddEmployeeRecordServlet
+ * Servlet implementation class AddUpdateEmployeeRecordServlet
  */
 @MultipartConfig
-public class AddEmployeeRecordServlet extends HttpServlet {
+public class AddUpdateEmployeeRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 	
 	@Override
@@ -33,6 +37,10 @@ public class AddEmployeeRecordServlet extends HttpServlet {
 		Integer annualLeave = request.getParameter("annualLeave") != null ? Integer.parseInt(request.getParameter("annualLeave")) : 0;
 		Integer annualOutpatientLeave = request.getParameter("annualOutpatientLeave") != null ? Integer.parseInt(request.getParameter("annualOutpatientLeave")) : 0;
 		Integer annualHospitalLeave = request.getParameter("annualHospitalLeave") != null ? Integer.parseInt(request.getParameter("annualHospitalLeave")) : 0;
+		
+		String createdBy = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
+		String lastModifiedBy = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
+		
 		
 		ArrayList<Employee> vList = EmployeeManagerDAO.retrieveEmployeeByID(idNo);
 		String message = "Employee/KET record for this user already exists. Please verify.";
@@ -58,10 +66,12 @@ public class AddEmployeeRecordServlet extends HttpServlet {
             v = new Employee(employeeId, idNo, annualLeave, annualOutpatientLeave, annualHospitalLeave,inputStream,  timestamp, timestamp);
             System.out.println("Print employe : " + v.toString());
             
-            if(vList.size() == 0 ) {
+            if(vList == null || vList.size() == 0 ) {
                 message = EmployeeManagerDAO.addEmployee(v);
     		}
     		else {
+    			Employee oldEmpRecord = vList.get(0);
+    			addMiscDoc(oldEmpRecord,createdBy,lastModifiedBy);
     			message = EmployeeManagerDAO.updateKETDocbyEmployeeID(v);
     		}
         }
@@ -79,5 +89,18 @@ public class AddEmployeeRecordServlet extends HttpServlet {
 	public void destroy() {
 		System.out.println("Servlet " + this.getServletName() + " has stopped");
 	}
-
+	public void addMiscDoc(Employee oldEmpRecord, String createdBy, String lastModifiedBy) {
+		int nextVal = MiscDocumentsManagerDAO.getNextVal();
+		String documentId = "" + nextVal;
+		
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		
+		String employeeId = oldEmpRecord.getEmployeeId();
+		String description =  "Archived KET for " + oldEmpRecord.getIdNo();
+		InputStream inputStream = oldEmpRecord.getKetDocument();
+		
+		MiscDocuments v = new MiscDocuments(documentId, employeeId, inputStream, description, createdBy, lastModifiedBy,  timestamp, timestamp);
+		MiscDocumentsManagerDAO.addMiscDocuments(v);
+	}
 }

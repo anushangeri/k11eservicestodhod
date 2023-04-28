@@ -288,11 +288,11 @@
 								</tr>
 								<tr>
 									<td>
-								 		Add Employee KET Record
+								 		Add or Update Employee KET Record
 								 	</td>
 								 	<td> 
-									 	<a href="/addEmployee.jsp" class="btn btn-warning btn-lg active" role="button"
-												aria-pressed="true">Add Employee KET</a>
+									 	<a href="/addUpdateEmployee.jsp" class="btn btn-warning btn-lg active" role="button"
+												aria-pressed="true">Add or Update Employee KET</a>
 									</td>
 								</tr>
 								<tr>
