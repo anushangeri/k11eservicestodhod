@@ -37,7 +37,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6],
+						columns : [ 0, 1, 2, 3, 4, 5],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -51,6 +51,7 @@
 				} ],
 				"order" : [ [ 0, 'desc' ] ]
 			});
+			$("tr.hideme").css({"display" : "none"});
 		});
 	});
 </script>
@@ -102,6 +103,19 @@
 					<th class="th-sm">Last Modified Date</th>
 					<th class="th-sm" colspan="2">KET Document</th>
 					<th class="th-sm" colspan="2">Employee Record</th>
+				</tr>
+				<tr class="hideme">
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
+				     <th></th>
 				</tr>
 			</thead>
 			<tbody>
