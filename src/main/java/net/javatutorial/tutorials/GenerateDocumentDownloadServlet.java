@@ -29,6 +29,10 @@ public class GenerateDocumentDownloadServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String dwnldDocInd = request.getParameter("dwnldDocInd");
+		if(dwnldDocInd == null || StringUtils.isEmpty(dwnldDocInd)) {
+			dwnldDocInd = (String) request.getAttribute("dwnldDocInd");
+		}
+		System.out.println("dwnldDocInd: " + dwnldDocInd);
 		InputStream inputStream = null;
 		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldKET")) {
 			String employeeID = request.getParameter("employeeID");
@@ -38,8 +42,12 @@ public class GenerateDocumentDownloadServlet extends HttpServlet {
 		}
 		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldMiscDoc")) {
 			String documentId = request.getParameter("documentId");
+			if(documentId == null || StringUtils.isEmpty(documentId)) {
+				documentId = (String) request.getAttribute("documentId");
+			}
+			System.out.println("documentId: " + documentId);
 			MiscDocuments v = MiscDocumentsManagerDAO.retrieveByDocumentID(documentId);
-	       
+			System.out.println("v: " + v.toString());
 	        inputStream = v.getDocument(); // input stream of the upload file
 		}
         response.setContentType("application/pdf");

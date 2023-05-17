@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.MiscDocuments;
+import net.javatutorial.entity.OfficerPayslip;
 import net.javatutorial.tutorials.Main;
 
 public class MiscDocumentsManagerDAO {
@@ -156,6 +157,39 @@ public class MiscDocumentsManagerDAO {
         return vList;
     }
 	
+	public static ArrayList<OfficerPayslip> retrieveByEmployeeIDJustPayslip(String employeeId) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        OfficerPayslip v = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT m.DOCUMENT_ID, e.ID_NO, m.DOCUMENT, m.CREATED_DT"
+            		+ " FROM MISCDOCUMENTS m INNER JOIN EMPLOYEE e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID"
+            		+ " WHERE EMPLOYEE_ID ='" + employeeId + "' \r\n"
+            		+ " AND LOWER(m.DESCRIPTION) LIKE '%payslip%' "
+    				+ " ORDER BY m.LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
 	public static ArrayList<MiscDocuments> retrieveAll() {
         PreparedStatement pstmt = null;
         Connection connection = null;
@@ -190,6 +224,37 @@ public class MiscDocumentsManagerDAO {
         return vList;
     }
 
+	public static ArrayList<OfficerPayslip> retrieveAllJustPayslips() {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        OfficerPayslip v = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT m.DOCUMENT_ID, e.ID_NO, m.DOCUMENT, m.CREATED_DT"
+            		+ " FROM MISCDOCUMENTS m INNER JOIN EMPLOYEE e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
+            		+ " WHERE LOWER(m.DESCRIPTION) LIKE '%payslip%' "
+    				+ " ORDER BY m.LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
 	
 	public static String deleteRecordByDocumentId(String documentId) {
         PreparedStatement pstmt = null;
