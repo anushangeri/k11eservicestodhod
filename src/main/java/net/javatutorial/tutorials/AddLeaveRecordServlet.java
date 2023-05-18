@@ -45,9 +45,9 @@ public class AddLeaveRecordServlet extends HttpServlet {
 		} catch(Exception e) { //this generic but you can control another types of exception
 		    // look the origin of excption 
 		}
-
-		long numDaysLeaveLong = Duration.between(leaveStartTimestamp.toInstant(), leaveEndTimestamp.toInstant()).toDays();
-		int numDaysLeave = (int) numDaysLeaveLong;
+		//must +1 because end date is exclusive
+		long numDaysLeaveLong = Duration.between(leaveStartTimestamp.toInstant(), leaveEndTimestamp.toInstant()).toDays() ;
+		int numDaysLeave = (int) numDaysLeaveLong + 1;
 		Leave v = new Leave(leaveID, idNo, leaveType, leaveStartTimestamp, leaveEndTimestamp,  numDaysLeave, "Pending", null, remarks);
 
 		String message = LeaveManagerDAO.addLeave(v);

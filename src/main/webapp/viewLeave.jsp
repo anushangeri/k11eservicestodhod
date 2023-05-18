@@ -55,8 +55,7 @@
 	$(document).ready(function() {
 		$(document).ready(function() {
 			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
-			$('table').DataTable({
-				"order": [[0, "desc"]],
+			$('#example').DataTable({
 				dom : 'Blfrtip',
 				buttons : [ {
 					text : 'Export To Excel',
@@ -77,7 +76,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[9, 'desc']]
+				"order": [[0, 'desc']]
 			});
 		});
 	});
@@ -91,6 +90,7 @@
 		<%
 		ArrayList<Leave> vList = (ArrayList<Leave>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		String updateLeaveRecordServMsg = (String) request.getAttribute("updateLeaveRecordServMsg");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "";
 		String userType = "";
@@ -102,24 +102,25 @@
 		int annualLeave = 0;
 		int annualSickLeave = 0;
 		int annualHospitalLeave = 0;
-		if ( request.getAttribute("annualLeave") != null && (int) request.getAttribute("annualLeave") > 0) {
+		if ( request.getAttribute("annualLeave") != null ) {
 			annualLeave = (int) request.getAttribute("annualLeave");
 		}
-		if (request.getAttribute("annualSickLeave") != null && (int) request.getAttribute("annualSickLeave") > 0) {
+		if (request.getAttribute("annualSickLeave") != null ) {
 			annualSickLeave = (int) request.getAttribute("annualSickLeave");
 		}
-		if ( request.getAttribute("annualHospitalLeave") != null && (int) request.getAttribute("annualHospitalLeave") > 0) {
+		if ( request.getAttribute("annualHospitalLeave") != null ) {
 			annualHospitalLeave = (int) request.getAttribute("annualHospitalLeave");
 		}
-		
+		if (updateLeaveRecordServMsg != null && !StringUtils.isEmpty(updateLeaveRecordServMsg)) {
+		%>
+			<label class="heading"><%=updateLeaveRecordServMsg%> </label><br></b>
+		<%
+		}
 		if (message != null && !StringUtils.isEmpty(message)) {
 		%>
-		<label class="heading"><%=message%> </label><br> <b>*Individuals
-			are required to self-identify should they experience any COVID-19
-			symptoms.</b>
-	</center>
-			<table id="example"
-				class="table-striped table-bordered table-sm" style="width: 80%;">
+		<label class="heading"><%=message%> </label><br></b>
+
+			<table class="table-striped table-bordered table-sm" style="width: 80%;">
 				<thead>
 					<tr>
 						<th class="th-sm" colspan="3"><center>ANNUAL LEAVE LEFT</center></th>
@@ -137,7 +138,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<br>
+		</center>
+		<br>
 		<%
 			if (vList != null && vList.size() > 0) {
 			%>
@@ -175,17 +177,16 @@
 							<td><%=v.getLeaveEndDate()%></td>
 							<td><%=v.getNumDaysLeave()%></td>
 							<td><%=v.getRequestStatus()%> <br> <%
-							 if (v.getRequestStatus().equalsIgnoreCase("Pending")
-							 		&& (userType.toUpperCase().equals("ADMIN") || userType.toUpperCase().equals("MANAGEMENT"))) {
-							 %> 
+							if ((userType.toUpperCase().equals("ADMIN") || userType.toUpperCase().equals("MANAGEMENT"))) {
+							%> 
 							 	<br>
 							 	<a href="updateLeave?leaveId=<%=v.getLeaveID()%>&status=Approve">Approve</a>
 								<br> 
 								<a href="updateLeave?leaveId=<%=v.getLeaveID()%>&status=Reject">Reject</a>
-								<%
-								}
-								%>
-								</td>
+							<%
+							}
+							%>
+							</td>
 							<td><%=(v.getApprovingSupervisor() == null || v.getApprovingSupervisor().equals("null")) ? "Not Assigned Yet"
 							: v.getApprovingSupervisor()%></td>
 							<td>
