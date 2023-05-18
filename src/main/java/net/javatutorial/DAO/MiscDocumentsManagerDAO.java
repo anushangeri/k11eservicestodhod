@@ -167,7 +167,7 @@ public class MiscDocumentsManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT m.DOCUMENT_ID, e.ID_NO, m.DOCUMENT, m.CREATED_DT"
             		+ " FROM MISCDOCUMENTS m INNER JOIN EMPLOYEE e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID"
-            		+ " WHERE EMPLOYEE_ID ='" + employeeId + "' \r\n"
+            		+ " WHERE m.EMPLOYEE_ID = '" + employeeId + "' \r\n"
             		+ " AND LOWER(m.DESCRIPTION) LIKE '%payslip%' "
     				+ " ORDER BY m.LAST_MODIFIED_DT DESC";
             pstmt = connection.prepareStatement(sql);

@@ -145,7 +145,7 @@
 								</form>
 							</td>
 							<td><a href="addUpdateEmployee.jsp?employeeID=<%=v.getEmployeeId()%>">Modify</a></td>
-							<td><a href="generateKET?employeeID=<%=v.getEmployeeId()%>">Delete</a></td>
+							<td><a href="generateKET?employeeID=<%=v.getEmployeeId()%>">Delete (coming soon)</a></td>
 						</tr>
 						<%
 						}
