@@ -47,9 +47,7 @@ public class ViewOfficerPayslipRecordServlet extends HttpServlet {
 			if(eList != null && eList.size() > 0) {
 				e = eList.get(0);
 				String employeeId = e.getEmployeeId();
-				System.out.println("employeeId: " + employeeId);
 				mList = MiscDocumentsManagerDAO.retrieveByEmployeeIDJustPayslip(employeeId);
-				System.out.println("mList: " + mList.toString());
 			}
 			vList = OfficerPayslipManagerDAO.retrieveByOfficeId(idNo);
 			if(!vList.isEmpty()) {

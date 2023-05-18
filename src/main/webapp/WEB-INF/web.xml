@@ -100,6 +100,12 @@
 		<servlet-name>DeleteKETDocumentServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DeleteKETDocumentServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteEmployeeRecordServlet</display-name>
+		<servlet-name>DeleteEmployeeRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteEmployeeRecordServlet</servlet-class>
+	</servlet>
 	<!-- Employee END  -->	
 
 	
@@ -467,6 +473,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteKETDocumentServlet</servlet-name>
 		<url-pattern>/deleteKETDocument</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteEmployeeRecordServlet</servlet-name>
+		<url-pattern>/deleteEmployee</url-pattern>
 	</servlet-mapping>
 	<!-- Employee END  -->
 	

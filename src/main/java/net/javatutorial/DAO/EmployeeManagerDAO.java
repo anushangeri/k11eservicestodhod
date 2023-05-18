@@ -316,6 +316,26 @@ public class EmployeeManagerDAO {
 		return message;
 	}
 	
+	public static String deleteByEmployeeId(String employeeId) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        String message = "Employee record deleted";
+        try {
+        	connection = Main.getConnection();
+            String sql = "DELETE FROM EMPLOYEE WHERE EMPLOYEE_ID ='" + employeeId + "'";
+            pstmt = connection.prepareStatement(sql);
+
+            pstmt.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return message;
+    }
+	
 	public static String deleteAll() {
         PreparedStatement pstmt = null;
         Connection connection = null;
