@@ -19,7 +19,7 @@ public class DeleteEmployeeRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String employeeId = request.getParameter("employeeId");
+		String employeeId = request.getParameter("employeeID");
 		String message = EmployeeManagerDAO.deleteByEmployeeId(employeeId);
 		
 		request.setAttribute("message", message);
