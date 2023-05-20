@@ -173,17 +173,40 @@ public class OfficerPayslipManagerDAO {
         return v;
     }
 	
+	public static String deleteRecordByPayslipId(String payslipId) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        String message = "OfficerPayslipManagerDAO.deleteRecordByPayslipId error";
+        try {
+        	connection = Main.getConnection();
+            String sql = "DELETE FROM OFFICERPAYSLIP WHERE PAYSLIP_ID ='" + payslipId + "'";
+            pstmt = connection.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            message = "Payslip deleted";
+            
+        } catch (Exception e) {
+        	message = "" + e;
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+       
+        return message;
+    }
+	
 	public static String deleteAll() {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        String message = "Check email for payslips, file uploaded previously has been deleted.";
+        String message = "OfficerPayslipManagerDAO.deleteRecordByPayslipId error";
         try {
         	connection = Main.getConnection();
             String sql = "TRUNCATE TABLE OFFICERPAYSLIP;";
             pstmt = connection.prepareStatement(sql);
 
             pstmt.executeUpdate();
+            message = "Payslips deleted";
             
         } catch (Exception e) {
             e.printStackTrace();

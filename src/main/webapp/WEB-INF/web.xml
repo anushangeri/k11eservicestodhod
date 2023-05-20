@@ -188,6 +188,12 @@
 		<servlet-name>DeleteAllOfficerPayslipTblServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DeleteAllOfficerPayslipTblServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteIndividualOfficerPayslipServlet</display-name>
+		<servlet-name>DeleteIndividualOfficerPayslipServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteIndividualOfficerPayslipServlet</servlet-class>
+	</servlet>
 	<!-- Officer Payslip END  -->	
 		
 	<!-- Site START  -->
@@ -534,6 +540,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteAllOfficerPayslipTblServlet</servlet-name>
 		<url-pattern>/deleteAllOfficerPayslips</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteIndividualOfficerPayslipServlet</servlet-name>
+		<url-pattern>/deleteIndOfficerPayslip</url-pattern>
 	</servlet-mapping>
 	<!-- Officer Payslip END  -->
 	

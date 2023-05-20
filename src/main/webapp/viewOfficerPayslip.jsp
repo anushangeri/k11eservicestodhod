@@ -91,6 +91,8 @@
 		<%
 		ArrayList<OfficerPayslip> vList = (ArrayList<OfficerPayslip>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
+		//for when user click on delete individual payslip
+		String deleteIndOfficerPayslipServMsg = (String) request.getAttribute("deleteIndOfficerPayslipServMsg");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 		String idNo = "";
 		String userType = "";
@@ -98,7 +100,11 @@
 			idNo = (String) request.getSession(false).getAttribute("idNo");
 			userType = (String) request.getSession(false).getAttribute("usertype");
 		}
-		
+		if (deleteIndOfficerPayslipServMsg != null && !StringUtils.isEmpty(deleteIndOfficerPayslipServMsg)) {
+		%>
+			<label class="heading"><%=deleteIndOfficerPayslipServMsg%> </label><br></b>
+		<%
+		}
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
 		%>
@@ -119,6 +125,7 @@
 							<th class="th-sm">Officer ID No.</th>
 							<th class="th-sm">Created Date</th>
 							<th class="th-sm">Payslip</th>
+							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -133,6 +140,9 @@
 							<td><%=v.getOfficerIdNo()%></td>
 							<td><%=v.getCreatedDt()%></td>
 							<td><a href="downloadPayslip?payslipId=<%=v.getPayslipId()%>">Download</a></td>
+							<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
+								<td><a href="deleteIndOfficerPayslip?payslipId=<%=v.getPayslipId()%>">Delete</a></td>
+							<%} %>
 						</tr>
 						<%
 						}
