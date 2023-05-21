@@ -125,7 +125,9 @@
 							<th class="th-sm">Officer ID No.</th>
 							<th class="th-sm">Created Date</th>
 							<th class="th-sm">Payslip</th>
-							<th class="th-sm">Delete</th>
+							<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
+								<th class="th-sm">Delete</th>
+							<%} %>
 						</tr>
 					</thead>
 					<tbody>
