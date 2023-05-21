@@ -401,6 +401,12 @@
 		<servlet-name>DisplayImagesServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.DisplayImagesServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteIncidentRecordServlet</display-name>
+		<servlet-name>DeleteIncidentRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteIncidentRecordServlet</servlet-class>
+	</servlet>
 	<!-- Incident END  -->
 	
 	<!-- Misc Documents START  -->
@@ -660,6 +666,10 @@
 	<servlet-mapping>
 		<servlet-name>DisplayImagesServlet</servlet-name>
 		<url-pattern>/displayImages</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteIncidentRecordServlet</servlet-name>
+		<url-pattern>/deleteIncident</url-pattern>
 	</servlet-mapping>
 	<!-- Incident END -->
 		

@@ -157,8 +157,8 @@ $(document).ready(function() {
 <!-- 										</form> -->
 <!-- 									</td> -->
 									<td>
-										<form method="POST" action ="/deleteOccurrence">
-											<input type="hidden" id="occurrenceId" name="occurrenceId" value="<%=v.getIncidentId()%>">
+										<form method="POST" action ="/deleteIncident">
+											<input type="hidden" id="incidentId" name="incidentId" value="<%=v.getIncidentId()%>">
 											<input type="submit" name="Submit" value="Delete">
 										</form>
 									</td>

@@ -7,22 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.javatutorial.DAO.OccurrenceManagerDAO;;
+import net.javatutorial.DAO.IncidentManagerDAO;;
 
 /**
- * Servlet implementation class DeleteClientAccountServlet
- * Deletes client account using client account id
+ * Servlet implementation class DeleteIncidentRecordServlet
+ * Deletes incident using incidentId
  */
-public class DeleteOccurrenceRecordServlet extends HttpServlet {
+public class DeleteIncidentRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String occurrenceId = request.getParameter("occurrenceId");
-		String message = OccurrenceManagerDAO.deleteByOccurrenceId(occurrenceId);
+		String incidentId = request.getParameter("incidentId");
+		String message = IncidentManagerDAO.deleteByIncidentId(incidentId);
 		
 		request.setAttribute("message", message);
-		response.sendRedirect("/manageOccurrenceRecord");
+		response.sendRedirect("/manageIncidentRecord");
 	}
 	@Override
 	public void init() throws ServletException {

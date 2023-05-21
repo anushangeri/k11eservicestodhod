@@ -260,7 +260,7 @@ public class IncidentManagerDAO {
 		return vList;
 	}
 
-	public static String deleteByOccurrenceId(String incidentId) {
+	public static String deleteByIncidentId(String incidentId) {
 		PreparedStatement pstmt = null;
 		Connection connection = null;
 		ResultSet rs = null;
