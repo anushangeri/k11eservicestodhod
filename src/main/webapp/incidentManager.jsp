@@ -108,7 +108,7 @@ $(document).ready(function() {
 							<th class="th-sm" style="display:none;">Last Modified Date</th>
 							
 							<th class="th-sm">View</th>
-							<th class="th-sm">Edit</th>
+<!-- 							<th class="th-sm">Edit</th> -->
 							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
@@ -149,13 +149,13 @@ $(document).ready(function() {
 											<input type="submit" name="Submit" value="View">
 										</form>
 									</td>
-									<td>
-										<form method="POST" action ="/viewEditOccurrence">
-											<input type="hidden" id="occurrenceId" name="occurrenceId" value="<%=v.getIncidentId()%>">
-											<input type="hidden" id="actionStatus" name="actionStatus" value="edit">
-											<input type="submit" name="Submit" value="Edit">
-										</form>
-									</td>
+<!-- 									<td> -->
+<!-- 										<form method="POST" action ="/viewEditOccurrence"> -->
+<%-- 											<input type="hidden" id="occurrenceId" name="occurrenceId" value="<%=v.getIncidentId()%>"> --%>
+<!-- 											<input type="hidden" id="actionStatus" name="actionStatus" value="edit"> -->
+<!-- 											<input type="submit" name="Submit" value="Edit"> -->
+<!-- 										</form> -->
+<!-- 									</td> -->
 									<td>
 										<form method="POST" action ="/deleteOccurrence">
 											<input type="hidden" id="occurrenceId" name="occurrenceId" value="<%=v.getIncidentId()%>">
