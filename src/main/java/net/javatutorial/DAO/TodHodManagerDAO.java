@@ -490,8 +490,7 @@ public class TodHodManagerDAO {
         int v = 0;
         try {
         	connection = Main.getConnection();
-            String sql = "SET TIMEZONE = 'Singapore'; "
-            		+ "SELECT COUNT(*) " + 
+            String sql = "SELECT COUNT(*) " + 
             		"FROM (SELECT DISTINCT officer_idno, CAST(time_in_dt AS DATE) AS TIME_IN_DATE "
             		+ " FROM todhod "
             		+ " WHERE time_in_dt >= '" + from + "' "
