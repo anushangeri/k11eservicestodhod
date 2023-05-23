@@ -495,7 +495,7 @@ public class TodHodManagerDAO {
             		+ " FROM todhod "
             		+ " WHERE time_in_dt >= '" + from + "' "
             		+ " AND time_in_dt <= '" + to + "' "
-            		+ " AND officer_idno <= '" + officerIdNo + "' ) temp; ";
+            		+ " AND officer_idno = '" + officerIdNo + "' ) temp; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

@@ -49,7 +49,6 @@ public class RetrieveTodHodCountServlet extends HttpServlet {
 					from = fromTimestamp.toString();
 					to = timestamp.toString();
 				}
-				
 				if(from != null && !StringUtils.isEmpty(from) && to != null && !StringUtils.isEmpty(to)) {
 					daysWorked = TodHodManagerDAO.retrieveDaysWorkedByIdNo(idNo, from, to);
 				}

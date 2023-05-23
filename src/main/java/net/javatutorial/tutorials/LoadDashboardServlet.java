@@ -1,6 +1,9 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -32,8 +35,21 @@ public class LoadDashboardServlet extends HttpServlet {
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<TodHodRecord> todRecords = TodHodManagerDAO.retrieveByLatestTod(idNo);
 		
+		//when onload dashboard, get the number of days worked for the week
+		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+		ZonedDateTime week = zdt.minusWeeks(1);
+		Timestamp fromTimestamp = Timestamp.valueOf(week.toLocalDateTime());
+		String from = fromTimestamp.toString();
+		String to = timestamp.toString();
+		
+		int daysWorked = TodHodManagerDAO.retrieveDaysWorkedByIdNo(idNo, from, to);
+				
+				
+				
 		session.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("vList", todRecords);
+		request.setAttribute("daysWorked", daysWorked);
 		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 		rd.forward(request, response);
 		
