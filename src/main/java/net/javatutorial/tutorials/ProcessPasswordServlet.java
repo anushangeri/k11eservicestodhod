@@ -45,6 +45,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 			session.setAttribute("idNo", c.getIdNo());
 			session.setAttribute("name", c.getName());
 			session.setAttribute("usertype", c.getAccessType());
+			request.setAttribute("onload",true);
 			RequestDispatcher rd = request.getRequestDispatcher("/loadDashboard");
 			rd.forward(request, response);
 		}

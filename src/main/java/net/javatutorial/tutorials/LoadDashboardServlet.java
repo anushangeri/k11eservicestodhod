@@ -30,26 +30,26 @@ public class LoadDashboardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
-		
 		//retrieving on idNo entered by user
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		ArrayList<TodHodRecord> todRecords = TodHodManagerDAO.retrieveByLatestTod(idNo);
 		
 		//when onload dashboard, get the number of days worked for the week
-		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
-		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-		ZonedDateTime week = zdt.minusWeeks(1);
-		Timestamp fromTimestamp = Timestamp.valueOf(week.toLocalDateTime());
-		String from = fromTimestamp.toString();
-		String to = timestamp.toString();
-		
-		int daysWorked = TodHodManagerDAO.retrieveDaysWorkedByIdNo(idNo, from, to);
-				
-				
+		if(request.getAttribute("onload") != null && (boolean) request.getAttribute("onload") == true) {
+			ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
+			Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
+			ZonedDateTime week = zdt.minusWeeks(1);
+			Timestamp fromTimestamp = Timestamp.valueOf(week.toLocalDateTime());
+			String from = fromTimestamp.toString();
+			String to = timestamp.toString();
+			
+			int daysWorked = TodHodManagerDAO.retrieveDaysWorkedByIdNo(idNo, from, to);
+			request.setAttribute("daysWorked", daysWorked);	
+		}		
 				
 		session.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("vList", todRecords);
-		request.setAttribute("daysWorked", daysWorked);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 		rd.forward(request, response);
 		
