@@ -93,7 +93,8 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 		// out.close();
 
 		String to = "k11.sivalingam@gmail.com";// change accordingly
-		final String user = "Shangeri1994@k11.com.sg";// change accordingly
+		String toClient = "general@mitsui-soko.com.sg";// change accordingly
+		final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
 		final String password = "Sh@ngeri94";// change accordingly
 
 		Properties properties = System.getProperties();
@@ -112,6 +113,7 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(toClient));
 			message.setSubject("K11 eService Attendance");
 
 			// Create the message part
