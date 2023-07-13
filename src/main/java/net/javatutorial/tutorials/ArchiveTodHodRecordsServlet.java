@@ -94,8 +94,11 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 
 		String to = "k11.sivalingam@gmail.com";// change accordingly
 		final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
-		final String password = "Sh@ngeri94";// change accordingly
-
+		//final String password = "Sh@ngeri94";// change accordingly
+		
+		final String password = new String(System.getenv("EMAIL_PASSWORD"));
+		System.out.println("EMAIL_PASSWORD: " + password);
+		
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", "mail.k11.com.sg");
 		properties.put("mail.smtp.auth", "true");
