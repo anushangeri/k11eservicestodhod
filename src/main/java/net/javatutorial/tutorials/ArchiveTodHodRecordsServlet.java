@@ -97,7 +97,6 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 		//final String password = "Sh@ngeri94";// change accordingly
 		
 		final String password = new String(System.getenv("EMAIL_PASSWORD"));
-		System.out.println("EMAIL_PASSWORD: " + password);
 		
 		Properties properties = System.getProperties();
 		properties.setProperty("mail.smtp.host", "mail.k11.com.sg");

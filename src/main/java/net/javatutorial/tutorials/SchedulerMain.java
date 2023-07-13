@@ -18,9 +18,6 @@ public class SchedulerMain {
 		int lastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		// check to see if the given date really is the last day of this month
 		
-		final String password = new String(System.getenv("EMAIL_PASSWORD"));
-		System.out.println("EMAIL_PASSWORD: " + password);
-		
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
 		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
