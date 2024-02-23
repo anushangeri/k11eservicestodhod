@@ -549,4 +549,30 @@ public class TodHodManagerDAO {
         }
         return message;
     }
+	public static String deleteOfficerByIDOneShiftOnly(String officerIdNo) {
+		Statement stmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        String message = "Records deleted in database for " + officerIdNo;
+        try {
+            String sql = "DELETE FROM TODHOD WHERE officer_idno = '" + officerIdNo + "' "
+            		+ "AND shift = 'NIGHT' "
+            		+ "AND EXISTS ("
+            		+ "SELECT 1 "
+            		+ "FROM TODHOD "
+            		+ "WHERE officer_idno = '" + officerIdNo +"' "
+            		+ "AND shift = 'DAY'"
+            		+ ");";
+            connection = Main.getConnection();
+			stmt = connection.createStatement();
+	        stmt.executeUpdate(sql);
+            
+        } catch (Exception e) {
+        	message = "there is issue: " + e;
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, stmt, rs);
+        }
+        return message;
+    }
 }

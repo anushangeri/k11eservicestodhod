@@ -29,7 +29,7 @@ public class RetrieveTodHodByNRICServlet extends HttpServlet {
 		String usertype = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("usertype"))) ? "" : (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
 
-		//from admin login view
+		//from admin login view - as of Feb 22, 2024, Shangeri doesnt know where is fits in, may have to delete but I won't touch it for now
 		String idNoFromClient =  (StringUtils.isEmpty(request.getParameter("idNo"))) ? "" : request.getParameter("idNo");
 				
 		ArrayList<TodHodRecord> vList = null;
