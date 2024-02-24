@@ -22,7 +22,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		session.setMaxInactiveInterval(0);
+		session.setMaxInactiveInterval(30);
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
 				
