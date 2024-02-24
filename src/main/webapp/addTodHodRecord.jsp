@@ -69,7 +69,7 @@ String name = "";
 					usertype = (String) session.getAttribute("usertype");
 					idNo = (String) session.getAttribute("idNo");
 					name = (String) session.getAttribute("name");
-					
+					System.out.println(usertype + " " + idNo + " " + name);
 				%>
 				<form action="addTodHodRecord" method="post">
 					<div class="form-row">
