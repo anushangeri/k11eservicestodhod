@@ -69,6 +69,7 @@ String name = "";
 					usertype = (String) session.getAttribute("usertype");
 					idNo = (String) session.getAttribute("idNo");
 					name = (String) session.getAttribute("name");
+					
 				%>
 				<form action="addTodHodRecord" method="post">
 					<div class="form-row">
@@ -76,13 +77,13 @@ String name = "";
 							<label for="officerName">Officer Name: </label> <input
 								type="text" class="form-control" name="officerName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : ((usertype.equals("ADMIN")) ? "" : name))%>" required>
+								value="<%=((v == null) || usertype.equals("MANAGEMENT") || usertype.equals("ADMIN") ? "" : name)%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="officerIdNo">Officer Id Number: </label> <input
 								type="text" class="form-control" name="officerIdNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : ((usertype.equals("ADMIN")) ? "" : idNo))%>" required>
+								value="<%=((v == null) || usertype.equals("MANAGEMENT") || usertype.equals("ADMIN") ? "" : idNo)%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="shift">Shift: </label>
