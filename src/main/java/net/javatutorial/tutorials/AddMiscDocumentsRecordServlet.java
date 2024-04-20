@@ -80,6 +80,7 @@ public class AddMiscDocumentsRecordServlet extends HttpServlet {
 		else {
 			String employeeId = employeeIdFromAddMiscForm;
 			String description = (String) request.getParameter("description");
+			System.out.println(description);
 	        // obtains the upload file part in this multipart request
 	        Part filePart = request.getPart("uploadFile");
 	
