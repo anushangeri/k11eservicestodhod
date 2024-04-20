@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.MiscDocuments;
@@ -224,6 +225,142 @@ public class MiscDocumentsManagerDAO {
         return vList;
     }
 
+	public static ArrayList<MiscDocuments> retrieveAllCurrentDay(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        MiscDocuments v = null;
+        ArrayList<MiscDocuments> vList = new ArrayList<MiscDocuments>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT DOCUMENT_ID, EMPLOYEE_ID, DOCUMENT, DESCRIPTION, CREATED_BY, LAST_MODIFIED_BY, CREATED_DT, LAST_MODIFIED_DT"
+            		+ " FROM MISCDOCUMENTS WHERE DATE(CREATED_DT) = DATE(CAST('" + timestamp + "' AS TIMESTAMP))"
+    				+ " ORDER BY LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new MiscDocuments(rs.getString(1), 
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<MiscDocuments> retrieveAllLast5Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        MiscDocuments v = null;
+        ArrayList<MiscDocuments> vList = new ArrayList<MiscDocuments>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT DOCUMENT_ID, EMPLOYEE_ID, DOCUMENT, DESCRIPTION, CREATED_BY, LAST_MODIFIED_BY, CREATED_DT, LAST_MODIFIED_DT"
+            		+ " FROM MISCDOCUMENTS WHERE DATE(CREATED_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP))  - 5"
+    				+ " ORDER BY LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new MiscDocuments(rs.getString(1), 
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<MiscDocuments> retrieveAllLast10Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        MiscDocuments v = null;
+        ArrayList<MiscDocuments> vList = new ArrayList<MiscDocuments>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT DOCUMENT_ID, EMPLOYEE_ID, DOCUMENT, DESCRIPTION, CREATED_BY, LAST_MODIFIED_BY, CREATED_DT, LAST_MODIFIED_DT"
+            		+ " FROM MISCDOCUMENTS WHERE DATE(CREATED_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP))  - 10"
+    				+ " ORDER BY LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new MiscDocuments(rs.getString(1), 
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<MiscDocuments> retrieveAllLast30Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        MiscDocuments v = null;
+        ArrayList<MiscDocuments> vList = new ArrayList<MiscDocuments>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT DOCUMENT_ID, EMPLOYEE_ID, DOCUMENT, DESCRIPTION, CREATED_BY, LAST_MODIFIED_BY, CREATED_DT, LAST_MODIFIED_DT"
+            		+ " FROM MISCDOCUMENTS WHERE DATE(CREATED_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP))  - 30"
+    				+ " ORDER BY LAST_MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new MiscDocuments(rs.getString(1), 
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getTimestamp(7),
+            			rs.getTimestamp(8));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
 	public static ArrayList<OfficerPayslip> retrieveAllJustPayslips() {
         PreparedStatement pstmt = null;
         Connection connection = null;

@@ -71,6 +71,23 @@
 		%>
 			<label class="heading"><%=viewMiscDocsServMsg%> </label><br>
 		<%  } %>
+		<br> <a
+			href="/viewMiscDocs?recordsToReceive=currdate"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Current Day</a> <a
+			href="/viewMiscDocs?recordsToReceive=5days"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Last 5 Days</a> <a
+			href="/viewMiscDocs?recordsToReceive=10days"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Last 10 Days</a> <a
+			href="/viewMiscDocs?recordsToReceive=30days"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Last 30 Days</a> <a
+			href="/viewMiscDocs?recordsToReceive=all"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">All</a>
+			
 	</center>
 	<%
 	if (vList != null && vList.size() > 0) {
@@ -129,7 +146,7 @@
 			<div class="form-row">
 			<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
 				<a href="/addMiscDoc.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Add Document</a>
+					role="button" aria-pressed="true">Add Document</a> 
 			<%} %>
 				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
