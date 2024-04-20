@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.javatutorial.DAO.MiscDocumentsManagerDAO;
 import net.javatutorial.DAO.OfficerPayslipManagerDAO;
-import net.javatutorial.entity.OfficerPayslip;
 /**
  * Servlet implementation class DeleteIndividualOfficerPayslipServlet
  * Payslips can be in the OFFICERPAYSLIPS table or MISCDOCUMENTS table
@@ -25,14 +24,14 @@ public class DeleteIndividualOfficerPayslipServlet extends HttpServlet {
 
 		String message = "DeleteIndividualOfficerPayslipServlet error or payslip cannot be found.";
         String payslipId = request.getParameter("payslipId");
-        OfficerPayslip v = OfficerPayslipManagerDAO.retrieveByPayslipId(payslipId);
+        
         //if document is from the OFFICERPAYSLIPS table delete from there
-        if(v != null) {
+        if(!payslipId.contains("-misc")) {
         	message = OfficerPayslipManagerDAO.deleteRecordByPayslipId(payslipId);
         }
         else {
         	//else delete from MISCDOCUMENTS table
-        	message = MiscDocumentsManagerDAO.deleteRecordByDocumentId(payslipId);
+        	message = MiscDocumentsManagerDAO.deleteRecordByDocumentId(payslipId.substring(0, payslipId.indexOf("-")));
         }
         request.setAttribute("deleteIndOfficerPayslipServMsg", message);
 		RequestDispatcher rd = request.getRequestDispatcher("/viewOfficerPayslip");

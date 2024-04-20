@@ -369,7 +369,7 @@ public class MiscDocumentsManagerDAO {
         ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT m.DOCUMENT_ID, e.ID_NO, m.DOCUMENT, m.CREATED_DT"
+            String sql = "SELECT CONCAT( m.DOCUMENT_ID, '-misc') , e.ID_NO, m.DOCUMENT, m.CREATED_DT"
             		+ " FROM MISCDOCUMENTS m INNER JOIN EMPLOYEE e ON m.EMPLOYEE_ID = e.EMPLOYEE_ID "
             		+ " WHERE LOWER(m.DESCRIPTION) LIKE '%payslip%' "
     				+ " ORDER BY m.LAST_MODIFIED_DT DESC";

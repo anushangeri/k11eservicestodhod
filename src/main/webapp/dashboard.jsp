@@ -221,6 +221,16 @@
 									</tr>
 									<tr>
 										<td>
+									 		Add Miscellaneous or Individual Payslip Documents
+									 		<br><small>To add miscellaneous documents or individual payslip documents if not using generate payslip function</small>
+									 	</td>
+									 	<td> 
+										 	<a href="/addMiscDoc.jsp" class="btn btn-warning btn-lg active" role="button"
+													aria-pressed="true">Add Miscellaneous or Payslip Documents</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
 									 		Create Site Record
 									 	</td>
 									 	<td> 
@@ -279,7 +289,7 @@
 								<tr>
 									<td>
 								 		Generate Payslip
-								 		<br><small>This will generate all the individual officer payslips for the month.</small>
+								 		<br><small>This will generate all the individual officer payslips for the month using the excel.</small>
 								 	</td>
 								 	<td> 
 									 	<a href="payslipGenerator.jsp" class="btn btn-warning btn-lg active" role="button"
