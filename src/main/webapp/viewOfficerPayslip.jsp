@@ -165,8 +165,11 @@
 	<div class="container body-content">
 		<center>
 			<div class="form-row">
-				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
+				<div class="form-group col-md-2">
+					<form action="/loadDashboard" method="post">
+					    <input  class="btn btn-warning btn-lg active" type="submit" value="Back">
+					</form>
+				</div>
 			</div>
 		</center>
 	</div>
