@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import net.javatutorial.DAO.EmployeeManagerDAO;
 import net.javatutorial.DAO.MiscDocumentsManagerDAO;
+import net.javatutorial.entity.Employee;
 import net.javatutorial.entity.MiscDocuments;
 
 /**
@@ -39,6 +41,23 @@ public class AddMiscDocumentsRecordServlet extends HttpServlet {
 		String createdBy = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
 		String lastModifiedBy = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
 		
+		//Update made by Shangeri on 20240420
+		//this came from addMiscDoc - we used ClientAccountRetrieveAll so we can display the employee name
+		//now we need to get the EmployeeID from the EmployeeTbl to we can proceed to add the misc document. 
+		//So using the EmployeeIdNo that we got from ClientAccount to find the EmpID in emp
+		String employeeIdFromAddMiscForm = "";
+		String employeeIdNo = (String) request.getParameter("employeeIdNo");
+		ArrayList<Employee> eList = EmployeeManagerDAO.retrieveEmployeeByID(employeeIdNo);
+		if(!eList.isEmpty()) {
+			employeeIdFromAddMiscForm = eList.get(0).getEmployeeId();
+		}
+		else {
+			System.out.println(employeeIdNo + ": The Employee does not have a KET record. Please verify.");
+			// Redirect to view Misc Documents servlet to query all the Misc Documents again.
+			response.sendRedirect("/viewMiscDocs");
+		}
+		
+		
 		//if status from DeleteKETDocumentServlet, then just add inputstream, else need to this whole filepart portion
 		String status = (String) request.getAttribute("status");
 		InputStream inputStream = null; // input stream of the upload file
@@ -59,7 +78,7 @@ public class AddMiscDocumentsRecordServlet extends HttpServlet {
 			response.sendRedirect("/viewEmp");
 		}
 		else {
-			String employeeId = (String) request.getParameter("employeeId");
+			String employeeId = employeeIdFromAddMiscForm;
 			String description = (String) request.getParameter("description");
 	        // obtains the upload file part in this multipart request
 	        Part filePart = request.getPart("uploadFile");
@@ -77,7 +96,7 @@ public class AddMiscDocumentsRecordServlet extends HttpServlet {
 			}
 	        request.setAttribute("addMiscDocServMsg", message);
 			// Redirect to view Misc Documents servlet to query all the Misc Documents again.
-			response.sendRedirect("/viewMiscDocs");
+	        response.sendRedirect("/viewMiscDocs");
 		}
 		
 	}

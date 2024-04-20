@@ -11,8 +11,8 @@
 <%@page import="java.net.URL"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="net.javatutorial.entity.Employee"%>
-<%@page import="net.javatutorial.DAO.EmployeeManagerDAO"%>
+<%@page import="net.javatutorial.entity.ClientAccount"%>
+<%@page import="net.javatutorial.DAO.ClientAccountManagerDAO"%>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  
@@ -25,23 +25,25 @@
 	<div class="container body-content">
 		<div class="page-header">
 			<label class="heading">Employee Management System</label> <br>
-			<b>How to use:</b> Please enter Miscellaneous Documents.
+			<b>How to use:</b> Please enter Miscellaneous Documents.<br>
+			<b>IMPORTANT:</b> Please ensure you have Create Account for K11 Employee and Add Employee KET Record. This is needed before you add any
+			miscellaneous documents for this K11 Employee, if not you will not see the document added successfully.
 			<center>
 			<%
-			ArrayList<Employee> eList = EmployeeManagerDAO.retrieveAll();
+			ArrayList<ClientAccount> eList = ClientAccountManagerDAO.retrieveAllInnerJoinEmpTbl();
 			%>
 			
 				<form action="addMiscDocsRecord" enctype='multipart/form-data' method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="employeeId">Employee ID No: </label>
-							<select name="employeeId" class="form-control">
+							<label for="employeeIdNo">Employee ID No: </label>
+							<select name="employeeIdNo" class="form-control">
 								<option style="display:none;"></option>
 								<%
-								for (Employee eachEmp : eList) {
+								for (ClientAccount eachEmp : eList) {
 								%>
-								<option value="<%=eachEmp.getEmployeeId()%>">
-									<%=eachEmp.getIdNo()%></option>
+									<option value="<%=eachEmp.getIdNo()%>">
+									<%=eachEmp.getName()%>(<%=eachEmp.getIdNo()%>)</option>
 								<%
 								}
 								%>
@@ -61,7 +63,7 @@
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>
 							
-						<a href="/dashboard.jsp" class="btn btn-warning btn-lg active" role="button"
+						<a href="/viewMiscDocs?recordsToReceive=5days" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
 					<br> <br>

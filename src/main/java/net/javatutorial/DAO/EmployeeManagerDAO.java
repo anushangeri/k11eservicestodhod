@@ -144,7 +144,7 @@ public class EmployeeManagerDAO {
         try {
         	connection = Main.getConnection();
             String sql = "SELECT * FROM EMPLOYEE "
-            		+ " WHERE ID_NO ='" + idNo + "'"
+            		+ " WHERE ID_NO ='"+ idNo +"'"
             		+ "ORDER BY CREATED_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 

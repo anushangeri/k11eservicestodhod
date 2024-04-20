@@ -105,7 +105,7 @@
 					<th class="th-sm">Last Modified By</th>
 					<th class="th-sm">Created Date</th>
 					<th class="th-sm">Last Modified Date</th>
-					<th class="th-sm" colspan='2'>Document</th>
+					<th class="th-sm" colspan='2'><center>Document</center></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -146,12 +146,17 @@
 	<div class="container body-content">
 		<center>
 			<div class="form-row">
-			<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
-				<a href="/addMiscDoc.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Add Document</a> 
-			<%} %>
-				<a href="/dashboard.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
+				<div class="form-group col-md-2">
+				<%if (userType.equals("MANAGEMENT") || userType.equals("ADMIN")) {%>
+					<a href="/addMiscDoc.jsp" class="btn btn-warning btn-lg active"
+						role="button" aria-pressed="true">Add Document</a> 
+				<%} %>
+				</div>
+				<div class="form-group col-md-2">
+					<form action="/loadDashboard" method="post">
+					    <input  class="btn btn-warning btn-lg active" type="submit" value="Back">
+					</form>
+				</div>
 			</div>
 		</center>
 	</div>

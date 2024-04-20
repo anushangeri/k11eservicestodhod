@@ -218,6 +218,42 @@ public class ClientAccountManagerDAO {
         return vList;
     }
 	
+	public static ArrayList<ClientAccount> retrieveAllInnerJoinEmpTbl() {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ClientAccount v = null;
+        ArrayList<ClientAccount> vList = new ArrayList<ClientAccount>();
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT a.ACCOUNT_ID, a.NAME, \r\n" + 
+            		"              a.ID_TYPE, a.ID_NO, a.PASSWORD, a.SALT, a.ACCESS_TYPE, a.CREATED_DT, a.MODIFIED_DT \r\n"
+            		+ " FROM CLIENTACCOUNT a INNER JOIN EMPLOYEE b ON a.ID_NO = b.ID_NO "
+            		+ " AND b.ID_NO IS NOT NULL"
+    				+ " ORDER BY a.MODIFIED_DT DESC";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	v = new ClientAccount(rs.getString(1), 
+            			rs.getString(2),
+            			rs.getString(3),
+            			rs.getString(4),
+            			rs.getString(5),
+            			rs.getString(6),
+            			rs.getString(7),
+            			rs.getTimestamp(8),
+            			rs.getTimestamp(9));
+                vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
 	public static String deleteRecordByAccountId(String accountId) {
         PreparedStatement pstmt = null;
         Connection connection = null;

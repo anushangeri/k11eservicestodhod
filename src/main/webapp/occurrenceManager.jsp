@@ -177,8 +177,11 @@ $(document).ready(function() {
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="dashboard.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
+				<div class="form-group col-md-2">
+					<form action="/loadDashboard" method="post">
+					    <input  class="btn btn-warning btn-lg active" type="submit" value="Back">
+					</form>
+				</div>
 					
 				<a href="addOccurrenceRecord.jsp" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Occurrence</a>
