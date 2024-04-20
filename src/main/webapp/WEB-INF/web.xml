@@ -302,6 +302,12 @@
 		<servlet-name>RetrieveTodHodCountServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.RetrieveTodHodCountServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteTodHodByOfficerIDOneShiftOnly</display-name>
+		<servlet-name>DeleteTodHodByOfficerIDOneShiftOnly</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteTodHodByOfficerIDOneShiftOnly</servlet-class>
+	</servlet>
 	<!-- TOD HOD END  -->
 	
 	<!-- Occurrence Reports START  -->
@@ -427,6 +433,12 @@
 		<display-name>ViewMiscDocumentsRecordServlet</display-name>
 		<servlet-name>ViewMiscDocumentsRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewMiscDocumentsRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteMiscDocumentRecordServlet</display-name>
+		<servlet-name>DeleteMiscDocumentRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteMiscDocumentRecordServlet</servlet-class>
 	</servlet>
 	<!-- Misc Documents END  -->
 	
@@ -625,6 +637,10 @@
 		<servlet-name>RetrieveTodHodCountServlet</servlet-name>
 		<url-pattern>/retrieveTodHodCount</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteTodHodByOfficerIDOneShiftOnly</servlet-name>
+		<url-pattern>/deleteTodHodRecordsOneShift</url-pattern>
+	</servlet-mapping>
 	<!-- TOD HOD END  -->
 
 	<!-- PAYSLIP START -->
@@ -713,6 +729,10 @@
 		<servlet-name>ViewMiscDocumentsRecordServlet</servlet-name>
 		<url-pattern>/viewMiscDocs</url-pattern>
 	</servlet-mapping>	
+	<servlet-mapping>
+		<servlet-name>DeleteMiscDocumentRecordServlet</servlet-name>
+		<url-pattern>/deleteMiscDocs</url-pattern>
+	</servlet-mapping>
 	<!-- Misc Documents END -->
 		
 	<servlet-mapping>

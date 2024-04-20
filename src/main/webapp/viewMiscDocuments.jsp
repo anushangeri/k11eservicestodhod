@@ -105,7 +105,7 @@
 					<th class="th-sm">Last Modified By</th>
 					<th class="th-sm">Created Date</th>
 					<th class="th-sm">Last Modified Date</th>
-					<th class="th-sm">Document</th>
+					<th class="th-sm" colspan='2'>Document</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -127,6 +127,8 @@
 							<td><%=v.getLastModifiedDt()%></td>
 							<td><a href="generateDocDwnld?dwnldDocInd=dwnldMiscDoc&documentId=<%=v.getDocumentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getDocument() == null ? "disabled" : "active")%> role="button"
 									aria-pressed="true">Download</a></td>
+							<td><a href="deleteMiscDocs?documentId=<%=v.getDocumentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getDocument() == null ? "disabled" : "active")%> role="button"
+									aria-pressed="true">Delete</a></td>
 						</tr>
 						<%
 						}
