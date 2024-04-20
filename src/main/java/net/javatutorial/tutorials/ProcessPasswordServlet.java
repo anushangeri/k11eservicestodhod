@@ -27,7 +27,7 @@ public class ProcessPasswordServlet extends HttpServlet {
 		    session.invalidate();
 		    session = request.getSession();
 		}
-		session.setMaxInactiveInterval(30);
+		session.setMaxInactiveInterval(900);
 		String idNo = request.getParameter("idNo");
 		String password = request.getParameter("psw");
 				
