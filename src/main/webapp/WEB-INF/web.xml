@@ -134,6 +134,12 @@
 		<servlet-name>UpdateLeaveRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.UpdateLeaveRecordServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description />
+		<display-name>DeleteLeaveRecordServlet</display-name>
+		<servlet-name>DeleteLeaveRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteLeaveRecordServlet</servlet-class>
+	</servlet>
 	<!-- Leave END  -->	
 	
 	<!-- PWM Details START  -->
@@ -520,6 +526,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateLeaveRecordServlet</servlet-name>
 		<url-pattern>/updateLeave</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteLeaveRecordServlet</servlet-name>
+		<url-pattern>/deleteLeave</url-pattern>
 	</servlet-mapping>
 	<!-- Leave END  -->
 

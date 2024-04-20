@@ -160,6 +160,7 @@
 							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Created Date</th>
 							<th class="th-sm">Last Modified Date</th>
+							<th class="th-sm">Delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -209,6 +210,8 @@
 							</td>
 							<td><%=v.getCreatedDt()%></td>
 							<td><%=v.getLastModifiedDt()%></td>
+							<td><a href="deleteLeave?leaveId=<%=v.getLeaveID()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getLeaveID() == null ? "disabled" : "active")%> role="button"
+									aria-pressed="true">Delete</a></td>
 						</tr>
 						<%
 						}
