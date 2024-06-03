@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import net.javatutorial.DAO.IncidentManagerDAO;
-import net.javatutorial.DAO.MiscDocumentsManagerDAO;
 import net.javatutorial.entity.Incident;
-import net.javatutorial.entity.MiscDocuments;
 
 
 /**

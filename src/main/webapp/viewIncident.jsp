@@ -209,7 +209,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<a href="generateDocDwnld?dwnldDocInd=dwnldIncidentDoc&incidentId=<%=v.getIncidentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getIncidentId() == null ? "disabled" : "active")%> role="button"
+						<a href="generateDocDwnld?dwnldDocInd=dwnldIncidentDoc&incidentId=<%=v.getIncidentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getIncidentId() == null || v.getFile() == null ? "disabled" : "active")%> role="button"
 									aria-pressed="true">Download</a>
 					</div>
 					<div class="form-row">
