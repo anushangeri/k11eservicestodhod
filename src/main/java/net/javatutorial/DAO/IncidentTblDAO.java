@@ -82,7 +82,7 @@ public class IncidentTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE INCIDENT\r\n" + 
-	        		" RENAME COLUMN IMAGES TO FILE;");
+	        		" ALTER COLUMN FILE SET DATA TYPE bytea USING FILE[1];");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
