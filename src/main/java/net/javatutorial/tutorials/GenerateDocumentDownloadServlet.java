@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import net.javatutorial.DAO.EmployeeManagerDAO;
+import net.javatutorial.DAO.IncidentManagerDAO;
 import net.javatutorial.DAO.MiscDocumentsManagerDAO;
 import net.javatutorial.entity.Employee;
 import net.javatutorial.entity.MiscDocuments;
@@ -43,12 +44,18 @@ public class GenerateDocumentDownloadServlet extends HttpServlet {
 		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldMiscDoc")) {
 			String documentId = request.getParameter("documentId");
 			if(documentId == null || StringUtils.isEmpty(documentId)) {
-				documentId = (String) request.getAttribute("documentId");
+				documentId = (String) request.getAttribute("documentId"); //coming from another page
 			}
 			System.out.println("documentId: " + documentId);
 			MiscDocuments v = MiscDocumentsManagerDAO.retrieveByDocumentID(documentId);
 			System.out.println("v: " + v.toString());
 	        inputStream = v.getDocument(); // input stream of the upload file
+		}
+		if(dwnldDocInd != null && !(StringUtils.isEmpty(dwnldDocInd)) && dwnldDocInd.equals("dwnldIncidentDoc")) {
+			String incidentId = request.getParameter("incidentId");
+			if(incidentId != null || !StringUtils.isEmpty(incidentId)) {
+				inputStream = IncidentManagerDAO.retrieveFilesByIncidentId(incidentId);
+			}
 		}
         response.setContentType("application/pdf");
         OutputStream output = response.getOutputStream();

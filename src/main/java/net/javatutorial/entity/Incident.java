@@ -30,7 +30,7 @@ public class Incident {
     private String signatureOfOfficerOnDuty;
     private String signatureOfOpsManagerOnDuty;
     
-    private List<InputStream> images;
+    private InputStream file;
     
     private Timestamp createdDt;
     private Timestamp lastModifiedDt;
@@ -61,7 +61,7 @@ public class Incident {
 			String dateOfIncidentReported, String partiesInvolved, List<String> incidentCategory,
 			String howIncidentOccurred, String whatIncidentOccurred, String whyIncidentOccurred,
 			String declarationByOfficerOnDuty, String declarationofSecurityImplications,
-			String signatureOfOfficerOnDuty, String signatureOfOpsManagerOnDuty, List<InputStream> images,
+			String signatureOfOfficerOnDuty, String signatureOfOpsManagerOnDuty, InputStream file,
 			Timestamp createdDt, Timestamp lastModifiedDt) {
 		super();
 		this.incidentId = incidentId;
@@ -81,7 +81,7 @@ public class Incident {
 		this.declarationofSecurityImplications = declarationofSecurityImplications;
 		this.signatureOfOfficerOnDuty = signatureOfOfficerOnDuty;
 		this.signatureOfOpsManagerOnDuty = signatureOfOpsManagerOnDuty;
-		this.images = images;
+		this.file = file;
 		this.createdDt = createdDt;
 		this.lastModifiedDt = lastModifiedDt;
 	}
@@ -111,7 +111,7 @@ public class Incident {
 			String dateOfIncidentReported, String partiesInvolved, List<String> incidentCategory,
 			String howIncidentOccurred, String whatIncidentOccurred, String whyIncidentOccurred,
 			String declarationByOfficerOnDuty, String declarationofSecurityImplications,
-			String signatureOfOfficerOnDuty, List<InputStream> images, Timestamp createdDt, Timestamp lastModifiedDt) {
+			String signatureOfOfficerOnDuty, InputStream file, Timestamp createdDt, Timestamp lastModifiedDt) {
 		super();
 		this.incidentId = incidentId;
 		this.officerOnDutyName = officerOnDutyName;
@@ -129,7 +129,7 @@ public class Incident {
 		this.declarationByOfficerOnDuty = declarationByOfficerOnDuty;
 		this.declarationofSecurityImplications = declarationofSecurityImplications;
 		this.signatureOfOfficerOnDuty = signatureOfOfficerOnDuty;
-		this.images = images;
+		this.file = file;
 		this.createdDt = createdDt;
 		this.lastModifiedDt = lastModifiedDt;
 	}
@@ -340,14 +340,14 @@ public class Incident {
 	/**
 	 * @return the images
 	 */
-	public List<InputStream> getImages() {
-		return images;
+	public InputStream getFile() {
+		return file;
 	}
 	/**
 	 * @param images the images to set
 	 */
-	public void setImages(List<InputStream> images) {
-		this.images = images;
+	public void setFile(InputStream file) {
+		this.file = file;
 	}
 	/**
 	 * @return the createdDt
@@ -383,7 +383,7 @@ public class Incident {
 				+ ", whatIncidentOccurred=" + whatIncidentOccurred + ", whyIncidentOccurred=" + whyIncidentOccurred
 				+ ", declarationByOfficerOnDuty=" + declarationByOfficerOnDuty + ", declarationofSecurityImplications="
 				+ declarationofSecurityImplications + ", signatureOfOfficerOnDuty=" + signatureOfOfficerOnDuty
-				+ ", signatureOfOpsManagerOnDuty=" + signatureOfOpsManagerOnDuty + ", images=" + images + ", createdDt="
+				+ ", signatureOfOpsManagerOnDuty=" + signatureOfOpsManagerOnDuty + ", file=" + file + ", createdDt="
 				+ createdDt + ", lastModifiedDt=" + lastModifiedDt + "]";
 	}
 }

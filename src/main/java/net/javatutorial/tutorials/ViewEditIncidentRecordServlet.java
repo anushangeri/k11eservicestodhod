@@ -1,6 +1,7 @@
 package net.javatutorial.tutorials;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -24,23 +25,23 @@ public class ViewEditIncidentRecordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String usertype = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("usertype"))) ? "" : (String) request.getSession(false).getAttribute("usertype");
-		//String idNo = (StringUtils.isEmpty((String) request.getSession(false).getAttribute("idNo"))) ? "" : (String) request.getSession(false).getAttribute("idNo");
-
+		
 		String incidentId = request.getParameter("incidentId");
 		String actionStatus = request.getParameter("actionStatus");
-		
+		InputStream file = null;
 		ArrayList<Incident> vList = null;
 		Incident v = null;
 		
 		vList = IncidentManagerDAO.retrieveByIncidentId(incidentId);
 		if(vList != null && vList.size() > 0) {
 			v = vList.get(0);
+			file = v.getFile();
 		}
 		//getting all the dropdown
 		ArrayList<Site> siteDropdown = SiteManagerDAO.retrieveAll();
 		System.out.println(v.toString());
 		request.setAttribute("incidentRecord", v);
+		request.setAttribute("fileStreams", file);
 		request.setAttribute("siteDropdown", siteDropdown);
 		request.setAttribute("actionStatus", actionStatus);
 		

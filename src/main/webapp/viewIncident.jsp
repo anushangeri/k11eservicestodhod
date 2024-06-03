@@ -209,32 +209,8 @@
 						</div>
 					</div>
 					<div class="form-row">
-<!-- 						<div class="form-group col-md-6"> -->
-<!-- 							<label for="files">Select files:</label>  -->
-<%-- 							<% --%>
-// 								for(InputStream s: v.getImages()){
-// 									ByteArrayOutputStream os = new ByteArrayOutputStream();
-									 
-// 							        byte[] buffer = new byte[1024];
-// 							        int len;
-							 
-// 							        // read bytes from the input stream and store them in the buffer
-// 							        while ((len = s.read(buffer)) != -1)
-// 							        {
-// 							            // write bytes from the buffer into the output stream
-// 							            os.write(buffer, 0, len);
-// 							        }
-							 
-// 							        byte [] byteArray = os.toByteArray();
-<%-- 							%> --%>
-<%-- 									<input type="text" onload="handleFileSelect()" id="test" value=<%=s%>> --%>
-<%-- 									<img src="data:image/png;base64,<%=byteArray %>"> --%>
-<!-- 									<div id="display"></div> -->
-<%-- 							<% --%>
-// 								}
-<%-- 							%> --%>
-<!-- 							 <div id="display"></div> -->
-<!-- 						</div> -->
+						<a href="generateDocDwnld?dwnldDocInd=dwnldIncidentDoc&incidentId=<%=v.getIncidentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getIncidentId() == null ? "disabled" : "active")%> role="button"
+									aria-pressed="true">Download</a>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -257,7 +233,6 @@
 						<a href="/manageIncidentRecord" class="btn btn-warning btn-lg active"
 							role="button" aria-pressed="true">Back</a>
 					</div>
-					<br> <br>
 				</form>
 			</center>
 		</div>

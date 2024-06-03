@@ -138,7 +138,7 @@ $(document).ready(function() {
 									<td style="display:none;"><%=v.getDeclarationofSecurityImplications()%></td>
 									<td style="display:none;"><%=v.getSignatureOfOfficerOnDuty()%></td>
 									<td style="display:none;"><%=v.getSignatureOfOpsManagerOnDuty()%></td>
-									<td style="display:none;"><%=v.getImages()%></td>
+									<td style="display:none;"><%=v.getFile()%></td>
 									
 									<td style="display:none;"><%=v.getCreatedDt()%></td>
 									<td style="display:none;"><%=v.getLastModifiedDt()%></td>

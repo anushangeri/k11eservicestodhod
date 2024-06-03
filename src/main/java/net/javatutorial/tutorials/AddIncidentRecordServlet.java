@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import net.javatutorial.DAO.IncidentManagerDAO;
+import net.javatutorial.DAO.MiscDocumentsManagerDAO;
 import net.javatutorial.entity.Incident;
+import net.javatutorial.entity.MiscDocuments;
 
 
 /**
@@ -58,24 +57,26 @@ public class AddIncidentRecordServlet extends HttpServlet {
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
 		
-		Collection<Part> parts = request.getParts();
-		List<InputStream> images = new ArrayList<InputStream>();
-	    for (Part part : parts) {
-	    	InputStream inputStream = null; // input stream of the upload file
-	    	// prints out some information for debugging
-	    	if(part.getName().equals("files")) {
-	            // obtains input stream of the upload image
-	            inputStream = part.getInputStream();
-	            images.add(inputStream);
-	            
-	    	}
-	    }
+		InputStream inputStream = null;
+		// obtains the upload file part in this multipart request
+        Part filePart = request.getPart("file");
+
+        if (filePart != null) {
+            // prints out some information for debugging
+            System.out.println(filePart.getName());
+            System.out.println(filePart.getSize());
+            System.out.println(filePart.getContentType());
+             
+            // obtains input stream of the upload file
+            inputStream = filePart.getInputStream();
+		}
+        
 		Incident i = new Incident(incidentId,  officerOnDutyName,  officerOnDutyId,
 				officerOnDutyDesignation,  reportingSite,  dateOfIncident,  timeOfIncident,
 				dateOfIncidentReported,  partiesInvolved, Arrays.asList(incidentCategory),
 				howIncidentOccurred,  whatIncidentOccurred,  whyIncidentOccurred,
 				declarationByOfficerOnDuty,  declarationofSecurityImplications,
-				signatureOfOfficerOnDuty, images, timestamp, timestamp);
+				signatureOfOfficerOnDuty, "unknown" ,inputStream, timestamp, timestamp);
 		
 		String message = IncidentManagerDAO.addIncident(i);
 		request.setAttribute("message", message);

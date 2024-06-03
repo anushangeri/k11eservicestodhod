@@ -391,6 +391,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UIncidentTblServlet</display-name>
+		<servlet-name>UIncidentTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UIncidentTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>AddIncidentRecordServlet</display-name>
 		<servlet-name>AddIncidentRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.AddIncidentRecordServlet</servlet-class>
@@ -676,6 +682,10 @@
 	<servlet-mapping>
 		<servlet-name>CIncidentTblServlet</servlet-name>
 		<url-pattern>/createIncidentTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UIncidentTblServlet</servlet-name>
+		<url-pattern>/updateIncidentTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddIncidentRecordServlet</servlet-name>

@@ -22,39 +22,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-	function handleFileSelect() {
-		//Check File API support
-		if (window.File && window.FileList && window.FileReader) {
-
-			var files = event.target.files; //FileList object
-			var output = document.getElementById("result");
-			for (var i = 0; i < files.length; i++) {
-				var file = files[i];
-				//Only pics
-				if (!file.type.match('image'))
-					continue;
-
-				var picReader = new FileReader();
-				picReader
-						.addEventListener(
-								"load",
-								function(event) {
-									var picFile = event.target;
-									var div = document.createElement("div");
-									div.innerHTML = "<img width=200 class='thumbnail' src='" + picFile.result + "'" + "title='" + picFile.name + "'/>";
-									output.insertBefore(div, null);
-								});
-				//Read the image
-				picReader.readAsDataURL(file);
-			}
-		} else {
-			console.log("Your browser does not support File API");
-		}
-	}
-	function clearUploads() {
-		document.getElementById("files").value = "";
-		document.getElementById("result").value = "";
-	}
 	function stateReasonDeclarationByOfficerOnDuty() {
 		var yesSelected = document
 				.getElementById("yesCheckDeclarationByOfficerOnDuty");
@@ -286,20 +253,8 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="files">Select files:</label> <input type="file"
-								class="form-control" id="files" onchange="handleFileSelect()"
-								name="files" accept="image/png" multiple="multiple">
-						</div>
-						<div class="form-group col-md-4">
-							<button type="button" class="btn btn-primary btn-md active"
-								onclick="clearUploads()" id="clear">Clear Uploads</button>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-12">
-							<output id="result" />
-						</div>
+						<label for="uploadFile">Upload File: </label> <input type="file"
+                                class="form-control" name="file">
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">

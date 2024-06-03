@@ -39,7 +39,7 @@ public class IncidentTblDAO {
 	        		 
 	        		 "SIGNATUREOFOFFICERONDUTY VARCHAR (100)  NOT NULL,\r\n" +
 	        		 "SIGNATUREOFOPSMANAGERONDUTY VARCHAR (100)  NOT NULL,\r\n" +
-	        		 "IMAGES bytea [] NULL,\r\n" + 
+	        		 "FILE bytea NULL,\r\n" + 
 	        		 "CREATED_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n"  +
 	        		 "LAST_MODIFIED_DT TIMESTAMP  NOT NULL DEFAULT NOW() \r\n"  +
 	        		");");
@@ -82,8 +82,7 @@ public class IncidentTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE INCIDENT\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        		" ALTER COLUMN FILE SET DATA TYPE bytea USING FILE[1];");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
