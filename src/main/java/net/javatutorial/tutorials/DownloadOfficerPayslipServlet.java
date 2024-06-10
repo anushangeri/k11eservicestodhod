@@ -29,8 +29,11 @@ public class DownloadOfficerPayslipServlet extends HttpServlet {
 			throws ServletException, IOException {
 
         
-        String payslipId = request.getParameter("payslipId");
-        OfficerPayslip v = OfficerPayslipManagerDAO.retrieveByPayslipId(payslipId);
+        String reqPayslipId = request.getParameter("payslipId");
+        String payslipId = reqPayslipId != null && reqPayslipId.contains("-payslip") ? 
+        		reqPayslipId.substring(0, reqPayslipId.indexOf("-")) : reqPayslipId;
+        
+        		OfficerPayslip v = OfficerPayslipManagerDAO.retrieveByPayslipId(payslipId);
         //if document is from the payslip generated from excel
         if(v != null) {
 	        InputStream inputStream = v.getPayslip(); // input stream of the upload file
@@ -69,7 +72,8 @@ public class DownloadOfficerPayslipServlet extends HttpServlet {
         }
         else {
         	//document is from the misc doc table
-        	String documentId =  payslipId.substring(0, payslipId.indexOf("-"));
+        	String documentId =  reqPayslipId != null && reqPayslipId.contains("-misc") ? 
+            		reqPayslipId.substring(0, reqPayslipId.indexOf("-")) : reqPayslipId;
         	request.setAttribute("dwnldDocInd", "dwnldMiscDoc");
         	request.setAttribute("documentId", documentId);
         	RequestDispatcher rd = request.getRequestDispatcher("/generateDocDwnld");

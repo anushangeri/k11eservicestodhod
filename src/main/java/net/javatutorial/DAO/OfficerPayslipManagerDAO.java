@@ -94,7 +94,7 @@ public class OfficerPayslipManagerDAO {
         OfficerPayslip v = null;
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT PAYSLIP_ID, ID_NO, FILE, CREATED_DT FROM OFFICERPAYSLIP ORDER BY CREATED_DT DESC; ";
+            String sql = "SELECT CONCAT( PAYSLIP_ID, '-payslip'), ID_NO, FILE, CREATED_DT FROM OFFICERPAYSLIP ORDER BY CREATED_DT DESC; ";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

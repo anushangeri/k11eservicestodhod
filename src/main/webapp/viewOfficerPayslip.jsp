@@ -138,7 +138,7 @@
 								OfficerPayslip v = vListIter.next();
 						%>
 						<tr>
-							<td><%=v.getPayslipId() != null && v.getPayslipId().contains("-misc") ? v.getPayslipId().substring(0, v.getPayslipId().indexOf("-")) : v.getPayslipId()%></td>
+							<td><%=v.getPayslipId() != null && v.getPayslipId().contains("-") ? v.getPayslipId().substring(0, v.getPayslipId().indexOf("-")) : v.getPayslipId()%></td>
 							<td><%=v.getOfficerIdNo()%></td>
 							<td><%=v.getCreatedDt()%></td>
 							<td><a href="downloadPayslip?payslipId=<%=v.getPayslipId()%>">Download</a></td>
