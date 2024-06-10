@@ -69,8 +69,9 @@ public class DownloadOfficerPayslipServlet extends HttpServlet {
         }
         else {
         	//document is from the misc doc table
+        	String documentId =  payslipId.substring(0, payslipId.indexOf("-"));
         	request.setAttribute("dwnldDocInd", "dwnldMiscDoc");
-        	request.setAttribute("documentId", payslipId);
+        	request.setAttribute("documentId", documentId);
         	RequestDispatcher rd = request.getRequestDispatcher("/generateDocDwnld");
 			rd.forward(request,response);
         }
