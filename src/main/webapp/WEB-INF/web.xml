@@ -325,6 +325,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UOccurrenceTblServlet</display-name>
+		<servlet-name>UOccurrenceTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UOccurrenceTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>ViewOccurrenceRecordServlet</display-name>
 		<servlet-name>ViewOccurrenceRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewOccurrenceRecordServlet</servlet-class>
@@ -713,6 +719,10 @@
 	<servlet-mapping>
 		<servlet-name>COccurrenceTblServlet</servlet-name>
 		<url-pattern>/createOccurrenceTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UOccurrenceTblServlet</servlet-name>
+		<url-pattern>/updateOccurrenceTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ViewOccurrenceRecordServlet</servlet-name>

@@ -82,7 +82,17 @@ public class IncidentTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE INCIDENT\r\n" + 
-	        		" ALTER COLUMN FILE SET DATA TYPE bytea USING FILE[1];");
+	        		" ALTER COLUMN  INCIDENT_ID TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  OFFICERONDUTYNAME TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  OFFICERONDUTYID TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  OFFICERONDUTYDESIGNATION TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  REPORTINGSITE TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  PARTIESINVOLVED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  HOWINCIDENTOCCURRED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  WHATINCIDENTOCCURRED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  WHYINCIDENTOCCURRED TYPE varchar(4000) \r\n"
+	        		+ ";");
+	        
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

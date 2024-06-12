@@ -77,8 +77,17 @@ public class OccurrenceTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE OCCURRENCE\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        		" ALTER COLUMN  OCCURRENCE_ID TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  DESCRIPTIONOFSECURITYRISKTHREAT TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  NONCONFORMANCESOP TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  DESCRIPTIONOFPARTIESINVOLVED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  DESCRIPTIONOFK11NOTIFIED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  PARTIESINVOLVED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  HOWINCIDENTOCCURRED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  WHATINCIDENTOCCURRED TYPE varchar(4000), \r\n"
+	        		+ "ALTER COLUMN  WHYINCIDENTOCCURRED TYPE varchar(4000) \r\n"
+	        		+ ";");
+	        
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;
