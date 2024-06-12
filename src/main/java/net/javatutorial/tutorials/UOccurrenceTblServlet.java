@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import net.javatutorial.DAO.OccurrenceTblDAO;
 
 /**
- * Servlet implementation class UOccurenceTblServlet
+ * Servlet implementation class UOccurrenceTblServlet
  * update table Site
  */
-public class UOccurenceTblServlet extends HttpServlet {
+public class UOccurrenceTblServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
