@@ -108,9 +108,17 @@
 		
 		if (message != null && !StringUtils.isEmpty(message)) {
 		%>
-		<label class="heading"><%=message%> </label><br> <b>*Individuals
-			are required to self-identify should they experience any COVID-19
-			symptoms.</b>
+			<label class="heading"><%=message%>  </label><br>
+			
+			<a href="/viewOfficerPayslip?recordsToReceive=currdate"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Current Day</a> <a
+			href="/viewOfficerPayslip?recordsToReceive=30days"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">Last 30 Days</a> <a
+			href="/viewOfficerPayslip?recordsToReceive=all"
+			class="btn btn-warning btn-lg active" role="button"
+			aria-pressed="true">All</a>
 	</center>
 		<%
 			if (vList != null && vList.size() > 0) {

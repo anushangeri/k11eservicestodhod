@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import net.javatutorial.entity.OfficerPayslip;
@@ -115,6 +116,68 @@ public class OfficerPayslipManagerDAO {
         return vList;
     }
 	
+	public static ArrayList<OfficerPayslip> retrieveAllCurrentDay(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        OfficerPayslip v = null;
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT CONCAT( PAYSLIP_ID, '-payslip'), ID_NO, FILE, CREATED_DT "
+            		+ "FROM OFFICERPAYSLIP WHERE DATE(CREATED_DT) = DATE(CAST('" + timestamp + "' AS TIMESTAMP)) "
+            		+ "ORDER BY CREATED_DT DESC; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+            	vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<OfficerPayslip> retrieveAll30Days(Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        OfficerPayslip v = null;
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT CONCAT( PAYSLIP_ID, '-payslip'), ID_NO, FILE, CREATED_DT "
+            		+ "FROM OFFICERPAYSLIP WHERE DATE(CREATED_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP)) - 30 "
+            		+ "ORDER BY CREATED_DT DESC; ";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+            	vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
 	public static ArrayList<OfficerPayslip> retrieveByOfficeId(String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;
@@ -125,6 +188,70 @@ public class OfficerPayslipManagerDAO {
         	connection = Main.getConnection();
             String sql = "SELECT PAYSLIP_ID, ID_NO, FILE, CREATED_DT FROM OFFICERPAYSLIP "
             		+ " WHERE ID_NO ='" + idNo + "' ORDER BY CREATED_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+            	vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<OfficerPayslip> retrieveByOfficeIdCurrDate(String idNo, Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        OfficerPayslip v = null;
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT PAYSLIP_ID, ID_NO, FILE, CREATED_DT FROM OFFICERPAYSLIP "
+            		+ " WHERE ID_NO ='" + idNo + "' "
+            		+ " AND DATE(CREATED_DT) = DATE(CAST('" + timestamp + "' AS TIMESTAMP)) "
+    				+ "ORDER BY CREATED_DT DESC;";
+            pstmt = connection.prepareStatement(sql);
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+            	byte[] bytea = rs.getBytes(3);
+            	v = new OfficerPayslip(
+            			rs.getString(1),
+            			rs.getString(2),
+            			new ByteArrayInputStream(bytea), 
+            			rs.getTimestamp(4));
+            	vList.add(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	Main.close(connection, pstmt, rs);
+        }
+        return vList;
+    }
+	
+	public static ArrayList<OfficerPayslip> retrieveByOfficeId30Days(String idNo, Timestamp timestamp) {
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        ArrayList<OfficerPayslip> vList = new ArrayList<OfficerPayslip>();
+        OfficerPayslip v = null;
+        try {
+        	connection = Main.getConnection();
+            String sql = "SELECT PAYSLIP_ID, ID_NO, FILE, CREATED_DT FROM OFFICERPAYSLIP "
+            		+ " WHERE ID_NO ='" + idNo + "' "
+            		+ " AND DATE(CREATED_DT) >= DATE(CAST('" + timestamp + "' AS TIMESTAMP)) - 30 "
+    				+ "ORDER BY CREATED_DT DESC;";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
