@@ -41,9 +41,9 @@ public class ViewOfficerPayslipRecordServlet extends HttpServlet {
 		ArrayList<Employee> eList = null;
 		Employee e = null;
 		if(usertype != null && (usertype.toUpperCase().equals("ADMIN") || usertype.toUpperCase().equals("MANAGEMENT") )) {
-			if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("currdate")) {
-				vList = OfficerPayslipManagerDAO.retrieveAllCurrentDay(timestamp);
-				mList = MiscDocumentsManagerDAO.retrieveAllJustPayslipsCurrDate(timestamp);
+			if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("30days")) {
+				vList = OfficerPayslipManagerDAO.retrieveAll30Days(timestamp);
+				mList = MiscDocumentsManagerDAO.retrieveAllJustPayslips30Days(timestamp);
 				if(!vList.isEmpty()) {
 					vList.addAll(mList);
 				}
@@ -51,9 +51,9 @@ public class ViewOfficerPayslipRecordServlet extends HttpServlet {
 					vList = mList;
 				}
 			}
-			else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("30days") ) {
-				vList = OfficerPayslipManagerDAO.retrieveAll30Days(timestamp);
-				mList = MiscDocumentsManagerDAO.retrieveAllJustPayslips30Days(timestamp);
+			else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("currdate") ) {
+				vList = OfficerPayslipManagerDAO.retrieveAllCurrentDay(timestamp);
+				mList = MiscDocumentsManagerDAO.retrieveAllJustPayslipsCurrDate(timestamp);
 				if(!vList.isEmpty()) {
 					vList.addAll(mList);
 				}
@@ -78,22 +78,22 @@ public class ViewOfficerPayslipRecordServlet extends HttpServlet {
 			if(eList != null && eList.size() > 0) {
 				e = eList.get(0);
 				String employeeId = e.getEmployeeId();
-				if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("currdate")) {
-					mList = MiscDocumentsManagerDAO.retrieveByEmployeeIDJustPayslipCurrDate(employeeId, timestamp);
-				}
-				else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("30days") ) {
+				if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("30days")) {
 					mList = MiscDocumentsManagerDAO.retrieveByEmployeeIDJustPayslip30Days(employeeId, timestamp);
+				}
+				else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("currdate") ) {
+					mList = MiscDocumentsManagerDAO.retrieveByEmployeeIDJustPayslipCurrDate(employeeId, timestamp);
 				}
 				else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("all") ) {
 					mList = MiscDocumentsManagerDAO.retrieveByEmployeeIDJustPayslip(employeeId);
 				}
 			}
 			
-			if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("currdate")) {
-				vList = OfficerPayslipManagerDAO.retrieveByOfficeIdCurrDate(idNo, timestamp);
-			}
-			else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("30days") ) {
+			if((StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) || recordsToReceive.equals("30days")) {
 				vList = OfficerPayslipManagerDAO.retrieveByOfficeId30Days(idNo, timestamp);
+			}
+			else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("currdate") ) {
+				vList = OfficerPayslipManagerDAO.retrieveByOfficeIdCurrDate(idNo, timestamp);
 			}
 			else if(!(StringUtils.isEmpty(recordsToReceive) || recordsToReceive == null) && recordsToReceive.equals("all") ) {
 				vList = OfficerPayslipManagerDAO.retrieveByOfficeId(idNo);
