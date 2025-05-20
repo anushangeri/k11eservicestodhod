@@ -253,7 +253,7 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<label for="uploadFile">Upload File: </label> <input type="file"
+						<label for="uploadFile">Upload File (PDFs Only): </label> <input type="file"
                                 class="form-control" name="file">
 					</div>
 					<div class="form-row">
