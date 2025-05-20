@@ -94,7 +94,7 @@ public class ArchiveTodHodRecordsServlet extends HttpServlet {
 
 		String to = "k11.sivalingam@gmail.com";// change accordingly
 		final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
-		//final String password = "Sh@ngeri94";// change accordingly
+		//final String password = "Sh@ngeri94";// change accordingly in the heroku dashboard config
 		
 		final String password = new String(System.getenv("EMAIL_PASSWORD"));
 		

@@ -19,68 +19,56 @@ import net.javatutorial.tutorials.Main;
 public class IncidentManagerDAO {
 
 	public static String addIncident(Incident v) {
-		Connection connection = null;
-		ResultSet rs = null;
-		Statement stmt = null;
-		String message = "";
-		
-		try {
-			connection = Main.getConnection();
-			stmt = connection.createStatement();
-		    
-			String sql = "INSERT INTO INCIDENT (INCIDENT_ID, OFFICERONDUTYNAME, OFFICERONDUTYID, "
-					+ "OFFICERONDUTYDESIGNATION, REPORTINGSITE, DATEOFINCIDENT, TIMEOFINCIDENT, "
-					+ "DATEOFINCIDENTREPORTED, PARTIESINVOLVED, INCIDENTCATEGORY, HOWINCIDENTOCCURRED, "
-					+ "WHATINCIDENTOCCURRED, WHYINCIDENTOCCURRED, DECLARATIONBYOFFICERONDUTY, "
-					+ "DECLARATIONOFSECURITYIMPLICATIONS, SIGNATUREOFOFFICERONDUTY, SIGNATUREOFOPSMANAGERONDUTY, "
-					+ "FILE, CREATED_DT, LAST_MODIFIED_DT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			try (PreparedStatement statement = connection.prepareStatement(sql)) {
-			    statement.setString(1, v.getIncidentId());
-			    statement.setString(2, v.getOfficerOnDutyName());
-			    statement.setString(3, v.getOfficerOnDutyId());
-			    statement.setString(4, v.getOfficerOnDutyDesignation());
-			    statement.setString(5, v.getReportingSite());
-			    statement.setString(6, v.getDateOfIncident());
-			    statement.setString(7, v.getTimeOfIncident());
-			    statement.setString(8, v.getDateOfIncidentReported());
-			    statement.setString(9, v.getPartiesInvolved());
-			    statement.setArray(10, connection.createArrayOf("text", v.getIncidentCategory().toArray()));
-			    statement.setString(11, v.getHowIncidentOccurred());
-			    statement.setString(12, v.getWhatIncidentOccurred());
-			    statement.setString(13, v.getWhyIncidentOccurred());
-			    statement.setString(14, v.getDeclarationByOfficerOnDuty());
-			    statement.setString(15, v.getDeclarationofSecurityImplications());
-			    statement.setString(16, v.getSignatureOfOfficerOnDuty());
-			    statement.setString(17, v.getSignatureOfOpsManagerOnDuty());
-			    
-			    statement.setBinaryStream(18, v.getFile());
-			    
-			    statement.setTimestamp(19, v.getCreatedDt());
-			    statement.setTimestamp(20, v.getLastModifiedDt());
-			    
-			    statement.executeUpdate();
-			} catch (SQLException e) {
-			    e.printStackTrace();
-			}
-			
-			rs = stmt.executeQuery(
-					"SELECT INCIDENTCATEGORY FROM INCIDENT WHERE INCIDENT_ID = '" + v.getIncidentId() + "';");
-			while (rs.next()) {
-				message = "Read from DB: " +  (rs.getArray(1)).toString();
-			}
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			message = "" + e;
-			// e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-			message = "" + e;
-		} finally {
-			Main.close(connection, stmt, rs);
-		}
+	    Connection connection = null;
+	    ResultSet rs = null;
+	    PreparedStatement stmt = null;
+	    String message = "";
 
-		return message;
+	    try {
+	        connection = Main.getConnection();
+
+	        String sql = "INSERT INTO INCIDENT (INCIDENT_ID, OFFICERONDUTYNAME, OFFICERONDUTYID, "
+	                + "OFFICERONDUTYDESIGNATION, REPORTINGSITE, DATEOFINCIDENT, TIMEOFINCIDENT, "
+	                + "DATEOFINCIDENTREPORTED, PARTIESINVOLVED, INCIDENTCATEGORY, HOWINCIDENTOCCURRED, "
+	                + "WHATINCIDENTOCCURRED, WHYINCIDENTOCCURRED, DECLARATIONBYOFFICERONDUTY, "
+	                + "DECLARATIONOFSECURITYIMPLICATIONS, SIGNATUREOFOFFICERONDUTY, SIGNATUREOFOPSMANAGERONDUTY, "
+	                + "FILE, CREATED_DT, LAST_MODIFIED_DT) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW());";
+
+	        stmt = connection.prepareStatement(sql);
+
+	        stmt.setString(1, v.getIncidentId());
+	        stmt.setString(2, v.getOfficerOnDutyName());
+	        stmt.setString(3, v.getOfficerOnDutyId());
+	        stmt.setString(4, v.getOfficerOnDutyDesignation());
+	        stmt.setString(5, v.getReportingSite());
+	        stmt.setString(6, v.getDateOfIncident());
+	        stmt.setString(7, v.getTimeOfIncident());
+	        stmt.setString(8, v.getDateOfIncidentReported());
+	        stmt.setString(9, v.getPartiesInvolved());
+	        stmt.setArray(10, connection.createArrayOf("text", v.getIncidentCategory().toArray()));
+	        stmt.setString(11, v.getHowIncidentOccurred());
+	        stmt.setString(12, v.getWhatIncidentOccurred());
+	        stmt.setString(13, v.getWhyIncidentOccurred());
+	        stmt.setString(14, v.getDeclarationByOfficerOnDuty());
+	        stmt.setString(15, v.getDeclarationofSecurityImplications());
+	        stmt.setString(16, v.getSignatureOfOfficerOnDuty());
+	        stmt.setString(17, v.getSignatureOfOpsManagerOnDuty());
+	        stmt.setBinaryStream(18, v.getFile());
+
+	        int row = stmt.executeUpdate();
+	        if (row > 0) {
+	            message = "Incident successfully recorded in the database.";
+	        }
+
+	    } catch (URISyntaxException e) {
+	        message = "" + e;
+	    } catch (SQLException e) {
+	        message = "" + e;
+	    } finally {
+	        Main.close(connection, stmt, rs);
+	    }
+
+	    return message;
 	}
 	
 	public static String updateIncident(Incident v) {
