@@ -208,9 +208,18 @@
 							</div>
 						</div>
 					</div>
+					<%
+					    boolean isDisabled = (v == null) || (v.getIncidentId() == null) || (v.getFile() == null);
+					%>
 					<div class="form-row">
-						<a href="generateDocDwnld?dwnldDocInd=dwnldIncidentDoc&incidentId=<%=v.getIncidentId()%>" class="btn btn-warning btn-md" <%=((v == null) || v.getIncidentId() == null || v.getFile() == null ? "disabled" : "")%> role="button"
-									aria-pressed="true">Download</a>
+					    <a 
+					        href="<%= isDisabled ? "#" : "generateDocDwnld?dwnldDocInd=dwnldIncidentDoc&incidentId=" + v.getIncidentId() %>" 
+					        class="btn btn-warning btn-md <%= isDisabled ? "disabled" : "" %>" 
+					        role="button" 
+					        aria-pressed="true"
+					        <%= isDisabled ? "tabindex='-1' aria-disabled='true'" : "" %>>
+					        Download
+					    </a>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
